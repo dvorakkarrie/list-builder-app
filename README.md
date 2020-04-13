@@ -1,9 +1,9 @@
-# Description:
+# List Builder Frontend
+
+## Overview:
 The app allows users to create, maintain, and share lists.
 
-# Wireframe:
-
-# Technical Goals/Requirements:
+## Technical Goals/Requirements:
 ### Frontend
  * REACT
 ### Backend
@@ -13,7 +13,7 @@ The app allows users to create, maintain, and share lists.
  * role-based security (did not learn in class) - as defined in user stories
  * social-authenticate
 
-# Components
+## Components
 [Screen mock](https://wireframe.cc/8DJyT8)
 * HomePage
 * LoginSignupLogout
@@ -27,7 +27,7 @@ The app allows users to create, maintain, and share lists.
 * ToDo
 * Share (from List)
 
-# Data Models
+## Data Models
 [ERD](https://dbdiagram.io/d/5e924af039d18f5553fd74eb)
 * users
   - user_id (pk)
@@ -59,7 +59,7 @@ The app allows users to create, maintain, and share lists.
   - list_id
   - share_user_id
 
-# User Stories
+## User Stories
 * As a user, I can create a list of to dos.
 * As a user, I can browse recipes from Edamam API.
 * As a user, I can add an item to my list from Edamam recipe ingredients.
