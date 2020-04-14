@@ -25,10 +25,16 @@ button {
   opacity: 0.75;
 }
 
+img {
+  margin: auto;
+  padding: 0px;
+}
+
 input {
   border: 0;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-  font-size: 2em;
+  font-size: 1em;
+  margin: 1em;
   padding: 0.5em;
 }
 

@@ -59,3 +59,7 @@ The app allows users to create, maintain, and share lists.
   * As a user, I can see only view or edit lists shared with me.
 
 
+## Installation Instructions
+* npm install
+* npm i uuid
+* npm i axios

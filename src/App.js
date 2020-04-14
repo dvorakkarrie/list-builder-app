@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Route, Switch, Redirect, withRouter} from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 
 import './App.css';
 
@@ -11,49 +11,67 @@ import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
+import Lists from "./components/Lists";
 import CreateList from "./components/CreateList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
+let backendUrl = "http://localhost:8080/";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
+      userId: '',
+      userState: '',
+      userFirstName: '',
+      userLastName: '',
+      userEmailAddress: '',
+      userPhotoUrl: '',
       updatedUserFirstName: '',
-      updatedUserLastName: ''
+      updatedUserLastName: '',
+      lists: [],
     }
   }
 
   componentDidMount() {
     this.getUsersAxios();
+    console.log(this.users)
   }
   
   createUserAxios() {
-    // event.preventDefault();
-    // axios({
-    //   method: "POST",
-    //   url: `${backendUrl}new-user`,
-    //   data: {
-    //     users: {
-    //       first_name: this.state.userFirstName,
-    //       last_name: this.state.userLastName,
-    //       lists: [],
-    //       items: []
-    //     }
-    //   }
-    // }).then(newUser => {
-    //   this.props.history.push(`/user/${newUser.data._id}`);
-    //   this.setState(prevState => ({
-    //     users: [...prevState.users, newUser.data]
-    //   }));
-    // });
+    axios({
+      method: "POST",
+      url: `${backendUrl}users`,
+      data: {
+        // users: {
+          user_id: this.state.userId,
+          status: this.state.userStatus,
+          first_name: this.state.userFirstName,
+          last_name: this.state.userLastName,
+          email_address: this.state.userEmailAddress,
+          photo_url: this.state.userPhotoUrl,
+          // lists: [],
+          // items: [],
+        // }
+      }
+    }).then(newUser => {
+      this.props.history.push(`/users/${newUser.data._id}`);
+      this.setState(prevState => ({
+        users: [...prevState.users, newUser.data]
+      }));
+    });
   }
 
+  handleUserSubmit = event => {
+    event.preventDefault();
+    this.createUserAxios();
+  };
+
   getUsersAxios() {
-    // axios({ method: "GET", url: backendUrl }).then(userData =>
-    //   this.setState({ users: userData.data })
-    // );
+    axios({ method: "GET", url: `${backendUrl}users`}).then(userData =>
+      this.setState({ users: userData.data })
+    );
   }
 
   deleteAxiosUser = event => {
@@ -118,6 +136,17 @@ class App extends React.Component {
     // });
   }
 
+  deleteAxiosList = event => {
+    // console.log(`${backendUrl}list/${event.target.id}`)
+    // event.preventDefault();
+    // axios({
+    //   method: "DELETE",
+    //   url: `${backendUrl}list/${event.target.id}`
+    // }).then(deletedUser => {
+      this.getUserAxios();
+    // });
+  };
+
   handleListSubmit = event => {
     event.preventDefault();
     this.createListAxios();
@@ -130,11 +159,15 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.users)
   return (
     <div className="App">
       <header>
-        <Link to='/' className='home'><Header /></Link>
+        <Link to='/' className='home'><Header />
+
+        </Link>
       </header>
+
        <Switch>
          {/* Route to view users component */}
           <Route exact path='/users'
@@ -154,25 +187,41 @@ class App extends React.Component {
               <UserDetails
                 {...routerProps}
                 users={this.state.users}
-                newList={this.state.newList}
+                userId={this.state.newUserId}
+                userStatus={this.state.userStatus}
+                userFirstName={this.state.newUserFirstName}
+                userLastName={this.state.newUserLastName}
+                userEmailAddress={this.state.newEmailAddress}
+                userPhotoUrl={this.state.userPhotoUrl}
+                handleChange={this.handleChange}
+                handleUserDelete={this.deleteAxiosUser}
                 handleUpdateUser={this.handleUpdatedUser}
-                handleListDelete={this.deleteAxiosList}
               />
             )}
           />
 
           {/* Route to create a new user (from Home) */}
           <Route path='/new-user'
-            render={() => (
+            render={routerProps => (
               <CreateUser
+                {...routerProps}
+                users={this.state.users}
+                lists={this.state.lists}
+                items={this.state.items}
+                userId={this.state.newUserId}
+                userStatus={this.state.userStatus}
+                userFirstName={this.state.newUserFirstName}
+                userLastName={this.state.newUserLastName}
+                userEmailAddress={this.state.newEmailAddress}
+                userPhotoUrl={this.state.userPhotoUrl}
                 handleChange={this.handleChange}
-                handleSubmit={this.createUserAxios} 
+                handleUserSubmit={this.handleUserSubmit}
               />
             )}
           />
 
          {/* Route to view lists component */}
-         {/* <Route exact path='/lists'
+         <Route exact path='/lists'
             render={routerProps => (
               <Lists
                 {...routerProps}
@@ -181,7 +230,7 @@ class App extends React.Component {
                 handleListDelete={this.deleteAxiosList}
               />
             )}
-          /> */}
+          />
 
           {/* Route to create a new list (from UserDetails component)*/}
           <Route path='/new-list'
@@ -213,7 +262,7 @@ class App extends React.Component {
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
-      <TaskListContext>
+        <TaskListContext>
         <div>
           <TodoForm />
           <TodoList />
