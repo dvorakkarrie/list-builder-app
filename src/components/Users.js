@@ -1,10 +1,14 @@
-import React from 'react';  
+import React from 'react';
+import {Link} from 'react-router-dom'
 
-function Users() {
+const Users = props => {
 
     return (
         <div>
             
+            <button onClick={props.handleDelete}> <i className="fas fa-trash-alt"></i> </button>
+            <Link to={`/`}>
+            </Link>
         </div>
     )
 }
