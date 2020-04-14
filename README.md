@@ -41,7 +41,6 @@ The app allows users to create, maintain, and share lists.
 ---
 ## User Stories
 * MVP 
-  * As
   * As a user, I can create an item (add it to 'my items').
   * As a user, I can create a list.
     * I can add items to my list from my list of items.
@@ -50,6 +49,7 @@ The app allows users to create, maintain, and share lists.
   * As a user, I can delete my list.
   * As a user, I can mark items as complete.
   * As a user, I can login to see (only) my data.
+  * As a user, I can update my user information.
   * As a user, I can only maintain lists that I create.
 * Silver
   * As a user, I can browse recipes from Edamam API.
