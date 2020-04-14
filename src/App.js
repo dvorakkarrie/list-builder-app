@@ -11,6 +11,7 @@ import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
+import CreateList from "./components/CreateList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
 
@@ -94,6 +95,34 @@ class App extends React.Component {
     })
   }
 
+  createListAxios() {
+    // let userId = this.props.location.pathname.slice(10);
+    // axios({
+    //   method: "PUT",
+    //   url: `${backendUrl}new-list`,
+    //   data: {
+    //     user: {
+    //       _id: userId
+    //     },
+    //     item: {
+    //       list: this.state.listName,
+    //       listDescription: this.state.listDescription,
+    //       quantity: this.state.listQuantity,
+    //       image: this.state.listImageUrl,
+    //       status: this.state.listStatus
+    //     }
+    //   }
+    // }).then(newList => {
+    //   this.getUsersAxios();
+    //   this.props.history.push(`/user/${userId}`);
+    // });
+  }
+
+  handleListSubmit = event => {
+    event.preventDefault();
+    this.createListAxios();
+  };
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -114,7 +143,7 @@ class App extends React.Component {
                 {...routerProps}
                 users={this.state.users}
                 handleChange={this.handleChange} 
-                handleDelete={this.deleteAxiosUser}
+                handleUserDelete={this.deleteAxiosUser}
               />
             )}
           />
@@ -133,8 +162,7 @@ class App extends React.Component {
           />
 
           {/* Route to create a new user (from Home) */}
-          <Route
-            path='/new-user'
+          <Route path='/new-user'
             render={() => (
               <CreateUser
                 handleChange={this.handleChange}
@@ -143,20 +171,31 @@ class App extends React.Component {
             )}
           />
 
-          {/* Route to create a new event item (on EventDetails component)*/}
-          {/* <Route
-            path='/new-item'
+         {/* Route to view lists component */}
+         {/* <Route exact path='/lists'
             render={routerProps => (
-              <CreateItem
+              <Lists
                 {...routerProps}
-                handleChange={this.handleChange}
-                handleItemSubmit={this.handleItemSubmit}
-                id={routerProps.location.pathname}
+                lists={this.state.lists}
+                handleChange={this.handleChange} 
+                handleListDelete={this.deleteAxiosList}
               />
             )}
           /> */}
 
-           {/* Route to update item (on EventDetails component)*/}
+          {/* Route to create a new list (from UserDetails component)*/}
+          <Route path='/new-list'
+            render={routerProps => (
+              <CreateList
+                {...routerProps}
+                handleChange={this.handleChange}
+                handleListSubmit={this.handleListSubmit}
+                id={routerProps.location.pathname}
+              />
+            )}
+          />
+
+           {/* Route to update a list (from UserDetails component)*/}
            {/* <Route
             path='/update-item/:eventId/:itemId'
             render={routerProps => (
@@ -170,6 +209,7 @@ class App extends React.Component {
               />
             )}
           /> */}
+
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
