@@ -7,7 +7,7 @@ const TaskList = () => {
 
     return (
         <div>
-            {tasks.length ?(
+            {tasks.length ? (
                 <ul className="list">
                     {tasks.map(task => {
                     return <Task task={task} key={task.id} />

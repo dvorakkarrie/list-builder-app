@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState } from 'react';
 import {TaskListContext} from './TaskListContext';
 
-const TaskForm = () => {
+const TodoForm = () => {
     const {addTask, clearList, editItem, editTask} = useContext(TaskListContext)
     
     const [title, setTitle] = useState('')
@@ -45,6 +45,6 @@ const TaskForm = () => {
     )
 }
 
-export default TaskForm;
+export default TodoForm;
 
 

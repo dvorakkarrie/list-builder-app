@@ -45,6 +45,7 @@ const TaskListContextProvider = (props) => {
                     tasks, addTask, removeTask, clearList, 
                     findItem, editTask, editItem}}>
                     {props.children}
+                    
             </TaskListContext.Provider>
         </div>
     )
