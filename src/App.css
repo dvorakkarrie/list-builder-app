@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  background: red;
+  font-weight: bold;
+  margin: 1px;
+  margin-left: auto;
+  padding: 10px;
+  opacity: 0.5;
+}
+
+input {
+  border: 0;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  font-size: 2em;
+  padding: 0.5em;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 1em;
+}
+
+.todo {
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  line-height: 1;
+  margin-bottom: 1rem;
+  padding: .5em;
+  text-align: left;
+  border-radius: 3px;
+}
+
+button:hover {
+  opacity: 1;
+}
