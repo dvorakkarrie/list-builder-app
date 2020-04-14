@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {TaskListContext} from './TaskListContext'
 import Task from './Task'
 
-const TaskList = (props) => {
+const TaskList = () => {
     const {tasks} = useContext(TaskListContext);
 
     return (

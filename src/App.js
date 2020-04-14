@@ -7,16 +7,16 @@ import TaskList from "./components/TaskList";
 import TaskListContext from "./components/TaskListContext";
 
 function App() {
-return (
-<div className="App">
-<Header />
-<TaskListContext>
-<div>
-<TaskForm />
-<TaskList />
-</div>
-</TaskListContext>
-</div>
-);
-}
+  return (
+    <div className="App">
+      <Header />
+      <TaskListContext>
+        <div>
+          <TaskForm />
+          <TaskList />
+        </div>
+      </TaskListContext>
+      </div>
+  );
+  }
 export default App;
