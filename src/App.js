@@ -1,24 +1,22 @@
 import React from 'react';
-
 import './App.css';
 
 import Header from "./components/Header";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import TodoItem from "./components/TodoItem"
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import TaskListContext from "./components/TaskListContext";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <TodoItem>
-        <div>
-          <TodoForm />
-          <TodoList />
-        </div>
-      </TodoItem>
-    </div>
-  );
+return (
+<div className="App">
+<Header />
+<TaskListContext>
+<div>
+<TaskForm />
+<TaskList />
+</div>
+</TaskListContext>
+</div>
+);
 }
-
 export default App;
