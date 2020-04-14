@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {TaskListContext} from './TaskListContext'
 
-const Task = props => {
+const Todo = props => {
     const {removeTask, findItem} = useContext(TaskListContext)
     return (
         <li className="list-item">
@@ -16,4 +16,4 @@ const Task = props => {
         </li>
     )
 }
-export default Task
+export default Todo;

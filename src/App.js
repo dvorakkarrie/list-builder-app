@@ -1,23 +1,23 @@
 import React from 'react';
-// import {Link, 
-  // Route, Switch, Redirect, withRouter 
-// } from 'react-router-dom';
+import {Link, Route, Switch, Redirect, withRouter} from 'react-router-dom';
 // import axios from 'axios';
 
 import './App.css';
 
 import Header from "./components/Header";
 import TodoForm from "./components/TodoForm";
-import TaskList from "./components/TaskList";
+import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
+import Users from "./components/Users";
 
-// const backendUrl = "http://localhost:8080/"
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      users: [],
+    }
   }
 
   componentDidMount() {
@@ -33,18 +33,81 @@ class App extends React.Component {
   render() {
   return (
     <div className="App">
-      {/* <Link to="/" className='home-page'>
+      <header>
+        <Link to='/' className='home'><Header /></Link>
+      </header>
+       <Switch>
+          <Route exact path='/'
+            render={routerProps => (
+              <Users
+                users={this.state.users}
+              />
+            )}
+          />
 
-      </Link> */}
-      <Header />
+          {/* Route to view EventDetail component */}
+          {/* <Route
+            path='/event/:id'
+            render={routerProps => (
+              <EventDetail
+                {...routerProps}
+                events={this.state.events}
+                newItem={this.state.newItem}
+                handleItemDelete={this.deleteAxiosItem}
+                itemSold={this.itemSold}
+              />
+            )}
+          /> */}
+
+          {/* Route to create a new event (from Home) */}
+          {/* <Route
+            path='/new-event'
+            render={() => (
+              <CreateEvent
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            )}
+          /> */}
+
+          {/* Route to create a new event item (on EventDetails component)*/}
+          {/* <Route
+            path='/new-item'
+            render={routerProps => (
+              <CreateItem
+                {...routerProps}
+                handleChange={this.handleChange}
+                handleItemSubmit={this.handleItemSubmit}
+                id={routerProps.location.pathname}
+              />
+            )}
+          /> */}
+
+           {/* Route to update item (on EventDetails component)*/}
+           {/* <Route
+            path='/update-item/:eventId/:itemId'
+            render={routerProps => (
+              <UpdateItem
+                {...routerProps}
+                handleChange={this.handleChange}
+                handleItemUpdate={this.handleItemUpdate}
+                allEvents={this.state.events}
+                updateItem={this.state}
+                id={routerProps.location.pathname}
+              />
+            )}
+          /> */}
+          <Route path='/*' render={() => <Redirect to='/event/' />} />
+        </Switch>
+
       <TaskListContext>
         <div>
           <TodoForm />
-          <TaskList />
+          <TodoList />
         </div>
       </TaskListContext>
       </div>
   );
   }
 }
-export default App;
+export default withRouter(App);

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import {TaskListContext} from './TaskListContext'
-import Task from './Task'
+import Todo from './Todo'
 
-const TaskList = () => {
+const TodoList = () => {
     const {tasks} = useContext(TaskListContext);
 
     return (
@@ -10,13 +10,13 @@ const TaskList = () => {
             {tasks.length ? (
                 <ul className="list">
                     {tasks.map(task => {
-                    return <Task task={task} key={task.id} />
+                    return <Todo task={task} key={task.id} />
                     })}
                 </ul>
             ):(
-            <div className="no-tasks">No Tasks</div>
+            <div className="no-tasks">No Items</div>
             )}
         </div>
     )
 }
-export default TaskList
+export default TodoList
