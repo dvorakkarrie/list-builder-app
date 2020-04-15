@@ -16,6 +16,8 @@ The app allows users to create, maintain, and share lists.
 ---
 ## Components
 ### Screen Mock
+[Login/SignUp View](https://wireframe.cc/UUdu4W)
+[Login View](https://wireframe.cc/KvXkK2)
 [Item View](https://wireframe.cc/8DJyT8)
 [List View](https://wireframe.cc/NanzQ3)
 [Manage List](https://wireframe.cc/2sCU9g)
@@ -48,6 +50,8 @@ The app allows users to create, maintain, and share lists.
   * As a user, I can edit my list (description, status). 
   * As a user, I can delete my list.
   * As a user, I can mark items as complete.
+  * As a user, I can register as a user.
+    * I am not allowed to use someone else's user id.
   * As a user, I can login to see (only) my data.
   * As a user, I can update my user information.
   * As a user, I can only maintain lists that I create.

@@ -1,6 +1,7 @@
 import React from 'react'
 
 const CreateUser = props => {
+
     return (
         <div>
             <div className='new-user-page'>

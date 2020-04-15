@@ -15,7 +15,7 @@ const UserDetails = props => {
                         User:
                     </label>
                     <div className='detail-field'>
-                        {usersDetail.first_name}
+                        {/* {usersDetail.first_name} */}
                     </div>
                 </div>
             </section>
