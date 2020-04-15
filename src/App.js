@@ -3,7 +3,7 @@ import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 
-import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
+import { SecureRoute, LoginCallback } from '@okta/okta-react';
 import Home from './components/Home';
 
 import './App.css';
@@ -185,7 +185,7 @@ class App extends Component {
       <header><Header /></header>
 
           <SecureRoute path='/todo-form' component={TodoForm}/>
-          <Route path='/implicit/callback' component={ImplicitCallback} />
+          <Route path='/implicit/callback' component={LoginCallback} />
 
        <Switch>
         <Route exact path="/" render={routerProps => (
