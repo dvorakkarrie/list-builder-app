@@ -67,3 +67,4 @@ The app allows users to create, maintain, and share lists.
 * npm install
 * npm i uuid
 * npm i axios
+* npm install @okta/okta-react

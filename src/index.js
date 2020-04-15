@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
+import {Security} from '@okta/okta-react'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const oktaConfig = {
+  issuer: 'https://localhost:3000/oauth2/default',
+  clientId: '0oa94rpmuDksH50jI4x6',
+  redirectUri: `${window.location.origin}/implicit/callback`
+}
+
 ReactDOM.render(
     <Router>
+      <Security {...oktaConfig}>
         <App />
+      </Security>
     </Router>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

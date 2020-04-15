@@ -2,13 +2,16 @@ import React, {Component} from 'react';
 import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
+
+import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
+import Home from './components/Home';
+
 import './App.css';
 
 import Header from "./components/Header";
-import Home from "./components/Home";
 import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import TaskListContext from "./components/TaskListContext";
+// import TodoList from "./components/TodoList";
+// import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
@@ -17,6 +20,7 @@ import CreateList from "./components/CreateList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
 let backendUrl = "http://localhost:8080/";
+// let backendUrl = "https://listbuilder-backend.herokuapp.com/";
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +38,13 @@ class App extends Component {
       updatedUserLastName: '',
       lists: [],
       isLoggedIn: true,
+      
     }
+    this.onAuthRequired = this.onAuthRequired.bind(this);
+  }
+
+  onAuthRequired() { 
+    this.props.history.push('/login');
   }
 
   componentDidMount() {
@@ -170,8 +180,13 @@ class App extends Component {
   render() {
     console.log(this.state.users)
   return (
+  
     <div className="App">
       <header><Header /></header>
+
+          <SecureRoute path='/todo-form' component={TodoForm}/>
+          <Route path='/implicit/callback' component={ImplicitCallback} />
+
        <Switch>
         <Route exact path="/" render={routerProps => (
             <Home 
@@ -276,12 +291,12 @@ class App extends Component {
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
-        <TaskListContext>
+        {/* <TaskListContext>
         <div>
           <TodoForm />
           <TodoList />
         </div>
-      </TaskListContext>
+      </TaskListContext> */}
       </div>
   );
   }
