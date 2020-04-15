@@ -5,7 +5,7 @@ const User = props => {
     return (
         <div>
             <button onClick={props.handleDelete}> <i className="fas fa-trash-alt"></i> </button>
-            <Link to={`/event/${props.user._id}`}>
+            <Link to={`/user/${props.user._id}`}>
                 {props.user.first_name}
             </Link>
         </div>

@@ -51,8 +51,8 @@ class App extends Component {
           last_name: this.state.userLastName,
           email_address: this.state.userEmailAddress,
           photo_url: this.state.userPhotoUrl,
-          // lists: [],
-          // items: [],
+          lists: [],
+          items: [],
         // }
       }
     }).then(newUser => {
@@ -79,7 +79,7 @@ class App extends Component {
   }
 
   deleteAxiosUser = event => {
-    console.log(`${backendUrl}user/${event.target.id}`)
+    console.log(`${backendUrl}users/${event.target.id}`)
     event.preventDefault();
     axios({
       method: "DELETE",
