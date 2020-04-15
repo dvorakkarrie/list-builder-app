@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
 
 import Header from "./components/Header";
-// import TodoForm from "./components/TodoForm";
-// import TodoList from "./components/TodoList";
-// import TaskListContext from "./components/TaskListContext";
+import Home from "./components/Home";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
+import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
@@ -23,7 +24,8 @@ class App extends Component {
     this.state = {
       users: [],
       userId: '',
-      userState: '',
+      userPassword: '',
+      userStatus: '',
       userFirstName: '',
       userLastName: '',
       userEmailAddress: '',
@@ -31,6 +33,7 @@ class App extends Component {
       updatedUserFirstName: '',
       updatedUserLastName: '',
       lists: [],
+      isLoggedIn: true,
     }
   }
 
@@ -44,16 +47,13 @@ class App extends Component {
       method: "POST",
       url: `${backendUrl}users`,
       data: {
-        // users: {
-          user_id: this.state.userId,
-          status: this.state.userStatus,
-          first_name: this.state.userFirstName,
-          last_name: this.state.userLastName,
-          email_address: this.state.userEmailAddress,
-          photo_url: this.state.userPhotoUrl,
-          lists: [],
-          items: [],
-        // }
+        user_id: this.state.userId,
+        pwd: this.state.password,
+        status: this.state.userStatus,
+        first_name: this.state.userFirstName,
+        last_name: this.state.userLastName,
+        email_address: this.state.userEmailAddress,
+        photo_url: this.state.userPhotoUrl
       }
     }).then(newUser => {
       this.props.history.push(`/users/${newUser.data._id}`);
@@ -163,17 +163,25 @@ class App extends Component {
     })
   }
 
+  handleLogin = event => {
+  
+  }
+
   render() {
     console.log(this.state.users)
   return (
     <div className="App">
-      <header>
-        <Link to='/' className='home'><Header />
-
-        </Link>
-      </header>
-
+      <header><Header /></header>
        <Switch>
+        <Route exact path="/" render={routerProps => (
+            <Home 
+              {...routerProps}
+              users={this.state.users}
+              handleLogin={this.handleLogin}
+            />
+          )}
+        />
+
          {/* Route to view users component */}
           <Route exact path='/users'
             render={routerProps => (
@@ -268,12 +276,12 @@ class App extends Component {
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
-        {/* <TaskListContext>
+        <TaskListContext>
         <div>
           <TodoForm />
           <TodoList />
         </div>
-      </TaskListContext> */}
+      </TaskListContext>
       </div>
   );
   }
