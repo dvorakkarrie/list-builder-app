@@ -1,23 +1,23 @@
-import React from 'react';
-import {Link, Route, Switch, Redirect, withRouter} from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
 
 import Header from "./components/Header";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import TaskListContext from "./components/TaskListContext";
+// import TodoForm from "./components/TodoForm";
+// import TodoList from "./components/TodoList";
+// import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
-import Lists from "./components/Lists";
+import List from "./components/List";
 import CreateList from "./components/CreateList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
 let backendUrl = "http://localhost:8080/";
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,20 +69,25 @@ class App extends React.Component {
   };
 
   getUsersAxios() {
-    axios({ method: "GET", url: `${backendUrl}users`}).then(userData =>
-      this.setState({ users: userData.data })
+    axios({ 
+      method: "GET", 
+      url: `${backendUrl}users/`
+    }).then(userData =>
+      this.setState({ 
+        users: userData.data })
     );
   }
 
   deleteAxiosUser = event => {
-    // console.log(`${backendUrl}user/${event.target.id}`)
-    // event.preventDefault();
-    // axios({
-    //   method: "DELETE",
-    //   url: `${backendUrl}user/${event.target.id}`
-    // }).then(deletedUser => {
+    console.log(`${backendUrl}user/${event.target.id}`)
+    event.preventDefault();
+    axios({
+      method: "DELETE",
+      url: `${backendUrl}users/${event.target.id}`
+    }).then(deletedUser => {
       this.getUserAxios();
-    // });
+      this.props.history.push("/")
+    });
   };
 
   putUserAxios = event => {
@@ -181,25 +186,6 @@ class App extends React.Component {
             )}
           />
 
-          {/* Route to view UserDetail component */}
-          <Route path='/user/:id'
-            render={routerProps => (
-              <UserDetails
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.newUserId}
-                userStatus={this.state.userStatus}
-                userFirstName={this.state.newUserFirstName}
-                userLastName={this.state.newUserLastName}
-                userEmailAddress={this.state.newEmailAddress}
-                userPhotoUrl={this.state.userPhotoUrl}
-                handleChange={this.handleChange}
-                handleUserDelete={this.deleteAxiosUser}
-                handleUpdateUser={this.handleUpdatedUser}
-              />
-            )}
-          />
-
           {/* Route to create a new user (from Home) */}
           <Route path='/new-user'
             render={routerProps => (
@@ -220,10 +206,30 @@ class App extends React.Component {
             )}
           />
 
+          {/* Route to view UserDetail component */}
+          <Route path="/users/:id" render={routerProps => (
+            <UserDetails
+            {...routerProps}
+                {...routerProps}
+                users={this.state.users}
+                // userId={this.state.newUserId}
+                // userStatus={this.state.userStatus}
+                // userFirstName={this.state.newUserFirstName}
+                // userLastName={this.state.newUserLastName}
+                // userEmailAddress={this.state.newEmailAddress}
+                // userPhotoUrl={this.state.userPhotoUrl}
+                handleChange={this.handleChange}
+                handleUserDelete={this.deleteAxiosUser}
+                handleUpdateUser={this.handleUpdatedUser}
+              />
+            )}
+          />
+
+
          {/* Route to view lists component */}
          <Route exact path='/lists'
             render={routerProps => (
-              <Lists
+              <List
                 {...routerProps}
                 lists={this.state.lists}
                 handleChange={this.handleChange} 
@@ -262,12 +268,12 @@ class App extends React.Component {
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
-        <TaskListContext>
+        {/* <TaskListContext>
         <div>
           <TodoForm />
           <TodoList />
         </div>
-      </TaskListContext>
+      </TaskListContext> */}
       </div>
   );
   }
