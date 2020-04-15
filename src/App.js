@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
 
 import Header from "./components/Header";
+import Home from "./components/Home";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
@@ -32,6 +33,7 @@ class App extends Component {
       updatedUserFirstName: '',
       updatedUserLastName: '',
       lists: [],
+      isLoggedIn: true,
     }
   }
 
@@ -161,17 +163,25 @@ class App extends Component {
     })
   }
 
+  handleLogin = event => {
+  
+  }
+
   render() {
     console.log(this.state.users)
   return (
     <div className="App">
-      <header>
-        <Link to='/' className='home'>Home<Header />
-
-        </Link>
-      </header>
-
+      <header><Header /></header>
        <Switch>
+        <Route exact path="/" render={routerProps => (
+            <Home 
+              {...routerProps}
+              users={this.state.users}
+              handleLogin={this.handleLogin}
+            />
+          )}
+        />
+
          {/* Route to view users component */}
           <Route exact path='/users'
             render={routerProps => (
