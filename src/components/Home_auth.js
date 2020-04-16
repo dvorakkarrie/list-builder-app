@@ -9,11 +9,7 @@ import Profile from "./Profile";
 // import Login from "./Login";
 // import Signup from "./Signup";
 
-<<<<<<< HEAD
 const Home = (props) => {
-=======
-const Home_auth = (props) => {
->>>>>>> 4142561c9a7761c00ad4a2060a0bfa2757fd328d
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
@@ -39,8 +35,4 @@ const Home_auth = (props) => {
   );
 };
 
-<<<<<<< HEAD
 export default Home;
-=======
-export default Home_auth;
->>>>>>> 4142561c9a7761c00ad4a2060a0bfa2757fd328d
