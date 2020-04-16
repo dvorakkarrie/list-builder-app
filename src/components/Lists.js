@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import List from "./List";
 
-const Lists = props => {
-    console.log(props)
+export default () => {
+    const [ users ] = useState([]);
 
-    let allLists = props.lists.map(list => {
+    let allLists = users.map(list => {   
+        console.log(list)     
         return (
             <List 
                 key={list._id} 
                 list={list}
                 name="list"
-                hhandleListDelete={props.handleListDelete} />
+                // handleListDelete={handleListDelete} 
+                />
         )
     })
 
@@ -28,5 +30,3 @@ const Lists = props => {
         <div>...loading...</div>
     )
 }
-
-export default Lists;

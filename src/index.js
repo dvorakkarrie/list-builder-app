@@ -6,7 +6,7 @@ import { Auth0Provider } from "./react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history.js";
 import "./index.css";
-import App from "./App_auth";
+import App from "./App";
 
 const onRedirectCallback = appState => {
     history.push(
@@ -17,7 +17,7 @@ const onRedirectCallback = appState => {
   };
 
 ReactDOM.render(
-  <Router>
+  <Router history={history}>
     <Auth0Provider
       domain={config.domain}
       client_id={config.clientId}
