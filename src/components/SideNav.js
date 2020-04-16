@@ -1,14 +1,12 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
-const SideNav = props => {
+const SideNav = () => {
     return (
         <div>
-            <h4>Lists:</h4>
-            <input type='text' name="lists">View Lists</input>
-            <input type='text' name='new-list'>Create List</input>
-            <h4>Users:</h4>
-            <input type='text' name="users">View Users</input>
-            <input type='text' name="new-user">Create User</input>
+            <div><Link to='/lists'>Lists</Link></div>
+            <div><Link to='/'>Items</Link></div>
+            <div><a href='http://recipebits.surge.sh/'>Recipes</a></div>
         </div>
     )
 }

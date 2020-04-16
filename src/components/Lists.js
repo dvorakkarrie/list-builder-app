@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import List from "./List";
 
 export default () => {
-    const { userData } = useState([]);
+    const [ users ] = useState([]);
 
-    let allLists = {userData}.map(list => {        
+    let allLists = users.map(list => {   
+        console.log(list)     
         return (
             <List 
                 key={list._id} 

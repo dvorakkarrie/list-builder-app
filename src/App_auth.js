@@ -5,7 +5,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import Lists from "./components/Lists";
-import Tasks from "./components/Tasks";
+// import Tasks from "./components/Tasks";
 // import SideNav from "./components/SideNav";
 // import history from "./utils/history";
 // import CreateUser from "./components/CreateUser";
@@ -29,15 +29,15 @@ function App() {
         <PrivateRoute
           exact
           path="/lists"
-          // render={routerProps => (
-          component={Tasks}
-            // <Lists
-            //   {...routerProps}
-            //   lists={this.state.lists}
-            //   handleChange={this.handleChange}
-            //   handleListDelete={this.deleteAxiosList}
-            // />
-          // )}
+          render={routerProps => (
+          // component={Tasks}
+            <Lists
+              // {...routerProps}
+              // lists={this.state.lists}
+              // handleChange={this.handleChange}
+              // handleListDelete={this.deleteAxiosList}
+            />
+          )}
         />
       </Switch>
     </div>
