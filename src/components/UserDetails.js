@@ -8,7 +8,7 @@ const UserDetails = props => {
     return usersDetail ? (
         <div className="detail-main-div">
             <section className="detail-display-section">
-                <div className='detail-header'>User Details:
+                <div className='detail-header'>User Profile:
                     <div className='detail-div'>
                         <label className="detail-label">User ID:</label>
                         <div className='detail-field'>{usersDetail._id}</div>
@@ -32,7 +32,7 @@ const UserDetails = props => {
                 </div>
             </section>
             <section className="detail-edit-section">
-                <div className='detail-header'>Edit User Form:
+                <div className='detail-header'>Edit:
                     <form id={usersDetail._id} 
                         onChange={props.handleChange} 
                         onSubmit={props.handleUpdateAuthor}>
@@ -69,7 +69,7 @@ const UserDetails = props => {
        </div>
 
     ) : (
-        <div>loading...</div>
+        <div>...loading...</div>
     )
 }
 

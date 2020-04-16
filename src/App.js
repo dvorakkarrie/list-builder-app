@@ -6,9 +6,9 @@ import './App.css';
 
 import Header from "./components/Header";
 import Home from "./components/Home";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import TaskListContext from "./components/TaskListContext";
+// import TodoForm from "./components/TodoForm";
+// import TodoList from "./components/TodoList";
+// import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
@@ -172,6 +172,7 @@ class App extends Component {
   return (
     <div className="App">
       <header><Header /></header>
+      <div>Navigation</div>
        <Switch>
         <Route exact path="/" render={routerProps => (
             <Home 
@@ -276,12 +277,12 @@ class App extends Component {
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
-        <TaskListContext>
+        {/* <TaskListContext>
         <div>
           <TodoForm />
           <TodoList />
         </div>
-      </TaskListContext>
+      </TaskListContext> */}
       </div>
   );
   }
