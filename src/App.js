@@ -11,7 +11,7 @@ import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
-import List from "./components/List";
+import Lists from "./components/Lists";
 import CreateList from "./components/CreateList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
@@ -89,7 +89,7 @@ class App extends Component {
       method: "DELETE",
       url: `${backendUrl}users/${event.target.id}`
     }).then(deletedUser => {
-      this.getUserAxios();
+      this.getUsersAxios();
       this.props.history.push("/")
     });
   };
@@ -108,7 +108,8 @@ class App extends Component {
           photo_url: this.state.updatedPhotoUrl
       }
       }).then(user => {
-      this.getUsersAxios()
+        this.getUsersAxios()
+        this.props.history.push("/")
       // this.props.history.push(`/users/${user._id}`);
       // this.setState(prevState => ({
       //   users: [...prevState.users, user.data]
@@ -122,7 +123,7 @@ class App extends Component {
     this.putUserAxios(event)
     this.setState({
       updatedFirstName: '',
-      updatedLastName: ''
+      updatedLastName: '',
     })
   }
 
@@ -150,14 +151,15 @@ class App extends Component {
   }
 
   deleteAxiosList = event => {
-    // console.log(`${backendUrl}list/${event.target.id}`)
-    // event.preventDefault();
-    // axios({
-    //   method: "DELETE",
-    //   url: `${backendUrl}list/${event.target.id}`
-    // }).then(deletedUser => {
+    console.log(`${backendUrl}lists/${event.target.id}`)
+    event.preventDefault();
+    axios({
+      method: "DELETE",
+      url: `${backendUrl}lists/${event.target.id}`
+    }).then(deletedUser => {
       this.getUserAxios();
-    // });
+      this.props.history.push("/")
+    });
   };
 
   handleListSubmit = event => {
@@ -249,7 +251,7 @@ class App extends Component {
          {/* Route to view lists component */}
          <Route exact path='/lists'
             render={routerProps => (
-              <List
+              <Lists
                 {...routerProps}
                 lists={this.state.lists}
                 handleChange={this.handleChange} 

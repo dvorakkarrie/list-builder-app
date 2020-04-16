@@ -11,17 +11,16 @@ const Users = props => {
                 key={user._id} 
                 user={user}
                 name="user"
-                handleDelete={props.handleDelete} />
+                handleUserDelete={props.handleUserDelete} />
         )
     })
 
-    console.log(allUsers)
     return allUsers ? (
         <>
             <h3>User List
                 <Link to='/new-user'> (+) </Link>
             </h3>
-            <div className='events-container'>
+            <div className='users-container'>
                 {allUsers}
             </div>
         </>
