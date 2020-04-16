@@ -8,7 +8,6 @@ const CreateUser = props => {
                 <section>
                     <h2>New User Form</h2>
                     <form 
-                        className = 'event-form'
                         onChange={props.handleChange} 
                         onSubmit={props.handleUserSubmit}
                     >
