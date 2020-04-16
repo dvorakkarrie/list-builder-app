@@ -18,18 +18,11 @@ const CreateUser = props => {
                                 placeholder="Photo URL" />
                         </div>
                         <div className = 'new-div'>
-                            <label>User Id:</label>
+                            <label>User Name:</label>
                             <input className='input-box' 
                                 type='text' 
-                                name='userId' 
-                                placeholder="User Id" />
-                        </div>
-                        <div className = 'new-div'>
-                            <label>Password:</label>
-                            <input className='input-box' 
-                                type='text' 
-                                name='password' 
-                                placeholder="Password" />
+                                name='userEmailAddress' 
+                                placeholder="User name (email address)" />
                         </div>
                         <div className = 'new-div'>
                             <label>Status:</label>
@@ -39,25 +32,18 @@ const CreateUser = props => {
                                 placeholder="Status" />
                         </div>
                         <div className = 'new-div'>
-                            <label>First Name:</label>
+                            <label>First name:</label>
                             <input className='input-box' 
                                 type='text' 
                                 name='userFirstName'
                                 placeholder="First Name" />
                         </div>
                         <div className = 'new-div'>
-                            <label>Last Name:</label>
+                            <label>Last name:</label>
                             <input className='input-box' 
                                 type='text' 
                                 name='userLastName'
                                 placeholder="Last Name" />
-                        </div>
-                        <div className = 'new-div'>
-                            <label>Email Address:</label>
-                            <input className='input-box' 
-                                type='text' 
-                                name='userEmailAddress'
-                                placeholder="Email Address" />
                         </div>
                         <input className="button" type="submit" 
                             value='Create User'/>
