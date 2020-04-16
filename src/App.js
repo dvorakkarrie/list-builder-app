@@ -55,8 +55,6 @@ class App extends Component {
       method: "POST",
       url: `${backendUrl}users`,
       data: {
-        user_id: this.state.userId,
-        pwd: this.state.password,
         status: this.state.userStatus,
         first_name: this.state.userFirstName,
         last_name: this.state.userLastName,
@@ -103,8 +101,6 @@ class App extends Component {
       method: "PUT",
       url: `${backendUrl}users/${event.target.id}`,
       data: {
-          user_id: this.state.updatedUserId,
-          pwd: this.state.updatedPassword,
           status: this.state.updatedStatus,
           first_name: this.state.updatedFirstName,
           last_name: this.state.updatedLastName,
@@ -217,8 +213,6 @@ class App extends Component {
               <CreateUser
                 {...routerProps}
                 users={this.state.users}
-                userId={this.state.newUserId}
-                password={this.state.password}
                 userStatus={this.state.userStatus}
                 userFirstName={this.state.userFirstName}
                 userLastName={this.state.userLastName}
@@ -236,8 +230,6 @@ class App extends Component {
             {...routerProps}
                 {...routerProps}
                 users={this.state.users}
-                updatedUserId={this.state.updatedUserId}
-                updatedPassword={this.state.updatedPassword}
                 updatedStatus={this.state.updatedStatus}
                 updatedFirstName={this.state.updatedFirstName}
                 updatedLastName={this.state.nupdatedLastName}

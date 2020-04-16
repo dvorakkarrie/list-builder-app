@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 // import Login from "./Login";
 // import Signup from "./Signup";
 
-const Home-auth = (props) => {
+const Home_auth = (props) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
@@ -32,4 +32,4 @@ const Home-auth = (props) => {
   );
 };
 
-export default Home-auth;
+export default Home_auth;
