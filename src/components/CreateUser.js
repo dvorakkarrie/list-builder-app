@@ -11,7 +11,7 @@ const CreateUser = props => {
                         onSubmit={props.handleUserSubmit}
                     >
                         <div className = "new-div">
-                            <label>Image URL:</label>
+                            <label>Photo URL:</label>
                             <input className='input-box' 
                                 type='text' 
                                 name='userPhotoUrl' 
@@ -29,14 +29,14 @@ const CreateUser = props => {
                             <input className='input-box' 
                                 type='text' 
                                 name='password' 
-                                placeholder="User Id" />
+                                placeholder="Password" />
                         </div>
                         <div className = 'new-div'>
                             <label>Status:</label>
                             <input className='input-box' 
                                 type='text' 
-                                name='status' 
-                                placeholder="User Id" />
+                                name='userStatus' 
+                                placeholder="Status" />
                         </div>
                         <div className = 'new-div'>
                             <label>First Name:</label>
@@ -59,13 +59,6 @@ const CreateUser = props => {
                                 name='userEmailAddress'
                                 placeholder="Email Address" />
                         </div>
-                        <div className = 'new-div'>
-                            <label>Status:</label>
-                            <input className='input-box' 
-                                type='text' 
-                                name='userStatus'
-                                placeholder="Status" />
-                        </div>
                         <input className="button" type="submit" 
                             value='Create User'/>
                     </form>
@@ -75,4 +68,4 @@ const CreateUser = props => {
     )
 }
 
-export default CreateUser
+export default CreateUser;

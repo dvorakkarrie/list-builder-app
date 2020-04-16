@@ -37,6 +37,10 @@ class App extends Component {
       updatedEmailAddress: '',
       updatedPhotoUrl: '',
       lists: [],
+      listTitle: '',
+      listType: '',
+      listStatus: '',
+      listImageUrl: '',
       isLoggedIn: true,
     }
   }
@@ -110,7 +114,7 @@ class App extends Component {
       }).then(user => {
         this.getUsersAxios()
         this.props.history.push("/")
-      // this.props.history.push(`/users/${user._id}`);
+      // this.props.history.push(`/users/${user.data._id}`);
       // this.setState(prevState => ({
       //   users: [...prevState.users, user.data]
       // }));
@@ -129,26 +133,30 @@ class App extends Component {
 
   createListAxios() {
     // let userId = this.props.location.pathname.slice(10);
-    // axios({
-    //   method: "PUT",
-    //   url: `${backendUrl}new-list`,
-    //   data: {
-    //     user: {
-    //       _id: userId
-    //     },
-    //     item: {
-    //       list: this.state.listName,
-    //       listDescription: this.state.listDescription,
-    //       quantity: this.state.listQuantity,
-    //       image: this.state.listImageUrl,
-    //       status: this.state.listStatus
-    //     }
-    //   }
-    // }).then(newList => {
-    //   this.getUsersAxios();
-    //   this.props.history.push(`/user/${userId}`);
-    // });
+    axios({
+      method: "PUT",
+      url: `${backendUrl}new-list`,
+      data: {
+        user: {
+          _id: this.state.userId
+        },
+        list: {
+          title: this.state.listTitle,
+          list_type: this.state.listType,
+          status: this.state.listStatus,
+          image_url: this.state.listImageUrl,
+        }
+      }
+    }).then(newList => {
+      this.getUsersAxios();
+      this.props.history.push(`/lists/${newList.data._id}`);
+    });
   }
+
+  handleListSubmit = event => {
+    event.preventDefault();
+    this.createListAxios();
+  };
 
   deleteAxiosList = event => {
     console.log(`${backendUrl}lists/${event.target.id}`)
@@ -157,14 +165,9 @@ class App extends Component {
       method: "DELETE",
       url: `${backendUrl}lists/${event.target.id}`
     }).then(deletedUser => {
-      this.getUserAxios();
+      this.getUsersAxios();
       this.props.history.push("/")
     });
-  };
-
-  handleListSubmit = event => {
-    event.preventDefault();
-    this.createListAxios();
   };
 
   handleChange = event => {
@@ -265,6 +268,7 @@ class App extends Component {
             render={routerProps => (
               <CreateList
                 {...routerProps}
+                users={this.state.users}
                 handleChange={this.handleChange}
                 handleListSubmit={this.handleListSubmit}
                 id={routerProps.location.pathname}
