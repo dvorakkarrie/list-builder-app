@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import './App.css';
 
+
 import Home from "./components/Home";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -22,8 +23,6 @@ class App extends Component {
     super(props);
     this.state = {
       users: [],
-      userId: '',
-      password: '',
       userStatus: '',
       userFirstName: '',
       userLastName: '',
@@ -248,6 +247,7 @@ class App extends Component {
             render={routerProps => (
               <Lists
                 {...routerProps}
+                users={this.state.users}
                 lists={this.state.lists}
                 handleChange={this.handleChange} 
                 handleListDelete={this.deleteAxiosList}

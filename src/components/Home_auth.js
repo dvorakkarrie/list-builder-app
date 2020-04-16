@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "../react-auth0-spa";
 
 import { Link } from "react-router-dom";
-import Profile from "./Profile";
+// import Profile from "./Profile";
 
 // import Users from "./Users"
 
@@ -22,7 +22,8 @@ const Home = (props) => {
         <nav>
           <span>
             {" "}
-            <Profile />
+            <Link to='/profile'>Profile</Link>
+            {/* <Profile /> */}
             {/* <Link to="/profile">Profile</Link> */}
           </span>
           {isAuthenticated && <button onClick={() => logout()}>Log out</button>}

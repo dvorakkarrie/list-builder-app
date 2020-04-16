@@ -17,7 +17,7 @@ const onRedirectCallback = appState => {
   };
 
 ReactDOM.render(
-  <Router>
+  <Router history={history}>
     <Auth0Provider
       domain={config.domain}
       client_id={config.clientId}
