@@ -1,9 +1,15 @@
-import React from "react";
+import React, {Component} from 'react';
+import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import { useAuth0 } from "./react-auth0-spa";
+import axios from 'axios';
+
+import './App.css';
+
+import Header from "./components/Header";
 import Home from "./components/Home";
-<<<<<<< HEAD
-// import TodoForm from "./components/TodoForm";
-// import TodoList from "./components/TodoList";
-// import TaskListContext from "./components/TaskListContext";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
+import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
@@ -28,13 +34,21 @@ class App extends Component {
       updatedUserFirstName: '',
       updatedUserLastName: '',
       lists: [],
-      isLoggedIn: true,
+      isLoggedIn: true
     }
   }
 
   componentDidMount() {
+    this.loadAuth();
     this.getUsersAxios();
     console.log(this.users)
+  }
+
+  loadAuth () {
+    const {loading} = useAuth0();
+    if(loading){
+      return <div>Loading...</div>;
+    }
   }
   
   createUserAxios() {
@@ -146,20 +160,27 @@ class App extends Component {
       this.getUserAxios();
     // });
   };
-=======
->>>>>>> b37fa93cf4cbc3ebfcdd37c922cc509acceede22
 
-// New - import the React Router components, and the Profile page component
-import { Router, Route, Switch } from "react-router-dom";
-import Profile from "./components/Profile";
-import history from "./utils/history";
+  handleListSubmit = event => {
+    event.preventDefault();
+    this.createListAxios();
+  };
 
-function App() {
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleLogin = event => {
+  
+  }
+
+  render() {
+    console.log(this.state.users)
   return (
     <div className="App">
-<<<<<<< HEAD
       <header><Header /></header>
-      <div>Navigation</div>
        <Switch>
         <Route exact path="/" render={routerProps => (
             <Home 
@@ -264,27 +285,14 @@ function App() {
           <Route path='/*' render={() => <Redirect to='/' />} />
         </Switch>
 
-        {/* <TaskListContext>
+        <TaskListContext>
         <div>
           <TodoForm />
           <TodoList />
         </div>
-      </TaskListContext> */}
+      </TaskListContext>
       </div>
-=======
-      {/* Don't forget to include the history module */}
-      <Router history={history}>
-        <header>
-          <Home />
-        </header>
-        <Switch>
-          <Route path="/" exact />
-          <Route path="/profile" component={Profile} />
-        </Switch>
-      </Router>
-    </div>
->>>>>>> b37fa93cf4cbc3ebfcdd37c922cc509acceede22
   );
+  }
 }
-
-export default App;
+export default withRouter(App);
