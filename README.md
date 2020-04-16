@@ -67,3 +67,6 @@ The app allows users to create, maintain, and share lists.
 * npm install
 * npm i uuid
 * npm i axios
+
+## Credits/References
+* [Auth0 Tutorial](https://manage.auth0.com/dashboard/us/dev-9zf3-xc1/applications/gAanIirzJ76DQa5mSkSlp1lGyn8UkdGs/quickstart)

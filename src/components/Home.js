@@ -1,16 +1,35 @@
-import React from 'react'
+import React from "react";
+import { useAuth0 } from "../react-auth0-spa";
 
-import Login from "./Login"
-import Signup from "./Signup"
+import { Link } from "react-router-dom";
 
-const Home = props => {
+// import Users from "./Users"
 
-    return (
-        <div>
-            <Login />
-            <Signup />
-        </div>
-    )    
-}
+// import Login from "./Login";
+// import Signup from "./Signup";
+
+const Home = (props) => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+  return (
+    <div>
+      {!isAuthenticated && (
+        <button onClick={() => loginWithRedirect({})}>Log in</button>
+      )}
+
+      {isAuthenticated && (
+      <span>
+        <Link to="/">Home</Link>&nbsp;
+        <Link to="/profile">Profile</Link>
+        <span>Welcome user(props) </span>
+
+      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+
+      </span>
+    )}
+
+    </div>
+  );
+};
 
 export default Home;
