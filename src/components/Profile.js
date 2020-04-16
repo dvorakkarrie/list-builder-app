@@ -12,16 +12,13 @@ console.log(user)
 
   return user ? (
     <Fragment>
-      <img src={user.picture} alt="Profile" />
-
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      <code>{JSON.stringify(user, null, 2)}</code>
+      <span>Welcome {user.name}</span>
+      {/* <code>{JSON.stringify(user, null, 2)}</code> */}
 
     </Fragment>
   ) :
- <div>(user)</div> 
-  ;
-};
+ <span>(user)</span> 
+  
+}
 
 export default Profile;
