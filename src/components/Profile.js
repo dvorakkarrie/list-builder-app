@@ -11,7 +11,6 @@ export default (props) => {
 
   // console.log(user.email);
 
-
   useEffect(() => {
     if (loading) {
       return;
@@ -42,8 +41,7 @@ export default (props) => {
   return user ? (
     <>
       <span>Welcome {user.name}</span>
-    {users && <p>{users.status}</p>}
-      {/* <code>{JSON.stringify(user, null, 2)}</code> */}
+    {users && <p>{users.email}</p>}
     </>
   ) : (
     <span>(user)</span>

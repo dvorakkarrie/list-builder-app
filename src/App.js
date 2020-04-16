@@ -185,10 +185,22 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
+          <PrivateRoute path="/" component={Profile} />          
+          <Route
+            exact
+            path="/"
+            render={(routerProps) => (
+              <Home
+                {...routerProps}
+                users={this.state.users}
+                handleLogin={this.handleLogin}
+              />
+            )}
+          />
         </header>
         <SideNav />
      
-        <PrivateRoute path="/profile" component={Profile} />
+        
         <PrivateRoute
             exact
             path="/lists"
@@ -204,17 +216,7 @@ class App extends Component {
           />
 
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={(routerProps) => (
-              <Home
-                {...routerProps}
-                users={this.state.users}
-                handleLogin={this.handleLogin}
-              />
-            )}
-          />
+
 
           {/* Route to view users component */}
           <Route
