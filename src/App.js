@@ -188,7 +188,7 @@ class App extends Component {
         </header>
         <SideNav />
      
-        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/" component={Profile} />
         <PrivateRoute
             exact
             path="/lists"

@@ -17,19 +17,10 @@ const Home = (props) => {
       {!isAuthenticated && (
         <button onClick={() => loginWithRedirect({})}>Log in</button>
       )}
-
       {isAuthenticated && (
         <nav>
-          <span>
-            {" "}
-            <Link to='/profile'>Profile</Link>
-            {/* <Profile /> */}
-            {/* <Link to="/profile">Profile</Link> */}
-          </span>
+          <span></span>
           {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-          <div>
-            <Link to='/lists'>Lists</Link>
-          </div>
         </nav>
       )}
     </div>
