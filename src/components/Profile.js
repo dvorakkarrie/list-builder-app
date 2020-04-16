@@ -6,33 +6,28 @@ let backendUrl = "http://localhost:8080/";
 
 export default (props) => {
   const { loading, user } = useAuth0();
-  const [ users, setUsers ] = useState(null);
-
-
-  // console.log(user.email);
+  const [users, setUsers] = useState(null);
 
   useEffect(() => {
     if (loading) {
       return;
     }
     const fn = async () => {
-      const returnUsers = await 
-      axios({
-        method: "GET",
-        url: `${backendUrl}users/`
-        // data: {
-        //   email: user.email,
-        // },
-      })
+      const returnUsers = await axios({
+        method: "POST",
+        url: `${backendUrl}users/`,
+        data: {
+          email: user.email,
+        },
+      });
       // .then((userData) => {
-        console.log(returnUsers)
-        await setUsers(returnUsers)
-        console.log(users)
+      console.log(returnUsers);
+      await setUsers(returnUsers);
+      console.log(users);
       // .catch(err => console.log(err))
     };
-    fn() 
-    }, [loading]);
-
+    fn();
+  }, [loading]);
 
   if (loading || !user) {
     return <div>Loading...</div>;
@@ -41,7 +36,8 @@ export default (props) => {
   return user ? (
     <>
       <span>Welcome {user.name}</span>
-    {users && <p>{users.email}</p>}
+      {users && <p>{users.email}</p>}
+      {/* <code>{JSON.stringify(user, null, 2)}</code> */}
     </>
   ) : (
     <span>(user)</span>

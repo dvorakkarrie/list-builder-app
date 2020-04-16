@@ -9,12 +9,9 @@ const Home = (props) => {
       {!isAuthenticated && (
         <button onClick={() => loginWithRedirect({})}>Log in</button>
       )}
-
       {isAuthenticated && (
         <nav>
-          <span>
-            {" "}
-          </span>
+          <span></span>
           {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
         </nav>
       )}
