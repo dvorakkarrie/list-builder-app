@@ -26,6 +26,20 @@ const CreateUser = props => {
                                 placeholder="User Id" />
                         </div>
                         <div className = 'new-div'>
+                            <label>Password:</label>
+                            <input className='input-box' 
+                                type='text' 
+                                name='password' 
+                                placeholder="User Id" />
+                        </div>
+                        <div className = 'new-div'>
+                            <label>Status:</label>
+                            <input className='input-box' 
+                                type='text' 
+                                name='status' 
+                                placeholder="User Id" />
+                        </div>
+                        <div className = 'new-div'>
                             <label>First Name:</label>
                             <input className='input-box' 
                                 type='text' 

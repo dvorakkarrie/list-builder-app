@@ -11,7 +11,15 @@ const UserDetails = props => {
                 <div className='detail-header'>User Profile:
                     <div className='detail-div'>
                         <label className="detail-label">User ID:</label>
-                        <div className='detail-field'>{usersDetail._id}</div>
+                        <div className='detail-field'>{usersDetail.user_id}</div>
+                    </div>
+                    <div className='detail-div'>
+                        <label className="detail-label">Password:</label>
+                        <div className='detail-field'>{usersDetail.pwd}</div>
+                    </div>
+                    <div className='detail-div'>
+                        <label className="detail-label">Status:</label>
+                        <div className='detail-field'>{usersDetail.status}</div>
                     </div>
                     <div className='detail-div'>
                         <label className="detail-label">First Name:</label>
@@ -35,11 +43,21 @@ const UserDetails = props => {
                 <div className='detail-header'>Edit:
                     <form id={usersDetail._id} 
                         onChange={props.handleChange} 
-                        onSubmit={props.handleUpdateAuthor}>
+                        onSubmit={props.handleUpdateUser}>
                         <div className='detail-div'>
                             <label className="detail-label">User ID:</label>
                             <input type="text" className='input-box'
                                 name="updatedUserId" placeholder="User ID" />
+                        </div>
+                        <div className='detail-div'>
+                            <label className="detail-label">Password:</label>
+                            <input type="text" className='input-box'
+                                name="updatedPassword" placeholder="Password" />
+                        </div>
+                        <div className='detail-div'>
+                            <label className="detail-label">Status:</label>
+                            <input type="text" className='input-box'
+                                name="updatedStatus" placeholder="Status" />
                         </div>
                         <div className='detail-div'>
                             <label className="detail-label">First Name:</label>
@@ -54,7 +72,7 @@ const UserDetails = props => {
                         <div className='detail-div'>
                             <label className="detail-label">Email Address:</label>
                             <input type="text" className='input-box'
-                                name="updatedEmailAddress" placeholder="Email Address" />
+                                name="updatedEmailAddress" placeholder="@gmail.com" />
                         </div>
                         <div className='detail-div'>
                             <label className="detail-label">Photo Url:</label>

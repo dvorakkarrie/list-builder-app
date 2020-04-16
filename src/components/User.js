@@ -5,8 +5,7 @@ const User = props => {
     return (
         <div>
             <Link to={`/users/${props.user._id}`}>
-                {props.user.first_name}
-        
+            {props.user._id} - {props.user.first_name} {props.user.last_name}
             <button onClick={props.handleDelete}>
                 <i className="fas fa-trash-alt"></i>  
             </button>

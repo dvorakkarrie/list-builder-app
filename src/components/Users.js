@@ -16,13 +16,17 @@ const Users = props => {
     })
 
     console.log(allUsers)
-    return (
-        <div className='sub-titles'>User List
-            <Link to='/new-user' className='create-new'>
-                Add User
-            </Link>
-            <div className='events-container'>{allUsers}</div>
-        </div>
+    return allUsers ? (
+        <>
+            <h3>User List
+                <Link to='/new-user'> (+) </Link>
+            </h3>
+            <div className='events-container'>
+                {allUsers}
+            </div>
+        </>
+    ) : (
+        <div>...loading...</div>
     )
 }
 

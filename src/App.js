@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
 
-import Header from "./components/Header";
 import Home from "./components/Home";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -24,14 +23,19 @@ class App extends Component {
     this.state = {
       users: [],
       userId: '',
-      userPassword: '',
+      password: '',
       userStatus: '',
       userFirstName: '',
       userLastName: '',
       userEmailAddress: '',
       userPhotoUrl: '',
+      updatedUserId: '',
+      updatedPassword: '',
+      updatedStatus: '',
       updatedUserFirstName: '',
       updatedUserLastName: '',
+      updatedEmailAddress: '',
+      updatedPhotoUrl: '',
       lists: [],
       isLoggedIn: true,
     }
@@ -91,30 +95,34 @@ class App extends Component {
   };
 
   putUserAxios = event => {
-    // axios({
-    //   method: "PUT",
-    //   url: `${backendUrl}user/${event.target.id}`,
-    //   data: {
-    //     users: {
-    //       first_name: this.state.userFirstName,
-    //       last_name: this.state.userLastName,
-    //       lists: [],
-    //       items: []
-    //     }}
-    //   }).then(newUser => {
-    //   this.props.history.push(`/user/${user.data._id}`);
-    //   this.setState(prevState => ({
-    //     users: [...prevState.users, user.data]
-    //   }));
-    // });
+    axios({
+      method: "PUT",
+      url: `${backendUrl}users/${event.target.id}`,
+      data: {
+          user_id: this.state.updatedUserId,
+          pwd: this.state.updatedPassword,
+          status: this.state.updatedStatus,
+          first_name: this.state.updatedFirstName,
+          last_name: this.state.updatedLastName,
+          email_address: this.state.updatedEmailAddress,
+          photo_url: this.state.updatedPhotoUrl
+      }
+      }).then(user => {
+      this.getUsersAxios()
+      // this.props.history.push(`/users/${user._id}`);
+      // this.setState(prevState => ({
+      //   users: [...prevState.users, user.data]
+      // }));
+    });
   }
 
   handleUpdateUser = event => {
+    console.log(event.target.id)
     event.preventDefault()
     this.putUserAxios(event)
     this.setState({
-      updatedUserFirstName: '',
-      updatedUserLastName: ''
+      updatedFirstName: '',
+      updatedLastName: ''
     })
   }
 
@@ -171,7 +179,11 @@ class App extends Component {
     console.log(this.state.users)
   return (
     <div className="App">
-      <header><Header /></header>
+      <header>
+        <Link to="/">
+          <h1>List Builder</h1>
+        </Link>
+      </header>
        <Switch>
         <Route exact path="/" render={routerProps => (
             <Home 
@@ -200,13 +212,12 @@ class App extends Component {
               <CreateUser
                 {...routerProps}
                 users={this.state.users}
-                lists={this.state.lists}
-                items={this.state.items}
                 userId={this.state.newUserId}
+                password={this.state.password}
                 userStatus={this.state.userStatus}
-                userFirstName={this.state.newUserFirstName}
-                userLastName={this.state.newUserLastName}
-                userEmailAddress={this.state.newEmailAddress}
+                userFirstName={this.state.userFirstName}
+                userLastName={this.state.userLastName}
+                userEmailAddress={this.state.userEmailAddress}
                 userPhotoUrl={this.state.userPhotoUrl}
                 handleChange={this.handleChange}
                 handleUserSubmit={this.handleUserSubmit}
@@ -220,15 +231,16 @@ class App extends Component {
             {...routerProps}
                 {...routerProps}
                 users={this.state.users}
-                // userId={this.state.newUserId}
-                // userStatus={this.state.userStatus}
-                // userFirstName={this.state.newUserFirstName}
-                // userLastName={this.state.newUserLastName}
-                // userEmailAddress={this.state.newEmailAddress}
-                // userPhotoUrl={this.state.userPhotoUrl}
+                updatedUserId={this.state.updatedUserId}
+                updatedPassword={this.state.updatedPassword}
+                updatedStatus={this.state.updatedStatus}
+                updatedFirstName={this.state.updatedFirstName}
+                updatedLastName={this.state.nupdatedLastName}
+                updatedEmailAddress={this.state.updatedEmailAddress}
+                updatedPhotoUrl={this.state.updatedPhotoUrl}
                 handleChange={this.handleChange}
                 handleUserDelete={this.deleteAxiosUser}
-                handleUpdateUser={this.handleUpdatedUser}
+                handleUpdateUser={this.handleUpdateUser}
               />
             )}
           />
