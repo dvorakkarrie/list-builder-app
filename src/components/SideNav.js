@@ -8,9 +8,10 @@ const SideNav = () => {
             <div><Link to='/items'>My Items</Link></div>
             <div><Link to='/tasks'>My Tasks</Link></div>
             <div>
-                {/* <a href='http://recipebits.surge.sh/'> */}
+                <a href='http://recipebits.surge.sh/'>
                     Recipes
-                {/* </a> */}
+                </a>
+            <div><Link to="/users">My Users</Link></div>
             </div>
         </div>
     )

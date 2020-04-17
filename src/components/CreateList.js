@@ -4,14 +4,6 @@ import React from 'react'
 const CreateList = props => {
     console.log(props.users)
 
-    // let allUsers = props.users.map(user => {
-    //     return (   
-    //         <option key={user._id} value={user._id}>
-    //             {user.email_address}
-    //         </option>
-    //     )
-    // })
-
     return (
         <div>
             <section>

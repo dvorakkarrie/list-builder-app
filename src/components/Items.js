@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import Item from "./Item";
 
 export default props => {
-    console.log(props.users.items)
+    console.log(props.users)
 
-    let allItems = props.users.items.map(item => {
-        return (
-            <Item
-                key={item._id}
-                item={item}
-                name="item"
-                handleListDelete={props.handleListDelete} 
-                />
-            )}
-        )
+    let allItems 
+    // = props.users.items.map(item => {
+    //     return (
+    //         <Item
+    //             key={item._id}
+    //             item={item}
+    //             name="item"
+    //             handleListDelete={props.handleListDelete} 
+    //             />
+    //         )}
+    //     )
         
     return allItems ? (
         <>

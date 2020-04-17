@@ -5,7 +5,8 @@ import axios from "axios";
 
 import "./App.css";
 
-import Home from "./components/Home_auth";
+import Header from "./components/Header";
+import Signin from "./components/Signin";
 import CreateItem from "./components/CreateItem";
 import Items from "./components/Items";
 import TodoForm from "./components/TodoForm";
@@ -16,19 +17,18 @@ import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
 import Lists from "./components/Lists";
 import CreateList from "./components/CreateList";
-import Profile from "./components/Profile";
 import SideNav from "./components/SideNav";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
-// let backendUrl = "http://127.0.0.1:8080/";
-let backendUrl = "https://listbuilder-backend.herokuapp.com/";
+let backendUrl = "http://127.0.0.1:8080/";
+// let backendUrl = "https://listbuilder-backend.herokuapp.com/";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      userId: '5e9630ad911dc0000c6fd2d5',
+      userId: "",
       userStatus: "",
       userEmailAddress: "",
       updatedStatus: "",
@@ -41,17 +41,17 @@ class App extends Component {
       itemName: "",
       itemDescription: "",
       itemImageUrl: "",
-      isLoggedIn: true,
+      isAuthenticated: false,
     };
   }
 
-  componentDidMount() {
-    this.getUsersAxios();
-    console.log(this.users);
-  }
+  // componentDidMount() {
+  //   this.getUsersAxios();
+  //   console.log(this.users);
+  // }
 
   createUserAxios() {
-    console.log(this.state.userEmailAddress)
+    console.log(this.state.userEmailAddress);
     axios({
       method: "POST",
       url: `${backendUrl}`,
@@ -71,13 +71,19 @@ class App extends Component {
     this.createUserAxios();
   };
 
-  getUsersAxios() {
+  handleSignin = (event) => {
+    console.log(this.state.userEmailAddress);
+    event.preventDefault()
     axios({
-      method: "GET",
-      url: `${backendUrl}`,
+      method: "POST",
+      url: `${backendUrl}users/`,
+      data: {
+        email: this.state.userEmailAddress,
+      },
     }).then((userData) =>
       this.setState({
-        users: userData.data[0],
+        users: userData.data,
+        isAuthenticated: true,
       })
     );
   }
@@ -121,7 +127,7 @@ class App extends Component {
     });
   };
 
-  createListAxios () {
+  createListAxios() {
     axios({
       method: "PUT",
       url: `${backendUrl}new-list`,
@@ -131,10 +137,10 @@ class App extends Component {
         },
         list: {
           title: this.state.listTitle,
-          list_type: 'A',
-          status: 'Active',
-          image_url: this.state.listImageUrl
-        }
+          list_type: "A",
+          status: "Active",
+          image_url: this.state.listImageUrl,
+        },
       },
     }).then((newList) => {
       this.getUsersAxios();
@@ -143,7 +149,7 @@ class App extends Component {
   }
 
   handleListSubmit = (event) => {
-    console.log(event)
+    console.log(event);
     event.preventDefault();
     this.createListAxios();
   };
@@ -160,22 +166,22 @@ class App extends Component {
     });
   };
 
-  createItemAxios () {
-    console.log(this.state)
+  createItemAxios() {
+    console.log(this.state);
     axios({
       method: "PUT",
       url: `${backendUrl}new-item`,
       data: {
         user: {
-          _id: this.state.userId
+          _id: this.state.userId,
         },
         item: {
           item: this.state.itemName,
           item_desc: this.state.itemDescription,
-          item_type: 'A',
-          status: 'Active',
-          image_url: this.state.itemImageUrl
-        }
+          item_type: "A",
+          status: "Active",
+          image_url: this.state.itemImageUrl,
+        },
       },
     }).then((newItem) => {
       this.getUsersAxios();
@@ -201,25 +207,49 @@ class App extends Component {
   };
 
   handleChange = (event) => {
+    console.log(event)
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
   render() {
-    console.log(this.state.users);
+    console.log(this.state);
     return (
       <div className="App">
         <header>
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
-          <Route exact path="/" render={(routerProps) => <Home />} />
+          <Route
+            exact
+            path="/"
+            render={(routerProps) => (
+              <Header
+                {...routerProps}
+                users={this.state}
+                isAuthenticated={this.state.isAuthenticated}
+              />
+            )}
+          />
         </header>
         <SideNav />
 
-        <Route path="/profile" component={Profile} />
+        {/* <Route path="/profile" component={Profile} /> */}
         <Switch>
+          <Route
+            exact
+            path="/signin"
+            render={(routerProps) => (
+              <Signin
+                {...routerProps}
+                users={this.state.users}
+                userEmailAddress={this.state.userEmailAddress}
+                handleChange={this.handleChange}
+                handleSignin={this.handleSignin}
+              />
+            )}
+          />
 
           {/* Route to view lists component */}
           <Route
@@ -229,7 +259,6 @@ class App extends Component {
               <Lists
                 {...routerProps}
                 users={this.state.users}
-                lists={this.state.lists}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
               />
@@ -248,8 +277,8 @@ class App extends Component {
                 id={routerProps.location.pathname}
               />
             )}
-          />          
-          
+          />
+
           {/* Route to view items component */}
           <Route
             exact
@@ -277,7 +306,7 @@ class App extends Component {
                 id={routerProps.location.pathname}
               />
             )}
-          />     
+          />
 
           {/* Route to view users component */}
           <Route
@@ -299,7 +328,7 @@ class App extends Component {
             render={(routerProps) => (
               <CreateUser
                 {...routerProps}
-                // users={this.state.users}
+                users={this.state.users}
                 userEmailAddress={this.state.userEmailAddress}
                 handleChange={this.handleChange}
                 handleUserSubmit={this.handleUserSubmit}
@@ -314,7 +343,6 @@ class App extends Component {
               <UserDetails
                 {...routerProps}
                 {...routerProps}
-                // userId={this.state.userId}
                 users={this.state.users}
                 updatedStatus={this.state.updatedStatus}
                 updatedEmailAddress={this.state.updatedEmailAddress}
@@ -324,7 +352,6 @@ class App extends Component {
               />
             )}
           />
-
 
           {/* Route to update a list (from UserDetails component)*/}
           {/* <Route
