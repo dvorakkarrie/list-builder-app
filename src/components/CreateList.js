@@ -2,33 +2,25 @@ import React from 'react'
 // import {Link} from 'react-router-dom';
 
 const CreateList = props => {
-    console.log(props)
+    console.log(props.users)
 
-    let allUsers = props.users.map(user => {
-        return (   
-            <option key={user._id} value={user._id}>
-                {user.email_address}
-            </option>
-        )
-    })
+    // let allUsers = props.users.map(user => {
+    //     return (   
+    //         <option key={user._id} value={user._id}>
+    //             {user.email_address}
+    //         </option>
+    //     )
+    // })
 
     return (
         <div>
             <section>
                 <h2>New List Form</h2>
+                <h3>{props.users.email_address}</h3>
                 <form 
                     onChange={props.handleChange} 
                     onSubmit={props.handleListSubmit}
                 >
-                    <div className='new-div'>
-                        <label>Select user's name:</label>
-                        <select className="drop-down-list" 
-                            id="selectedUser" name="userId"
-                            onChange={props.handleChange}
-                            onClick={props.handleAllUsersSearch}>
-                                {allUsers}
-                            </select>
-                    </div>
                     <div className = "new-div">
                         <label>Image URL:</label>
                         <input className='input-box' 

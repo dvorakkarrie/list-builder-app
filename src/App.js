@@ -54,7 +54,7 @@ class App extends Component {
     console.log(this.state.userEmailAddress)
     axios({
       method: "POST",
-      url: `${backendUrl}users`,
+      url: `${backendUrl}`,
       data: {
         email: this.state.userEmailAddress,
       },
@@ -299,7 +299,7 @@ class App extends Component {
             render={(routerProps) => (
               <CreateUser
                 {...routerProps}
-                users={this.state.users}
+                // users={this.state.users}
                 userEmailAddress={this.state.userEmailAddress}
                 handleChange={this.handleChange}
                 handleUserSubmit={this.handleUserSubmit}
@@ -314,8 +314,8 @@ class App extends Component {
               <UserDetails
                 {...routerProps}
                 {...routerProps}
-                userId={this.state.userId}
-                // users={this.state.users}
+                // userId={this.state.userId}
+                users={this.state.users}
                 updatedStatus={this.state.updatedStatus}
                 updatedEmailAddress={this.state.updatedEmailAddress}
                 handleChange={this.handleChange}
