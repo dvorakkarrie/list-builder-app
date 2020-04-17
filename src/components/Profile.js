@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../react-auth0-spa";
 import axios from "axios";
 
-let backendUrl = "http://localhost:8080/";
+let backendUrl = "http://127.0.0.1:8080/";
 
 export default (props) => {
   const { loading, user } = useAuth0();

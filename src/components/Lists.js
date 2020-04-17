@@ -3,10 +3,14 @@ import {Link} from 'react-router-dom';
 import List from "./List";
 
 export default props => {
-    const [ users ] = useState([]);
+    console.log(props.users)
 
-    let allLists = users.map(list => {   
-        console.log(list)     
+    // const [ users ] = useState([]);
+
+    // let authorsDetail = props.authors.find(
+    //     author => author._id === props.match.params.id )
+    let allLists = props.users.map(user => {
+        user.lists.map(list => {
         return (
             <List 
                 key={list._id} 
@@ -14,8 +18,9 @@ export default props => {
                 name="list"
                 handleListDelete={props.handleListDelete} 
                 />
-        )
-    })
+       )})})
+
+       console.log(allLists)
 
     return allLists ? (
         <>

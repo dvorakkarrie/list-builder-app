@@ -18,8 +18,8 @@ import CreateList from "./components/CreateList";
 import Profile from "./components/Profile";
 import SideNav from "./components/SideNav";
 
-// let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8080/";
-let backendUrl = "http://localhost:8080/";
+// let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
+let backendUrl = "http://127.0.0.1:8080/";
 
 class App extends Component {
   constructor(props) {
@@ -138,6 +138,7 @@ class App extends Component {
   }
 
   handleListSubmit = (event) => {
+    console.log(event)
     event.preventDefault();
     this.createListAxios();
   };
@@ -202,7 +203,7 @@ class App extends Component {
         <Switch>
 
           {/* Route to view lists component */}
-          <PrivateRoute
+          <Route
             exact
             path="/lists"
             render={(routerProps) => (
@@ -217,7 +218,7 @@ class App extends Component {
           />
 
           {/* Route to create a new list (from UserDetails component)*/}
-          <PrivateRoute
+          <Route
             path="/new-list"
             render={(routerProps) => (
               <CreateList
@@ -231,7 +232,7 @@ class App extends Component {
           />          
           
           {/* Route to view items component */}
-          <PrivateRoute
+          <Route
             exact
             path="/items"
             render={(routerProps) => (
