@@ -219,20 +219,6 @@ class App extends Component {
         <SideNav />
 
         <Route path="/profile" component={Profile} />
-        {/* <PrivateRoute
-            exact
-            path="/lists"
-            render={(routerProps) => (
-              // component={Tasks}
-              <Lists
-              {...routerProps}
-              lists={this.state.lists}
-              handleChange={this.handleChange}
-              handleListDelete={this.deleteAxiosList}
-              />
-            )}
-          /> */}
-
         <Switch>
 
           {/* Route to view lists component */}
@@ -271,8 +257,7 @@ class App extends Component {
             render={(routerProps) => (
               <Items
                 {...routerProps}
-                userId={this.state.userId}
-                // users={this.state.users}
+                users={this.state.users}
                 items={this.state.items}
                 handleChange={this.handleChange}
                 handleItemDelete={this.deleteAxiosItem}
@@ -286,8 +271,7 @@ class App extends Component {
             render={(routerProps) => (
               <CreateItem
                 {...routerProps}
-                userId={this.state.userId}
-                // users={this.state.users}
+                users={this.state.users}
                 handleChange={this.handleChange}
                 handleItemSubmit={this.handleItemSubmit}
                 id={routerProps.location.pathname}

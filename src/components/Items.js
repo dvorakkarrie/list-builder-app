@@ -3,20 +3,19 @@ import {Link} from 'react-router-dom';
 import Item from "./Item";
 
 export default props => {
-    const [ users ] = useState([]);
+    console.log(props.users.items)
 
-    let allItems = users.map(item => {   
-        console.log(item)     
+    let allItems = props.users.items.map(item => {
         return (
             <Item
-                key={item._id} 
+                key={item._id}
                 item={item}
                 name="item"
-                handleItemDelete={props.handleItemDelete} 
+                handleListDelete={props.handleListDelete} 
                 />
+            )}
         )
-    })
-
+        
     return allItems ? (
         <>
             <h3>Items

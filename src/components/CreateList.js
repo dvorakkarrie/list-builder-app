@@ -10,7 +10,7 @@ const CreateList = props => {
                 {user.email_address}
             </option>
         )
-    })    
+    })
 
     return (
         <div>
