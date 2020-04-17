@@ -20,8 +20,8 @@ import CreateList from "./components/CreateList";
 import SideNav from "./components/SideNav";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
-let backendUrl = "http://127.0.0.1:8080/";
-// let backendUrl = "https://listbuilder-backend.herokuapp.com/";
+// let backendUrl = "http://127.0.0.1:8080/";
+let backendUrl = "https://listbuilder-backend.herokuapp.com/";
 
 class App extends Component {
   constructor(props) {
@@ -70,6 +70,16 @@ class App extends Component {
     event.preventDefault();
     this.createUserAxios();
   };
+
+  getUsersAxios() {
+    axios({ 
+      method: "GET", 
+      url: `${backendUrl}users/`
+    }).then(userData =>
+      this.setState({ 
+        users: userData.data })
+    );
+  }
 
   handleSignin = (event) => {
     console.log(this.state.userEmailAddress);

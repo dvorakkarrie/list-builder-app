@@ -5,6 +5,7 @@ import List from "./List";
 export default props => {
     console.log(props.users)
 
+    
     let allLists 
     // = props.users.lists.map(list => {
     //     return (
