@@ -2,8 +2,7 @@ import React from 'react'
 
 const UserDetails = props => {
 
-    let usersDetail = props.users.find(user => 
-        user._id === props.match.params.id )
+    let usersDetail = props.userId
 
     return usersDetail ? (
         <div className="detail-main-div">

@@ -28,6 +28,7 @@ class App extends Component {
     super(props);
     this.state = {
       users: [],
+      userId: '5e9630ad911dc0000c6fd2d5',
       userStatus: "",
       userEmailAddress: "",
       updatedStatus: "",
@@ -241,7 +242,8 @@ class App extends Component {
             render={(routerProps) => (
               <Lists
                 {...routerProps}
-                users={this.state.users}
+                userId={this.state.userId}
+                // users={this.state.users}
                 lists={this.state.lists}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
@@ -255,7 +257,8 @@ class App extends Component {
             render={(routerProps) => (
               <CreateList
                 {...routerProps}
-                users={this.state.users}
+                userId={this.state.userId}
+                // users={this.state.users}
                 handleChange={this.handleChange}
                 handleListSubmit={this.handleListSubmit}
                 id={routerProps.location.pathname}
@@ -270,7 +273,8 @@ class App extends Component {
             render={(routerProps) => (
               <Items
                 {...routerProps}
-                users={this.state.users}
+                userId={this.state.userId}
+                // users={this.state.users}
                 items={this.state.items}
                 handleChange={this.handleChange}
                 handleItemDelete={this.deleteAxiosItem}
@@ -284,7 +288,8 @@ class App extends Component {
             render={(routerProps) => (
               <CreateItem
                 {...routerProps}
-                users={this.state.users}
+                userId={this.state.userId}
+                // users={this.state.users}
                 handleChange={this.handleChange}
                 handleItemSubmit={this.handleItemSubmit}
                 id={routerProps.location.pathname}
@@ -327,7 +332,8 @@ class App extends Component {
               <UserDetails
                 {...routerProps}
                 {...routerProps}
-                users={this.state.users}
+                userId={this.state.userId}
+                // users={this.state.users}
                 updatedStatus={this.state.updatedStatus}
                 updatedEmailAddress={this.state.updatedEmailAddress}
                 handleChange={this.handleChange}
