@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import List from "./List";
 
-export default () => {
+export default props => {
     const [ users ] = useState([]);
 
     let allLists = users.map(list => {   
@@ -12,7 +12,7 @@ export default () => {
                 key={list._id} 
                 list={list}
                 name="list"
-                // handleListDelete={handleListDelete} 
+                handleListDelete={props.handleListDelete} 
                 />
         )
     })

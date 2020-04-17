@@ -6,7 +6,6 @@ import axios from "axios";
 import "./App.css";
 
 import Home from "./components/Home_auth";
-// import Home from "./components/Home";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
@@ -27,17 +26,9 @@ class App extends Component {
     this.state = {
       users: [],
       userStatus: "",
-      userFirstName: "",
-      userLastName: "",
       userEmailAddress: "",
-      userPhotoUrl: "",
-      updatedUserId: "",
-      updatedPassword: "",
       updatedStatus: "",
-      updatedUserFirstName: "",
-      updatedUserLastName: "",
       updatedEmailAddress: "",
-      updatedPhotoUrl: "",
       lists: [],
       listTitle: "",
       listType: "",
@@ -58,10 +49,7 @@ class App extends Component {
       url: `${backendUrl}users`,
       data: {
         status: this.state.userStatus,
-        first_name: this.state.userFirstName,
-        last_name: this.state.userLastName,
         email_address: this.state.userEmailAddress,
-        photo_url: this.state.userPhotoUrl,
       },
     }).then((newUser) => {
       this.props.history.push(`/users/${newUser.data._id}`);
@@ -79,7 +67,7 @@ class App extends Component {
   getUsersAxios() {
     axios({
       method: "GET",
-      url: `${backendUrl}users/`,
+      url: `${backendUrl}`,
     }).then((userData) =>
       this.setState({
         users: userData.data,
@@ -105,10 +93,7 @@ class App extends Component {
       url: `${backendUrl}users/${event.target.id}`,
       data: {
         status: this.state.updatedStatus,
-        first_name: this.state.updatedFirstName,
-        last_name: this.state.updatedLastName,
         email_address: this.state.updatedEmailAddress,
-        photo_url: this.state.updatedPhotoUrl,
       },
     }).then((user) => {
       this.getUsersAxios();
@@ -125,8 +110,7 @@ class App extends Component {
     event.preventDefault();
     this.putUserAxios(event);
     this.setState({
-      updatedFirstName: "",
-      updatedLastName: "",
+      updatedEmailAddress: "",
     });
   };
 
@@ -183,11 +167,18 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
+          <PrivateRoute
+            exact
+            path="/"
+            render={(routerProps) => (
+              <Home />
+            )}
+          />
         </header>
         <SideNav />
      
         <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute
+        {/* <PrivateRoute
             exact
             path="/lists"
             render={(routerProps) => (
@@ -199,19 +190,10 @@ class App extends Component {
               handleListDelete={this.deleteAxiosList}
               />
             )}
-          />
+          /> */}
 
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={(routerProps) => (
-              <Home
-                // {...routerProps}
-                // users={this.state.users}
-              />
-            )}
-          />
+
 
           {/* Route to view users component */}
           <Route
@@ -235,10 +217,7 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 userStatus={this.state.userStatus}
-                userFirstName={this.state.userFirstName}
-                userLastName={this.state.userLastName}
                 userEmailAddress={this.state.userEmailAddress}
-                userPhotoUrl={this.state.userPhotoUrl}
                 handleChange={this.handleChange}
                 handleUserSubmit={this.handleUserSubmit}
               />
@@ -254,10 +233,7 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 updatedStatus={this.state.updatedStatus}
-                updatedFirstName={this.state.updatedFirstName}
-                updatedLastName={this.state.nupdatedLastName}
                 updatedEmailAddress={this.state.updatedEmailAddress}
-                updatedPhotoUrl={this.state.updatedPhotoUrl}
                 handleChange={this.handleChange}
                 handleUserDelete={this.deleteAxiosUser}
                 handleUpdateUser={this.handleUpdateUser}
@@ -309,15 +285,21 @@ class App extends Component {
             )}
           /> */}
 
+          <Route
+            exact
+            path="/tasks"
+            render={(routerProps) => (
+              <TaskListContext>
+                <div>
+                  <TodoForm />
+                  <TodoList />
+                </div>
+              </TaskListContext>
+            )}
+          />
+
           <Route path="/*" render={() => <Redirect to="/" />} />
         </Switch>
-
-        <TaskListContext>
-          <div>
-            <TodoForm />
-            <TodoList />
-          </div>
-        </TaskListContext>
       </div>
     );
   }

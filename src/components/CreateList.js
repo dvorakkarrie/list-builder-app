@@ -6,7 +6,7 @@ const CreateList = props => {
     let allUsers = props.users.map(user => {
         return (   
             <option key={user._id} value={user._id}>
-                {user.first_name} {user.last_name}
+                {user.email_address}
             </option>
         )
     })    

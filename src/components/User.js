@@ -9,7 +9,7 @@ const User = props => {
                 key={props.user._id}>
                 <ul>
                     <li>
-                        {props.user.first_name} {props.user.last_name}
+                        {props.user.email_address}
                         <button id={props.user._id} 
                             onClick={props.handleUserDelete}>
                             Delete 
