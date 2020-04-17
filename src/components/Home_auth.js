@@ -1,12 +1,12 @@
 import React from "react";
-import { useAuth0 } from "../react-auth0-spa";
+// import { useAuth0 } from "../react-auth0-spa";
 
 const Home = (props) => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  // const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
     <div>
-      {!isAuthenticated && (
+      {/* {!isAuthenticated && (
         <button onClick={() => loginWithRedirect({})}>Log in</button>
       )}
       {isAuthenticated && (
@@ -14,7 +14,8 @@ const Home = (props) => {
           <span></span>
           {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
         </nav>
-      )}
+      )} */}
+      <p>Login/Signup</p>
     </div>
   );
 };

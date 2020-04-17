@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, Route, Redirect, Switch, withRouter } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
+// import PrivateRoute from "./components/PrivateRoute";
 import axios from "axios";
 
 import "./App.css";
@@ -214,11 +214,11 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
-          <PrivateRoute exact path="/" render={(routerProps) => <Home />} />
+          <Route exact path="/" render={(routerProps) => <Home />} />
         </header>
         <SideNav />
 
-        <PrivateRoute path="/profile" component={Profile} />
+        <Route path="/profile" component={Profile} />
         {/* <PrivateRoute
             exact
             path="/lists"
