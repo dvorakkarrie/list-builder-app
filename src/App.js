@@ -175,8 +175,6 @@ class App extends Component {
     });
   };
 
-  handleLogin = (event) => {};
-
   render() {
     console.log(this.state.users);
     return (
@@ -185,22 +183,10 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
-          <PrivateRoute path="/" component={Profile} />          
-          <Route
-            exact
-            path="/"
-            render={(routerProps) => (
-              <Home
-                {...routerProps}
-                users={this.state.users}
-                handleLogin={this.handleLogin}
-              />
-            )}
-          />
         </header>
         <SideNav />
      
-        <PrivateRoute path="/" component={Profile} />
+        <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute
             exact
             path="/lists"
@@ -216,7 +202,16 @@ class App extends Component {
           />
 
         <Switch>
-
+          <Route
+            exact
+            path="/"
+            render={(routerProps) => (
+              <Home
+                // {...routerProps}
+                // users={this.state.users}
+              />
+            )}
+          />
 
           {/* Route to view users component */}
           <Route
