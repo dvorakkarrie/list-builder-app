@@ -6,6 +6,7 @@ import axios from "axios";
 import "./App.css";
 
 import Home from "./components/Home_auth";
+import Items from "./components/Items";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
@@ -114,7 +115,7 @@ class App extends Component {
     });
   };
 
-  createListAxios() {
+  createListAxios () {
     // let userId = this.props.location.pathname.slice(10);
     axios({
       method: "PUT",
@@ -153,6 +154,18 @@ class App extends Component {
     });
   };
 
+  deleteAxiosItem = (event) => {
+    console.log(`${backendUrl}items/${event.target.id}`);
+    event.preventDefault();
+    axios({
+      method: "DELETE",
+      url: `${backendUrl}items/${event.target.id}`,
+    }).then((deletedUser) => {
+      this.getUsersAxios();
+      this.props.history.push("/");
+    });
+  };
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -167,16 +180,10 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
-          <PrivateRoute
-            exact
-            path="/"
-            render={(routerProps) => (
-              <Home />
-            )}
-          />
+          <PrivateRoute exact path="/" render={(routerProps) => <Home />} />
         </header>
         <SideNav />
-     
+
         <PrivateRoute path="/profile" component={Profile} />
         {/* <PrivateRoute
             exact
@@ -194,6 +201,49 @@ class App extends Component {
 
         <Switch>
 
+          {/* Route to view lists component */}
+          <PrivateRoute
+            exact
+            path="/lists"
+            render={(routerProps) => (
+              <Lists
+                {...routerProps}
+                users={this.state.users}
+                lists={this.state.lists}
+                handleChange={this.handleChange}
+                handleListDelete={this.deleteAxiosList}
+              />
+            )}
+          />
+
+          {/* Route to create a new list (from UserDetails component)*/}
+          <PrivateRoute
+            path="/new-list"
+            render={(routerProps) => (
+              <CreateList
+                {...routerProps}
+                users={this.state.users}
+                handleChange={this.handleChange}
+                handleListSubmit={this.handleListSubmit}
+                id={routerProps.location.pathname}
+              />
+            )}
+          />          
+          
+          {/* Route to view items component */}
+          <PrivateRoute
+            exact
+            path="/items"
+            render={(routerProps) => (
+              <Items
+                {...routerProps}
+                users={this.state.users}
+                items={this.state.items}
+                handleChange={this.handleChange}
+                handleItemDelete={this.deleteAxiosItem}
+              />
+            )}
+          />
 
           {/* Route to view users component */}
           <Route
@@ -241,34 +291,6 @@ class App extends Component {
             )}
           />
 
-          {/* Route to view lists component */}
-          <Route
-            exact
-            path="/lists"
-            render={(routerProps) => (
-              <Lists
-                {...routerProps}
-                users={this.state.users}
-                lists={this.state.lists}
-                handleChange={this.handleChange}
-                handleListDelete={this.deleteAxiosList}
-              />
-            )}
-          />
-
-          {/* Route to create a new list (from UserDetails component)*/}
-          <Route
-            path="/new-list"
-            render={(routerProps) => (
-              <CreateList
-                {...routerProps}
-                users={this.state.users}
-                handleChange={this.handleChange}
-                handleListSubmit={this.handleListSubmit}
-                id={routerProps.location.pathname}
-              />
-            )}
-          />
 
           {/* Route to update a list (from UserDetails component)*/}
           {/* <Route
