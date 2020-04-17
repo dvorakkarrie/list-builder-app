@@ -1,7 +1,6 @@
 import React from 'react'
-// import {Link} from 'react-router-dom';
 
-const CreateList = props => {
+const CreateItem = props => {
     console.log(props)
 
     let allUsers = props.users.map(user => {
@@ -15,14 +14,14 @@ const CreateList = props => {
     return (
         <div>
             <section>
-                <h2>New List Form</h2>
+                <h2>New Item Form</h2>
                 <form 
                     onChange={props.handleChange} 
-                    onSubmit={props.handleListSubmit}
+                    onSubmit={props.handleItemSubmit}
                 >
                     <div className='new-div'>
                         <label>Select user's name:</label>
-                        <select className="drop-down-list" 
+                        <select className="drop-down-item" 
                             id="selectedUser" name="userId"
                             onChange={props.handleChange}
                             onClick={props.handleAllUsersSearch}>
@@ -33,23 +32,30 @@ const CreateList = props => {
                         <label>Image URL:</label>
                         <input className='input-box' 
                             type='text' 
-                            name='listImageUrl'
+                            name='itemImageUrl'
                             placeholder="Image URL" />
                         </div>
                         <div className = 'new-div'>
-                            <label>Title:</label>
+                            <label>Name:</label>
                             <input className='input-box' 
                                 type='text' 
-                                name='listTitle' 
-                                placeholder="Title" />
+                                name='itemName' 
+                                placeholder="Name" />
+                        </div>
+                        <div className = 'new-div'>
+                            <label>Description:</label>
+                            <input className='input-box' 
+                                type='text' 
+                                name='itemDescription' 
+                                placeholder="Description" />
                         </div>
                         {/* <div><Link to='/new-item'> (+) </Link></div> */}
                         <input className="button" type="submit" 
-                            value='Create List'/>
+                            value='Create Item'/>
                     </form>
                 </section>
         </div>
     )
 }
 
-export default CreateList;
+export default CreateItem;

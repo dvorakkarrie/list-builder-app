@@ -17,13 +17,6 @@ const CreateUser = props => {
                                 name='userEmailAddress' 
                                 placeholder="User name (email address)" />
                         </div>
-                        <div className = 'new-div'>
-                            <label>Status:</label>
-                            <input className='input-box' 
-                                type='text' 
-                                name='userStatus' 
-                                placeholder="Status" />
-                        </div>
                         <input className="button" type="submit" 
                             value='Create User'/>
                     </form>
