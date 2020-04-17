@@ -77,7 +77,7 @@ class App extends Component {
       url: `${backendUrl}`,
     }).then((userData) =>
       this.setState({
-        users: userData.data,
+        users: userData.data[0],
       })
     );
   }
@@ -242,8 +242,7 @@ class App extends Component {
             render={(routerProps) => (
               <Lists
                 {...routerProps}
-                userId={this.state.userId}
-                // users={this.state.users}
+                users={this.state.users}
                 lists={this.state.lists}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
@@ -257,8 +256,7 @@ class App extends Component {
             render={(routerProps) => (
               <CreateList
                 {...routerProps}
-                userId={this.state.userId}
-                // users={this.state.users}
+                users={this.state.users}
                 handleChange={this.handleChange}
                 handleListSubmit={this.handleListSubmit}
                 id={routerProps.location.pathname}
