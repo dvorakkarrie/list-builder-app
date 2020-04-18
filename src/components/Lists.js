@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import List from "./List";
 
 export default props => {
-    console.log(props.users)
+    console.log(props)
     
     let allLists = props.users.map(user => 
         user.lists.map(list => {
@@ -12,6 +12,7 @@ export default props => {
                 key={list._id}
                 list={list}
                 name="list"
+                userId={props.userId}
                 handleListDelete={props.handleListDelete} 
                 />
         )}

@@ -7,15 +7,17 @@ import "./App.css";
 
 import Header from "./components/Header";
 import Signin from "./components/Signin";
-import CreateItem from "./components/CreateItem";
 import Items from "./components/Items";
+// import ItemDetails from "./components/ItemDetails";
+import CreateItem from "./components/CreateItem";
+import Lists from "./components/Lists";
+import ListDetails from "./components/ListDetails";
+import CreateList from "./components/CreateList";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
 import UserDetails from "./components/UserDetails";
-import Lists from "./components/Lists";
-import CreateList from "./components/CreateList";
 import SideNav from "./components/SideNav";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
@@ -33,9 +35,9 @@ class App extends Component {
       updatedStatus: "",
       updatedEmailAddress: "",
       listTitle: "",
-      listType: "",
-      listStatus: "",
       listImageUrl: "",
+      updatedListTitle: "",
+      updatedListImageUrl: "",
       itemName: "",
       itemDescription: "",
       itemImageUrl: "",
@@ -212,6 +214,7 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
+          <Link to="/signin"><button>Sign In</button></Link>
           <Route
             exact
             path="/"
@@ -251,8 +254,26 @@ class App extends Component {
               <Lists
                 {...routerProps}
                 users={this.state.users}
+                userId={this.state.userId}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
+              />
+            )}
+          />
+
+          {/* Route to view ListDetails component */}
+          <Route
+            path="/lists/:id"
+            render={(routerProps) => (
+              <ListDetails
+                {...routerProps}
+                users={this.state.users}
+                userId={this.state.userId}
+                updatedTitle={this.state.updatedTitle}
+                updatedImageUrl={this.state.updatedImageUrl}
+                handleChange={this.handleChange}
+                handleListDelete={this.deleteAxiosList}
+                handleUpdateList={this.handleUpdateList}
               />
             )}
           />
@@ -308,6 +329,7 @@ class App extends Component {
               <Users
                 {...routerProps}
                 users={this.state.users}
+                userId={this.state.userId}
                 handleChange={this.handleChange}
                 handleUserDelete={this.deleteAxiosUser}
               />
@@ -320,8 +342,8 @@ class App extends Component {
             render={(routerProps) => (
               <UserDetails
                 {...routerProps}
-                {...routerProps}
                 users={this.state.users}
+                userId={this.state.userId}
                 updatedStatus={this.state.updatedStatus}
                 updatedEmailAddress={this.state.updatedEmailAddress}
                 handleChange={this.handleChange}

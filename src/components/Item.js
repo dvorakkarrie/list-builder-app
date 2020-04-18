@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 const Item = props => {
     console.log(props)
-    
+
     return (
         <div>
             <Link to={`/items/${props.item._id}`} 
@@ -11,10 +11,10 @@ const Item = props => {
                 <ul>
                     <li>
                         {props.item.item_desc}
-                        <button id={props.item._id} 
-                            onClick={props.handleItemDelete}>
-                            <i className="fas fa-trash-alt"></i>  
-                        </button>
+                        <button 
+                            className='delete-button'
+                            id={props.item._id}
+                            onClick={props.handleItemDelete}> - </button>
                     </li>
                 </ul>
             </Link>
