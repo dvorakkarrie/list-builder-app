@@ -6,17 +6,17 @@ export default props => {
     console.log(props.users)
 
     
-    let allLists 
-    // = props.users.lists.map(list => {
-    //     return (
-    //         <List 
-    //             key={list._id}
-    //             list={list}
-    //             name="list"
-    //             handleListDelete={props.handleListDelete} 
-    //             />
-    //         )}
-    //     )
+    let allLists = props.users.map(user => 
+        user.lists.map(list => {
+        return (
+            <List 
+                key={list._id}
+                list={list}
+                name="list"
+                handleListDelete={props.handleListDelete} 
+                />
+        )}
+    ))
         
     return allLists ? (
         <>

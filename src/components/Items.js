@@ -5,17 +5,18 @@ import Item from "./Item";
 export default props => {
     console.log(props.users)
 
-    let allItems 
-    // = props.users.items.map(item => {
-    //     return (
-    //         <Item
-    //             key={item._id}
-    //             item={item}
-    //             name="item"
-    //             handleListDelete={props.handleListDelete} 
-    //             />
-    //         )}
-    //     )
+    
+    let allItems = props.users.map(user => 
+        user.items.map(item => {
+        return (
+            <Item
+                key={item._id}
+                item={item}
+                name="item"
+                handleItemDelete={props.handleItemDelete} 
+                />
+        )}
+    ))
         
     return allItems ? (
         <>
