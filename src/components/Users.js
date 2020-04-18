@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import User from "./User";
 
 const Users = props => {
@@ -11,15 +10,14 @@ const Users = props => {
                 key={user._id} 
                 user={user}
                 name="user"
+                userId={props.userId}
                 handleUserDelete={props.handleUserDelete} />
         )
     })
 
     return allUsers ? (
         <>
-            <h3>User List
-                <Link to='/new-user'> (+) </Link>
-            </h3>
+            <h3>User List</h3>
             <div className='users-container'>
                 {allUsers}
             </div>

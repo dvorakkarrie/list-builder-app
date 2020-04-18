@@ -2,18 +2,18 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 
 const List = props => {
-    console.log(props.list)
+    console.log(props)
     return (
         <div>
             <Link to={`/lists/${props.list._id}`} 
-                key={props.list_id}>
+                key={props.list._id && <p>props.list._id</p>}>
                 <ul>
                     <li>
                         {props.list.title}
-                        <button id={props.list._id} 
-                            onClick={props.handleListDelete}>
-                            <i className="fas fa-trash-alt"></i>  
-                        </button>
+                        <button 
+                            className='delete-button'
+                            id={props.list._id}
+                            onClick={props.handleListDelete}> - </button>
                     </li>
                 </ul>
             </Link>
