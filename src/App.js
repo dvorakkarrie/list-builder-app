@@ -69,13 +69,14 @@ class App extends Component {
       data: {
         email: this.state.userEmailAddress,
       },
-    }).then((userData) =>
+    }).then((userData) => {
       this.setState({
         users: userData.data,
         isAuthenticated: true,
         userId: userData.data[0]._id
       })
-    );
+      this.props.history.push("/lists");
+    });
   }
 
   deleteAxiosUser = (event) => {
@@ -133,7 +134,8 @@ class App extends Component {
         },
       },
     }).then((newList) => {
-      this.props.history.push(`/lists/${newList.data._id}`);
+      // this.props.history.push(`/lists/${newList.data._id}`);
+      this.props.history.push(`/lists`);
       this.setState((prevState) => ({
         users: [...prevState.users, newList.data]
       }));
@@ -155,7 +157,7 @@ class App extends Component {
       url: `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
       this.getUserAxiosById()
-      this.props.history.push("/lists");
+      this.props.history.push("/");
     });
   };
 
