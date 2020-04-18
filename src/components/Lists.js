@@ -4,9 +4,13 @@ import List from "./List";
 
 export default props => {
     console.log(props)
+
+    let aUser = props.users.find(user => 
+        user._id === props.userId)
     
-    let allLists = props.users.map(user => 
-        user.lists.map(list => {
+        console.log(aUser)
+
+    let allLists = aUser.lists.map(list => {
         return (
             <List 
                 key={list._id}
@@ -16,7 +20,7 @@ export default props => {
                 handleListDelete={props.handleListDelete} 
                 />
         )}
-    ))
+    )
         
     return allLists ? (
         <>

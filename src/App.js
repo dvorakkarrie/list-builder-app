@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   // componentDidMount() {
-  //   this.getUsersAxios();
+  //   this.getUserAxiosById();
   //   console.log(this.users);
   // }
 
@@ -134,30 +134,28 @@ class App extends Component {
         },
       },
     }).then((newList) => {
-      // this.props.history.push(`/lists/${newList.data._id}`);
-      this.props.history.push(`/lists`);
-      this.setState((prevState) => ({
-        users: [...prevState.users, newList.data]
-      }));
+      this.getUserAxiosById() 
+      // this.setState((prevState) => ({
+      //   users: [...prevState.users, newList.data]
+      // }))
+      this.props.history.push(`/lists/${newList.data._id}`);
     });
   }
 
   handleListSubmit = (event) => {
-    console.log(event.target);
     event.preventDefault();
     this.createListAxios();
   };
 
   deleteAxiosList = (event) => {
-    console.log(event.target)
     console.log(`${backendUrl}delete-list/${this.state.userId}/${event.target.id}`);
     event.preventDefault();
     axios({
       method: "DELETE",
       url: `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
-      this.getUserAxiosById()
-      this.props.history.push("/");
+      // this.getUserAxiosById()
+      this.props.history.push("/lists");
     });
   };
 

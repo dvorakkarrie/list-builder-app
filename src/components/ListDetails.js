@@ -4,7 +4,7 @@ const ListDetails = props => {
     console.log(props)
 
     let aUser = props.users.find(user => 
-        user._id = props.userId)
+        user._id === props.userId)
     
         console.log(aUser)
     let listsDetail = aUser.lists.find(list => 
