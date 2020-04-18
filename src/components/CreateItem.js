@@ -33,7 +33,6 @@ const CreateItem = props => {
                                 name='itemDescription' 
                                 placeholder="Description" />
                         </div>
-                        {/* <div><Link to='/new-item'> (+) </Link></div> */}
                         <input className="button" type="submit" 
                             value='Create Item'/>
                     </form>

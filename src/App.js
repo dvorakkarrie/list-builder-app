@@ -6,10 +6,9 @@ import axios from "axios";
 import "./App.css";
 
 import Header from "./components/Header";
-// import Home from "./components/Home";
 import Signin from "./components/Signin";
 import Items from "./components/Items";
-// import ItemDetails from "./components/ItemDetails";
+import ItemDetails from "./components/ItemDetails";
 import CreateItem from "./components/CreateItem";
 import Lists from "./components/Lists";
 import ListDetails from "./components/ListDetails";
@@ -17,8 +16,6 @@ import CreateList from "./components/CreateList";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
-// import Users from "./components/Users";
-// import UserDetails from "./components/UserDetails";
 import SideNav from "./components/SideNav";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
@@ -81,7 +78,6 @@ class App extends Component {
   };
 
   createListAxios() {
-    console.log(this.state.users[0]._id);
     axios({
       method: "PUT",
       url: `${backendUrl}new-list`,
@@ -119,7 +115,7 @@ class App extends Component {
         image_url: this.state.updatedListImageUrl,
       },
     }).then((user) => {
-      this.props.history.push("/");
+      this.props.history.push("/lists");
       this.getUserAxiosById();
     });
   };
@@ -145,13 +141,13 @@ class App extends Component {
   };
 
   createItemAxios() {
-    console.log(this.state);
+    // console.log(this.state.users[0]._id);
     axios({
       method: "PUT",
       url: `${backendUrl}new-item`,
       data: {
         user: {
-          _id: this.state.userId,
+          _id: this.state.users[0]._id,
         },
         item: {
           item: this.state.itemName,
@@ -162,25 +158,51 @@ class App extends Component {
         },
       },
     }).then((newItem) => {
+      this.getUserAxiosById();
       this.props.history.push(`/items/${newItem.data._id}`);
     });
   }
 
   handleItemSubmit = (event) => {
-    console.log(event.target);
     event.preventDefault();
     this.createItemAxios();
   };
 
+  putItemAxios = (event) => {
+    event.preventDefault();
+    axios({
+      method: "PUT",
+      url: `${backendUrl}items/${event.target.id}`,
+      data: {
+        item: this.state.updatedItemName,
+        item_desc: this.state.updatedItemDescription,
+        item_type: "1",
+        status: "A",
+        image_url: this.state.updatedItemImageUrl,
+      },
+    }).then((user) => {
+      this.props.history.push("/items");
+      this.getUserAxiosById();
+    });
+  };
+
+  handleUpdateItem = (event) => {
+    console.log(event.target.id);
+    event.preventDefault();
+    this.putItemAxios(event);
+  };
+
   deleteAxiosItem = (event) => {
-    console.log(`${backendUrl}items/${event.target.id}`);
+    console.log(
+      `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`
+    );
     event.preventDefault();
     axios({
       method: "DELETE",
-      url: `${backendUrl}items/${event.target.id}`,
+      url: `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
       this.getUserAxiosById();
-      this.props.history.push("/");
+      this.props.history.push("/items");
     });
   };
 
@@ -202,22 +224,22 @@ class App extends Component {
             isAuthenticated={this.state.isAuthenticated}
           />
         </header>
-        <SideNav />
+        <SideNav isAuthenticated={this.state.isAuthenticated} />
         <Route
-            exact
-            path="/"
-            render={(routerProps) => (
-              <Signin
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                isAuthenticated={this.state.isAuthenticated}
-                userEmailAddress={this.state.userEmailAddress}
-                handleChange={this.handleChange}
-                handleSignin={this.handleSignin}
-              />
-            )}
-          />
+          exact
+          path="/"
+          render={(routerProps) => (
+            <Signin
+              {...routerProps}
+              users={this.state.users}
+              userId={this.state.userId}
+              isAuthenticated={this.state.isAuthenticated}
+              userEmailAddress={this.state.userEmailAddress}
+              handleChange={this.handleChange}
+              handleSignin={this.handleSignin}
+            />
+          )}
+        />
 
         {/* <Route path="/profile" component={Profile} /> */}
         <Switch>
@@ -244,8 +266,8 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 userId={this.state.userId}
-                updatedTitle={this.state.updatedTitle}
-                updatedImageUrl={this.state.updatedImageUrl}
+                updatedListTitle={this.state.updatedListTitle}
+                updatedListImageUrl={this.state.updatedListImageUrl}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
                 handleUpdateList={this.handleUpdateList}
@@ -275,7 +297,7 @@ class App extends Component {
               <Items
                 {...routerProps}
                 users={this.state.users}
-                items={this.state.items}
+                userId={this.state.userId}
                 handleChange={this.handleChange}
                 handleItemDelete={this.deleteAxiosItem}
               />
@@ -296,20 +318,23 @@ class App extends Component {
             )}
           />
 
-          {/* Route to update a list (from UserDetails component)*/}
-          {/* <Route
-            path='/update-item/:eventId/:itemId'
-            render={routerProps => (
-              <UpdateItem
+          {/* Route to view ListDetails component */}
+          <Route
+            path="/items/:id"
+            render={(routerProps) => (
+              <ItemDetails
                 {...routerProps}
+                users={this.state.users}
+                userId={this.state.userId}
+                updatedItemName={this.state.updatedItemName}
+                updatedItemDescription={this.state.updatedItemDescription}
+                updatedItemImageUrl={this.state.updatedItemImageUrl}
                 handleChange={this.handleChange}
-                handleItemUpdate={this.handleItemUpdate}
-                allEvents={this.state.events}
-                updateItem={this.state}
-                id={routerProps.location.pathname}
+                handleItemDelete={this.deleteAxiosItem}
+                handleUpdateItem={this.handleUpdateItem}
               />
             )}
-          /> */}
+          />
 
           <Route
             exact
