@@ -9,11 +9,6 @@ const SideNav = () => {
             <div><Link to='/items'>My Items</Link>
                 <Link to='/new-item'> (+)</Link></div>
             <div><Link to='/tasks'>My Tasks</Link></div>
-            <div>
-                <a href='http://recipebits.surge.sh/'>
-                    Recipes
-                </a>
-            </div>
         </div>
     )
 }

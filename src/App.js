@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Link, Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 // import PrivateRoute from "./components/PrivateRoute";
 import axios from "axios";
 
 import "./App.css";
 
-import Home from "./components/Home";
+import Header from "./components/Header";
+// import Home from "./components/Home";
 import Signin from "./components/Signin";
 import Items from "./components/Items";
 // import ItemDetails from "./components/ItemDetails";
@@ -43,31 +44,16 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.getUserAxiosById();
-  //   console.log(this.users);
-  // }
-
   getUserAxiosById() {
     axios({
       method: "GET",
       url: `${backendUrl}${this.state.userId}`,
     }).then((userData) =>
       this.setState({
-        users: userData.data
+        users: userData.data,
       })
     );
   }
-
-  // getUsersAxios() {
-  //   axios({ 
-  //     method: "GET", 
-  //     url: `${backendUrl}users/`
-  //   }).then(userData =>
-  //     this.setState({ 
-  //       users: userData.data })
-  //   );
-  // }
 
   handleSignin = (event) => {
     event.preventDefault();
@@ -83,22 +69,16 @@ class App extends Component {
         isAuthenticated: true,
         userId: userData.data[0]._id,
       });
-      this.props.history.push("/lists");
+      this.props.history.push("/");
     });
   };
 
-  // deleteAxiosUser = (event) => {
-  //   console.log(`${backendUrl}${event.target.id}`);
-  //   event.preventDefault();
-  //   axios({
-  //     method: "DELETE",
-  //     url: `${backendUrl}${event.target.id}`,
-  //   }).then((deletedUser) => {
-  //     this.getUserAxiosById();
-  //     this.props.history.push("/");
-  //   });
-  // };
-
+  handleLogout = () => {
+    this.setState({
+      isAuthenticated: false,
+    });
+    this.props.history.push("/");
+  };
 
   createListAxios() {
     console.log(this.state.users[0]._id);
@@ -118,9 +98,6 @@ class App extends Component {
       },
     }).then((newList) => {
       this.getUserAxiosById();
-      // this.setState((prevState) => ({
-      //   users: [...prevState.users, newList.data]
-      // }))
       this.props.history.push(`/lists/${newList.data._id}`);
     });
   }
@@ -131,7 +108,7 @@ class App extends Component {
   };
 
   putListAxios = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     axios({
       method: "PUT",
       url: `${backendUrl}lists/${event.target.id}`,
@@ -148,7 +125,7 @@ class App extends Component {
   };
 
   handleUpdateList = (event) => {
-    console.log(event.target.id)
+    console.log(event.target.id);
     event.preventDefault();
     this.putListAxios(event);
   };
@@ -162,7 +139,7 @@ class App extends Component {
       method: "DELETE",
       url: `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
-      this.getUserAxiosById()
+      this.getUserAxiosById();
       this.props.history.push("/lists");
     });
   };
@@ -219,39 +196,22 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Link to="/">
-            <h1>List Builder</h1>
-          </Link>
-          <Link to="/logout">
-            <button>Logout</button>
-          </Link>
-          <Link to="/signin">
-            <button>SignIn</button>
-          </Link>
-          <Route
-            exact
-            path="/"
-            render={(routerProps) => (
-              <Home
-                {...routerProps}
-                users={this.state}
-                isAuthenticated={this.state.isAuthenticated}
-              />
-            )}
+          <Header
+            userEmailAddress={this.state.userEmailAddress}
+            handleLogout={this.handleLogout}
+            isAuthenticated={this.state.isAuthenticated}
           />
         </header>
         <SideNav />
-
-        {/* <Route path="/profile" component={Profile} /> */}
-        <Switch>
-          <Route
+        <Route
             exact
-            path="/signin"
+            path="/"
             render={(routerProps) => (
               <Signin
                 {...routerProps}
                 users={this.state.users}
                 userId={this.state.userId}
+                isAuthenticated={this.state.isAuthenticated}
                 userEmailAddress={this.state.userEmailAddress}
                 handleChange={this.handleChange}
                 handleSignin={this.handleSignin}
@@ -259,6 +219,8 @@ class App extends Component {
             )}
           />
 
+        {/* <Route path="/profile" component={Profile} /> */}
+        <Switch>
           {/* Route to view lists component */}
           <Route
             exact
@@ -333,38 +295,6 @@ class App extends Component {
               />
             )}
           />
-
-          {/* Route to view users component */}
-          {/* <Route
-            exact
-            path="/users"
-            render={(routerProps) => (
-              <Users
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                handleChange={this.handleChange}
-                handleUserDelete={this.deleteAxiosUser}
-              />
-            )}
-          /> */}
-
-          {/* Route to view UserDetail component */}
-          {/* <Route
-            path="/users/:id"
-            render={(routerProps) => (
-              <UserDetails
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                updatedStatus={this.state.updatedStatus}
-                updatedEmailAddress={this.state.updatedEmailAddress}
-                handleChange={this.handleChange}
-                handleUserDelete={this.deleteAxiosUser}
-                handleUpdateUser={this.handleUpdateUser}
-              />
-            )}
-          /> */}
 
           {/* Route to update a list (from UserDetails component)*/}
           {/* <Route
