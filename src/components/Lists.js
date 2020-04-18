@@ -4,7 +4,6 @@ import List from "./List";
 
 export default props => {
     console.log(props.users)
-
     
     let allLists = props.users.map(user => 
         user.lists.map(list => {
@@ -20,7 +19,6 @@ export default props => {
         
     return allLists ? (
         <>
-            
             <h3>Lists
                 <Link to='/new-list'> (+) </Link>
             </h3>

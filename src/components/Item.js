@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 const Item = props => {
     console.log(props)
+    
     return (
         <div>
             <Link to={`/items/${props.item._id}`} 

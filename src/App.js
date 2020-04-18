@@ -13,7 +13,6 @@ import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
 import Users from "./components/Users";
-import CreateUser from "./components/CreateUser";
 import UserDetails from "./components/UserDetails";
 import Lists from "./components/Lists";
 import CreateList from "./components/CreateList";
@@ -33,7 +32,6 @@ class App extends Component {
       userEmailAddress: "",
       updatedStatus: "",
       updatedEmailAddress: "",
-      lists: [],
       listTitle: "",
       listType: "",
       listStatus: "",
@@ -50,36 +48,15 @@ class App extends Component {
   //   console.log(this.users);
   // }
 
-  createUserAxios() {
-    console.log(this.state.userEmailAddress);
-    axios({
-      method: "POST",
-      url: `${backendUrl}`,
-      data: {
-        email: this.state.userEmailAddress,
-      },
-    }).then((newUser) => {
-      this.props.history.push(`/users/${newUser.data._id}`);
-      this.setState((prevState) => ({
-        users: [...prevState.users, newUser.data],
-      }));
-    });
-  }
-
-  handleUserSubmit = (event) => {
-    event.preventDefault();
-    this.createUserAxios();
-  };
-
-  getUsersAxios() {
-    axios({ 
-      method: "GET", 
-      url: `${backendUrl}users/`
-    }).then(userData =>
-      this.setState({ 
-        users: userData.data })
-    );
-  }
+    getUserAxiosById() {
+      axios({ 
+        method: "GET", 
+        url: `${backendUrl}${this.state.userId}`
+      }).then(userData =>
+        this.setState({ 
+          users: userData.data })
+      );
+    }
 
   handleSignin = (event) => {
     console.log(this.state.userEmailAddress);
@@ -94,6 +71,7 @@ class App extends Component {
       this.setState({
         users: userData.data,
         isAuthenticated: true,
+        userId: userData.data[0]._id
       })
     );
   }
@@ -105,7 +83,7 @@ class App extends Component {
       method: "DELETE",
       url: `${backendUrl}${event.target.id}`,
     }).then((deletedUser) => {
-      this.getUsersAxios();
+      this.getUserAxiosById()
       this.props.history.push("/");
     });
   };
@@ -119,7 +97,6 @@ class App extends Component {
         email_address: this.state.updatedEmailAddress,
       },
     }).then((user) => {
-      this.getUsersAxios();
       this.props.history.push("/");
       // this.props.history.push(`/users/${user.data._id}`);
       // this.setState(prevState => ({
@@ -138,40 +115,44 @@ class App extends Component {
   };
 
   createListAxios() {
+    console.log(this.state.users[0]._id)
     axios({
       method: "PUT",
       url: `${backendUrl}new-list`,
       data: {
         user: {
-          _id: this.state.userId,
+          _id: this.state.users[0]._id,
         },
         list: {
           title: this.state.listTitle,
           list_type: "A",
           status: "Active",
-          image_url: this.state.listImageUrl,
+          image_url: this.state.listImageUrl
         },
       },
     }).then((newList) => {
-      this.getUsersAxios();
       this.props.history.push(`/lists/${newList.data._id}`);
+      this.setState((prevState) => ({
+        users: [...prevState.users, newList.data]
+      }));
     });
   }
 
   handleListSubmit = (event) => {
-    console.log(event);
+    console.log(event.target);
     event.preventDefault();
     this.createListAxios();
   };
 
   deleteAxiosList = (event) => {
-    console.log(`${backendUrl}lists/${event.target.id}`);
+    console.log(event.target)
+    console.log(`${backendUrl}delete-list/${this.state.userId}/${event.target.id}`);
     event.preventDefault();
     axios({
       method: "DELETE",
-      url: `${backendUrl}lists/${event.target.id}`,
+      url: `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
-      this.getUsersAxios();
+      this.getUserAxiosById()
       this.props.history.push("/");
     });
   };
@@ -194,12 +175,12 @@ class App extends Component {
         },
       },
     }).then((newItem) => {
-      this.getUsersAxios();
       this.props.history.push(`/items/${newItem.data._id}`);
     });
   }
 
   handleItemSubmit = (event) => {
+    console.log(event.target)
     event.preventDefault();
     this.createItemAxios();
   };
@@ -211,7 +192,7 @@ class App extends Component {
       method: "DELETE",
       url: `${backendUrl}items/${event.target.id}`,
     }).then((deletedUser) => {
-      this.getUsersAxios();
+      this.getUserAxiosById()
       this.props.history.push("/");
     });
   };
@@ -254,6 +235,7 @@ class App extends Component {
               <Signin
                 {...routerProps}
                 users={this.state.users}
+                userId={this.state.userId}
                 userEmailAddress={this.state.userEmailAddress}
                 handleChange={this.handleChange}
                 handleSignin={this.handleSignin}
@@ -328,20 +310,6 @@ class App extends Component {
                 users={this.state.users}
                 handleChange={this.handleChange}
                 handleUserDelete={this.deleteAxiosUser}
-              />
-            )}
-          />
-
-          {/* Route to create a new user (from Home) */}
-          <Route
-            path="/new-user"
-            render={(routerProps) => (
-              <CreateUser
-                {...routerProps}
-                users={this.state.users}
-                userEmailAddress={this.state.userEmailAddress}
-                handleChange={this.handleChange}
-                handleUserSubmit={this.handleUserSubmit}
               />
             )}
           />
