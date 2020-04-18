@@ -5,7 +5,7 @@ import axios from "axios";
 
 import "./App.css";
 
-import Header from "./components/Header";
+import Home from "./components/Home";
 import Signin from "./components/Signin";
 import Items from "./components/Items";
 // import ItemDetails from "./components/ItemDetails";
@@ -222,14 +222,17 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
+          <Link to="/logout">
+            <button>Logout</button>
+          </Link>
           <Link to="/signin">
-            <button>Sign In</button>
+            <button>SignIn</button>
           </Link>
           <Route
             exact
             path="/"
             render={(routerProps) => (
-              <Header
+              <Home
                 {...routerProps}
                 users={this.state}
                 isAuthenticated={this.state.isAuthenticated}

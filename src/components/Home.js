@@ -1,25 +1,20 @@
 import React from "react";
-import {Link} from 'react-router-dom';
-import Header from "./Header";
 
-const Signin = (props) => {
-  console.log(props);
+const Home = (props) => {
+
   return (
     <div>
-      <h3>home</h3>
+      {props.isAuthenticated && (
+        <nav>
+          {/* <span></span> */}
+          {props.isAuthenticated && <button onClick=''>Log out</button>} 
+        </nav>
+      )}
 
-      <div>Lists</div>
-      <Link to='/lists' className='lists'>
-         lists
-      </Link>      
       
-      <Link to='/items' className='lists'>
-         item
-      </Link>
-
-      <Header />
+      <p>Login/Signup</p>
     </div>
   );
 };
 
-export default Signin;
+export default Home;
