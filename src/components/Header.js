@@ -7,7 +7,7 @@ const Home = (props) => {
       {props.isAuthenticated && (
         <nav>
           <span></span>
-          {props.isAuthenticated && <button onClick=''>Log out</button>}
+          {/* {props.isAuthenticated && <button onClick=''>Log out</button>} */}
         </nav>
       )}
       <p>Login/Signup</p>

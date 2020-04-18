@@ -61,7 +61,7 @@ class App extends Component {
     }
 
   handleSignin = (event) => {
-    console.log(this.state.userEmailAddress);
+    // console.log(this.state.userEmailAddress);
     event.preventDefault()
     axios({
       method: "POST",
@@ -155,7 +155,7 @@ class App extends Component {
       url: `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
       this.getUserAxiosById()
-      this.props.history.push("/");
+      this.props.history.push("/lists");
     });
   };
 
@@ -200,7 +200,7 @@ class App extends Component {
   };
 
   handleChange = (event) => {
-    console.log(event)
+    // console.log(event)
     this.setState({
       [event.target.name]: event.target.value,
     });

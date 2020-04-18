@@ -1,7 +1,7 @@
 import React from "react";
 
 const Signin = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div>
       <form onChange={props.handleChange} onSubmit={props.handleSignin}>
