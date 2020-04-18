@@ -6,7 +6,8 @@ const ListDetails = props => {
     let aUser = props.users.find(user => 
         user._id === props.userId)
     
-        console.log(aUser)
+    console.log(aUser)
+
     let listsDetail = aUser.lists.find(list => 
         list._id === props.match.params.id)
 
@@ -34,12 +35,12 @@ const ListDetails = props => {
                         <div className='detail-div'>
                             <label className="detail-label">Title:</label>
                             <input type="text" className='input-box'
-                                name="updatedTitle" placeholder="Title" />
+                                name="updatedListTitle" placeholder="Title" />
                         </div>
                         <div className='detail-div'>
                             <label className="detail-label">Image Url:</label>
                             <input type="text" className='input-box'
-                                name="updatedImageUrl" placeholder="Image Url" />
+                                name="updatedListImageUrl" placeholder="Image Url" />
                         </div>
                         <input className="button" type="submit" 
                         value='Update List'/>         

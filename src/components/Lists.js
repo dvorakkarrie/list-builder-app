@@ -2,11 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import List from "./List";
 
-export default props => {
+const Lists = props => {
     console.log(props)
-
-    let aUser = props.users.find(user => 
-        user._id === props.userId)
+    
+    let aUser = props.users.find(user => user._id === props.userId)
     
         console.log(aUser)
 
@@ -21,7 +20,9 @@ export default props => {
                 />
         )}
     )
-        
+
+    console.log(allLists)
+    
     return allLists ? (
         <>
             <h3>Lists
@@ -36,3 +37,5 @@ export default props => {
         <div>...loading...</div>
     )
 }
+
+export default Lists;

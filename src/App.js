@@ -16,8 +16,8 @@ import CreateList from "./components/CreateList";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TaskListContext from "./components/TaskListContext";
-import Users from "./components/Users";
-import UserDetails from "./components/UserDetails";
+// import Users from "./components/Users";
+// import UserDetails from "./components/UserDetails";
 import SideNav from "./components/SideNav";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
@@ -32,8 +32,6 @@ class App extends Component {
       userId: "",
       userStatus: "",
       userEmailAddress: "",
-      updatedStatus: "",
-      updatedEmailAddress: "",
       listTitle: "",
       listImageUrl: "",
       updatedListTitle: "",
@@ -50,19 +48,29 @@ class App extends Component {
   //   console.log(this.users);
   // }
 
-    getUserAxiosById() {
-      axios({ 
-        method: "GET", 
-        url: `${backendUrl}${this.state.userId}`
-      }).then(userData =>
-        this.setState({ 
-          users: userData.data })
-      );
-    }
+  getUserAxiosById() {
+    axios({
+      method: "GET",
+      url: `${backendUrl}${this.state.userId}`,
+    }).then((userData) =>
+      this.setState({
+        users: userData.data
+      })
+    );
+  }
+
+  // getUsersAxios() {
+  //   axios({ 
+  //     method: "GET", 
+  //     url: `${backendUrl}users/`
+  //   }).then(userData =>
+  //     this.setState({ 
+  //       users: userData.data })
+  //   );
+  // }
 
   handleSignin = (event) => {
-    // console.log(this.state.userEmailAddress);
-    event.preventDefault()
+    event.preventDefault();
     axios({
       method: "POST",
       url: `${backendUrl}users/`,
@@ -73,52 +81,27 @@ class App extends Component {
       this.setState({
         users: userData.data,
         isAuthenticated: true,
-        userId: userData.data[0]._id
-      })
+        userId: userData.data[0]._id,
+      });
       this.props.history.push("/lists");
     });
-  }
-
-  deleteAxiosUser = (event) => {
-    console.log(`${backendUrl}${event.target.id}`);
-    event.preventDefault();
-    axios({
-      method: "DELETE",
-      url: `${backendUrl}${event.target.id}`,
-    }).then((deletedUser) => {
-      this.getUserAxiosById()
-      this.props.history.push("/");
-    });
   };
 
-  putUserAxios = (event) => {
-    axios({
-      method: "PUT",
-      url: `${backendUrl}users/${event.target.id}`,
-      data: {
-        status: this.state.updatedStatus,
-        email_address: this.state.updatedEmailAddress,
-      },
-    }).then((user) => {
-      this.props.history.push("/");
-      // this.props.history.push(`/users/${user.data._id}`);
-      // this.setState(prevState => ({
-      //   users: [...prevState.users, user.data]
-      // }));
-    });
-  };
+  // deleteAxiosUser = (event) => {
+  //   console.log(`${backendUrl}${event.target.id}`);
+  //   event.preventDefault();
+  //   axios({
+  //     method: "DELETE",
+  //     url: `${backendUrl}${event.target.id}`,
+  //   }).then((deletedUser) => {
+  //     this.getUserAxiosById();
+  //     this.props.history.push("/");
+  //   });
+  // };
 
-  handleUpdateUser = (event) => {
-    console.log(event.target.id);
-    event.preventDefault();
-    this.putUserAxios(event);
-    this.setState({
-      updatedEmailAddress: "",
-    });
-  };
 
   createListAxios() {
-    console.log(this.state.users[0]._id)
+    console.log(this.state.users[0]._id);
     axios({
       method: "PUT",
       url: `${backendUrl}new-list`,
@@ -130,11 +113,11 @@ class App extends Component {
           title: this.state.listTitle,
           list_type: "A",
           status: "Active",
-          image_url: this.state.listImageUrl
+          image_url: this.state.listImageUrl,
         },
       },
     }).then((newList) => {
-      this.getUserAxiosById() 
+      this.getUserAxiosById();
       // this.setState((prevState) => ({
       //   users: [...prevState.users, newList.data]
       // }))
@@ -147,14 +130,39 @@ class App extends Component {
     this.createListAxios();
   };
 
+  putListAxios = (event) => {
+    event.preventDefault()
+    axios({
+      method: "PUT",
+      url: `${backendUrl}lists/${event.target.id}`,
+      data: {
+        title: this.state.updatedListTitle,
+        list_type: "1",
+        status: "A",
+        image_url: this.state.updatedListImageUrl,
+      },
+    }).then((user) => {
+      this.props.history.push("/");
+      this.getUserAxiosById();
+    });
+  };
+
+  handleUpdateList = (event) => {
+    console.log(event.target.id)
+    event.preventDefault();
+    this.putListAxios(event);
+  };
+
   deleteAxiosList = (event) => {
-    console.log(`${backendUrl}delete-list/${this.state.userId}/${event.target.id}`);
+    console.log(
+      `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`
+    );
     event.preventDefault();
     axios({
       method: "DELETE",
       url: `${backendUrl}delete-list/${this.state.userId}/${event.target.id}`,
     }).then((deletedUser) => {
-      // this.getUserAxiosById()
+      this.getUserAxiosById()
       this.props.history.push("/lists");
     });
   };
@@ -182,7 +190,7 @@ class App extends Component {
   }
 
   handleItemSubmit = (event) => {
-    console.log(event.target)
+    console.log(event.target);
     event.preventDefault();
     this.createItemAxios();
   };
@@ -194,7 +202,7 @@ class App extends Component {
       method: "DELETE",
       url: `${backendUrl}items/${event.target.id}`,
     }).then((deletedUser) => {
-      this.getUserAxiosById()
+      this.getUserAxiosById();
       this.props.history.push("/");
     });
   };
@@ -214,7 +222,9 @@ class App extends Component {
           <Link to="/">
             <h1>List Builder</h1>
           </Link>
-          <Link to="/signin"><button>Sign In</button></Link>
+          <Link to="/signin">
+            <button>Sign In</button>
+          </Link>
           <Route
             exact
             path="/"
@@ -322,7 +332,7 @@ class App extends Component {
           />
 
           {/* Route to view users component */}
-          <Route
+          {/* <Route
             exact
             path="/users"
             render={(routerProps) => (
@@ -334,10 +344,10 @@ class App extends Component {
                 handleUserDelete={this.deleteAxiosUser}
               />
             )}
-          />
+          /> */}
 
           {/* Route to view UserDetail component */}
-          <Route
+          {/* <Route
             path="/users/:id"
             render={(routerProps) => (
               <UserDetails
@@ -351,7 +361,7 @@ class App extends Component {
                 handleUpdateUser={this.handleUpdateUser}
               />
             )}
-          />
+          /> */}
 
           {/* Route to update a list (from UserDetails component)*/}
           {/* <Route

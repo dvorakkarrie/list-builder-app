@@ -4,8 +4,7 @@ import Item from "./Item";
 
 export default props => {
     console.log(props.users)
-
-    
+   
     let allItems = props.users.map(user => 
         user.items.map(item => {
         return (
@@ -14,7 +13,7 @@ export default props => {
                 item={item}
                 name="item"
                 handleItemDelete={props.handleItemDelete} 
-                />
+            />
         )}
     ))
         
