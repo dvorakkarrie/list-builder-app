@@ -130,6 +130,7 @@ button:hover {
 .div-main {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 .div-nav-link {
@@ -244,10 +245,14 @@ label {
 
 /* This formats the new Author and Recipe pages and found in the NewAuthor and NewRecipe components. */
 .new-page {
-  background-color: rgb(240, 237, 212);
+  background-color: rgb(250, 250, 250);
   margin: 5% 25% 25%;
   padding: 1% 0;
+  align-items: center;
+  margin: 2em;
+  padding: 2em;
 }
+
 
 .task-title {
   width: 100%;

@@ -4,7 +4,7 @@ const CreateListItem = (props) => {
   console.log(props.users);
 
   return props.isAuthenticated ? (
-    <div>
+    <div className='new-page'>
       <section>
         <h2>New Item Form</h2>
         <form

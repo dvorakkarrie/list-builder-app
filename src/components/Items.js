@@ -16,7 +16,6 @@ export default props => {
                 item={item}
                 name="item"
                 userId={props.userId}
-                handleItemDelete={props.handleItemDelete} 
                 />
         )}
     )

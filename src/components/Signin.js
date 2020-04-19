@@ -14,9 +14,7 @@ const Signin = (props) => {
             type="email"
             name="userEmailAddress"
             placeholder="Enter your email address"
-            required="true"
-            formatErrorTxt="Incorrect email format"
-            requiredTxt="Email is required"
+            required
           />
         </div>
         <input 

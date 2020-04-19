@@ -16,7 +16,7 @@ const Item = (props) => {
               id={props.item._id}
               onClick={props.handleItemDelete}
             >
-              <i className="fas fa-trash"></i>{" "}
+            <i className="fas fa-trash"></i>{" "}
             </button>
           </li>
         </ul>

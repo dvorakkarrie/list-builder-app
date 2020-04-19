@@ -14,14 +14,14 @@ const ListDetails = (props) => {
 
   console.log(listsDetail);
 
-  let allItems = aUser.items.map((item) => {
+  let allItems = listsDetail.items.map(item => {
     return (
       <ListItems
         key={item._id}
         item={item}
         name="listitems"
         userId={props.userId}
-        handleItemDelete={props.handleListItemDelete}
+        handleListItemDelete={props.handleListItemDelete}
       />
     );
   });

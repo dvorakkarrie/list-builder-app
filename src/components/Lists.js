@@ -16,7 +16,7 @@ const Lists = props => {
                 list={list}
                 name="list"
                 userId={props.userId}
-                handleListDelete={props.handleListDelete} 
+                handleListItemDelete={props.handleListItemDelete}
                 />
         )}
     )

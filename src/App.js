@@ -173,16 +173,18 @@ class App extends Component {
   };
 
   deleteAxiosListItem = (event) => {
+    console.log(this.props.location.pathname)
+    let listId = this.props.location.pathname.slice(7);
     console.log(
-      `${backendUrl}remove-list-item/${this.state.listId}/${event.target.id}`
+      `${backendUrl}remove-list-item/${listId}/${event.target.id}`
     );
     event.preventDefault();
     axios({
       method: "PUT",
-      url: `${backendUrl}remove-list-item/${this.state.listId}/${event.target.id}`,
+      url: `${backendUrl}remove-list-item/${listId}/${event.target.id}`,
     }).then((removedItem) => {
       this.getUserAxiosById();
-      this.props.history.push(`/lists/${this.state.listId}`);
+      this.props.history.push(`/lists/${listId}`);
     });
   };
 

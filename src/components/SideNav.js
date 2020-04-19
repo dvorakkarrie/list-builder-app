@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SideNav = (props) => {
   return props.isAuthenticated ? (
-    <div class="div-navigation">
+    <div className="div-navigation">
       <div className="div-nav-link">
         <Link to="/lists">My Lists </Link>
         <Link to="/new-list"> (+)</Link>
