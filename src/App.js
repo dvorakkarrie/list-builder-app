@@ -39,6 +39,7 @@ class App extends Component {
       itemDescription: "",
       itemImageUrl: "",
       isAuthenticated: false,
+      isComplete: "",
     };
   }
 
