@@ -11,10 +11,12 @@ const Signin = (props) => {
           <label>User Name:</label>
           <input
             className="input-box"
-            type="text"
+            type="email"
             name="userEmailAddress"
-            placeholder="Enter your email address" 
-            required
+            placeholder="Enter your email address"
+            required="true"
+            formatErrorTxt="Incorrect email format"
+            requiredTxt="Email is required"
           />
         </div>
         <input 
