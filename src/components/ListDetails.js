@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import ListItems from "./ListItems";
 
 const ListDetails = (props) => {
@@ -19,7 +21,7 @@ const ListDetails = (props) => {
         item={item}
         name="listitems"
         userId={props.userId}
-        handleItemDelete={props.handleItemDelete}
+        handleItemDelete={props.handleListItemDelete}
       />
     );
   });
@@ -37,6 +39,13 @@ const ListDetails = (props) => {
             <label className="detail-label">Image Url:</label>
             <div className="detail-field">{listsDetail.image_url}</div>
           </div>
+          <ul>
+            <li>
+            <Link to={`/new-listitem/${listsDetail._id}`}>
+                Add item (+)
+              </Link>
+            </li>
+          </ul>
           <div className="lists-container">{allItems}</div>
         </div>
       </section>

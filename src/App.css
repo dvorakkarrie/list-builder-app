@@ -30,6 +30,23 @@ button:hover {
   opacity: 1;
 }
 
+.delete-button {
+  align-self: flex-start;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: medium;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: rgba(218, 53, 35, 0.906);
+  color: white;
+  border-bottom: rgb(206, 52, 5) 2px solid;
+  border-right: rgb(100, 10, 0) 2px solid;
+  margin: 3px;
+  padding: 3px;
+}
+
 .detail-div {
   display: flex;
 }

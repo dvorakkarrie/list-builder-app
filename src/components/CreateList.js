@@ -8,7 +8,6 @@ const CreateList = props => {
         <div>
             <section>
                 <h2>New List Form</h2>
-                <h3>{props.users.email_address}</h3>
                 <form 
                     onChange={props.handleChange} 
                     onSubmit={props.handleListSubmit}

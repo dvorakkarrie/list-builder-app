@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CreateItem = props => {
+const CreateListItem = props => {
     console.log(props.users)
 
     return (
@@ -9,7 +9,7 @@ const CreateItem = props => {
                 <h2>New Item Form</h2>
                 <form 
                     onChange={props.handleChange} 
-                    onSubmit={props.handleItemSubmit}
+                    onSubmit={props.handleListItemSubmit}
                 >
                     <div className = "new-div">
                         <label>Image URL:</label>
@@ -40,4 +40,4 @@ const CreateItem = props => {
     )
 }
 
-export default CreateItem;
+export default CreateListItem;

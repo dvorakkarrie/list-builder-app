@@ -5,18 +5,19 @@ import axios from "axios";
 
 import "./App.css";
 
+import CreateItem from "./components/CreateItem";
+import CreateList from "./components/CreateList";
+import CreateListItem from "./components/CreateListItem";
 import Header from "./components/Header";
-import Signin from "./components/Signin";
 import Items from "./components/Items";
 import ItemDetails from "./components/ItemDetails";
-import CreateItem from "./components/CreateItem";
 import Lists from "./components/Lists";
 import ListDetails from "./components/ListDetails";
-import CreateList from "./components/CreateList";
+import Signin from "./components/Signin";
+import SideNav from "./components/SideNav";
+import TaskListContext from "./components/TaskListContext";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import TaskListContext from "./components/TaskListContext";
-import SideNav from "./components/SideNav";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
 // let backendUrl = "http://127.0.0.1:8080/";
@@ -140,8 +141,52 @@ class App extends Component {
     });
   };
 
+  createListItemAxios = (event) => {
+    let listId = this.props.location.pathname.slice(14);
+    axios({
+      method: "PUT",
+      url: `${backendUrl}new-list-item`,
+      data: {
+        user: {
+          _id: this.state.users[0]._id,
+        },
+        list: {
+          _id: listId
+        },
+        item: {
+          item: this.state.itemName,
+          item_desc: this.state.itemDescription,
+          item_type: "A",
+          status: "Active",
+          image_url: this.state.itemImageUrl,
+        },
+      },
+    }).then((newItem) => {
+      this.getUserAxiosById();
+      this.props.history.push(`/lists/${listId}`);
+    });
+  };
+
+  handleListItemSubmit = (event) => {
+    event.preventDefault();
+    this.createListItemAxios();
+  };
+
+  deleteAxiosListItem = (event) => {
+    console.log(
+      `${backendUrl}delete-list-item/${this.state.userId}/${event.target.id}`
+    );
+    event.preventDefault();
+    axios({
+      method: "DELETE",
+      url: `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`,
+    }).then((deletedUser) => {
+      this.getUserAxiosById();
+      this.props.history.push("/items");
+    });
+  };
+
   createItemAxios() {
-    // console.log(this.state.users[0]._id);
     axios({
       method: "PUT",
       url: `${backendUrl}new-item`,
@@ -224,6 +269,8 @@ class App extends Component {
             isAuthenticated={this.state.isAuthenticated}
           />
         </header>
+
+        {/* SideNav component will always display after user is authenticated */}
         <SideNav isAuthenticated={this.state.isAuthenticated} />
         <Route
           exact
@@ -241,9 +288,8 @@ class App extends Component {
           )}
         />
 
-        {/* <Route path="/profile" component={Profile} /> */}
         <Switch>
-          {/* Route to view lists component */}
+          {/* Route to view Lists component */}
           <Route
             exact
             path="/lists"
@@ -275,7 +321,7 @@ class App extends Component {
             )}
           />
 
-          {/* Route to create a new list (from UserDetails component)*/}
+          {/* Route to create a new list (from navigation & UserDetails component)*/}
           <Route
             path="/new-list"
             render={(routerProps) => (
@@ -284,6 +330,20 @@ class App extends Component {
                 users={this.state.users}
                 handleChange={this.handleChange}
                 handleListSubmit={this.handleListSubmit}
+                id={routerProps.location.pathname}
+              />
+            )}
+          />
+
+          {/* Route to create a new item and add it to a list (from ListDetails component) */}
+          <Route
+            path="/new-listitem/:id"
+            render={(routerProps) => (
+              <CreateListItem
+                {...routerProps}
+                users={this.state.users}
+                handleChange={this.handleChange}
+                handleListItemSubmit={this.handleListItemSubmit}
                 id={routerProps.location.pathname}
               />
             )}
@@ -300,20 +360,6 @@ class App extends Component {
                 userId={this.state.userId}
                 handleChange={this.handleChange}
                 handleItemDelete={this.deleteAxiosItem}
-              />
-            )}
-          />
-
-          {/* Route to create a new item*/}
-          <Route
-            path="/new-item"
-            render={(routerProps) => (
-              <CreateItem
-                {...routerProps}
-                users={this.state.users}
-                handleChange={this.handleChange}
-                handleItemSubmit={this.handleItemSubmit}
-                id={routerProps.location.pathname}
               />
             )}
           />
@@ -336,6 +382,21 @@ class App extends Component {
             )}
           />
 
+          {/* Route to create a new item*/}
+          <Route
+            path="/new-item"
+            render={(routerProps) => (
+              <CreateItem
+                {...routerProps}
+                users={this.state.users}
+                handleChange={this.handleChange}
+                handleItemSubmit={this.handleItemSubmit}
+                id={routerProps.location.pathname}
+              />
+            )}
+          />
+
+          {/* Route to view the Task/Todo components */}
           <Route
             exact
             path="/tasks"

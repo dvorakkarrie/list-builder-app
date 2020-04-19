@@ -14,10 +14,13 @@ const ListItems = (props) => {
                         <button 
                             className='delete-button'
                             id={props.item._id}
-                            onClick={props.handleItemDelete}> - </button>
+                            onClick={props.handleListItemDelete}> - </button>
                     </li>
                 </ul>
             </Link>
+            <form>
+
+            </form>
         </div>
     )
 }
