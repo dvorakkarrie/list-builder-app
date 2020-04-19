@@ -18,9 +18,6 @@ const ListItems = (props) => {
                     </li>
                 </ul>
             </Link>
-            <form>
-
-            </form>
         </div>
     )
 }

@@ -7,7 +7,7 @@ const Signin = (props) => {
     <div>
       <form onChange={props.handleChange} onSubmit={props.handleSignin}>
         <h2>SignIn</h2>
-        <div className="new-div">
+        <div className="div-signin">
           <label>User Name:</label>
           <input
             className="input-box"

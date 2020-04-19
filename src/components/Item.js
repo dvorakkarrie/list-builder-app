@@ -12,7 +12,7 @@ const Item = props => {
                     <li>
                         {props.item.item_desc}
                         <button 
-                            className='delete-button'
+                            className='btn-delete'
                             id={props.item._id}
                             onClick={props.handleItemDelete}> - </button>
                     </li>

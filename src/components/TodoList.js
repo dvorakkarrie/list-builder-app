@@ -8,13 +8,13 @@ const TodoList = () => {
   return (
     <div>
       {tasks.length ? (
-        <ul className="list">
+        <ul>
           {tasks.map((task) => {
             return <Todo task={task} key={task.id} />;
           })}
         </ul>
       ) : (
-        <div className="no-tasks">No Items</div>
+        <div className="div-no-tasks">No Items</div>
       )}
     </div>
   );

@@ -151,7 +151,7 @@ class App extends Component {
           _id: this.state.users[0]._id,
         },
         list: {
-          _id: listId
+          _id: listId,
         },
         item: {
           item: this.state.itemName,
@@ -269,9 +269,7 @@ class App extends Component {
             isAuthenticated={this.state.isAuthenticated}
           />
         </header>
-
-        {/* SideNav component will always display after user is authenticated */}
-        <SideNav isAuthenticated={this.state.isAuthenticated} />
+        {/* Route for SignIn component */}
         <Route
           exact
           path="/"
@@ -287,131 +285,135 @@ class App extends Component {
             />
           )}
         />
+        <div className="div-main">
+          {/* SideNav component will always display after user is authenticated */}
+          <SideNav isAuthenticated={this.state.isAuthenticated} />
 
-        <Switch>
-          {/* Route to view Lists component */}
-          <Route
-            exact
-            path="/lists"
-            render={(routerProps) => (
-              <Lists
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                handleChange={this.handleChange}
-                handleListDelete={this.deleteAxiosList}
-              />
-            )}
-          />
+          <Switch>
+            {/* Route to view Lists component */}
+            <Route
+              exact
+              path="/lists"
+              render={(routerProps) => (
+                <Lists
+                  {...routerProps}
+                  users={this.state.users}
+                  userId={this.state.userId}
+                  handleChange={this.handleChange}
+                  handleListDelete={this.deleteAxiosList}
+                />
+              )}
+            />
 
-          {/* Route to view ListDetails component */}
-          <Route
-            path="/lists/:id"
-            render={(routerProps) => (
-              <ListDetails
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                updatedListTitle={this.state.updatedListTitle}
-                updatedListImageUrl={this.state.updatedListImageUrl}
-                handleChange={this.handleChange}
-                handleListDelete={this.deleteAxiosList}
-                handleUpdateList={this.handleUpdateList}
-              />
-            )}
-          />
+            {/* Route to view ListDetails component */}
+            <Route
+              path="/lists/:id"
+              render={(routerProps) => (
+                <ListDetails
+                  {...routerProps}
+                  users={this.state.users}
+                  userId={this.state.userId}
+                  updatedListTitle={this.state.updatedListTitle}
+                  updatedListImageUrl={this.state.updatedListImageUrl}
+                  handleChange={this.handleChange}
+                  handleListDelete={this.deleteAxiosList}
+                  handleUpdateList={this.handleUpdateList}
+                />
+              )}
+            />
 
-          {/* Route to create a new list (from navigation & UserDetails component)*/}
-          <Route
-            path="/new-list"
-            render={(routerProps) => (
-              <CreateList
-                {...routerProps}
-                users={this.state.users}
-                handleChange={this.handleChange}
-                handleListSubmit={this.handleListSubmit}
-                id={routerProps.location.pathname}
-              />
-            )}
-          />
+            {/* Route to create a new list (from navigation & UserDetails component)*/}
+            <Route
+              path="/new-list"
+              render={(routerProps) => (
+                <CreateList
+                  {...routerProps}
+                  users={this.state.users}
+                  handleChange={this.handleChange}
+                  handleListSubmit={this.handleListSubmit}
+                  id={routerProps.location.pathname}
+                />
+              )}
+            />
 
-          {/* Route to create a new item and add it to a list (from ListDetails component) */}
-          <Route
-            path="/new-listitem/:id"
-            render={(routerProps) => (
-              <CreateListItem
-                {...routerProps}
-                users={this.state.users}
-                handleChange={this.handleChange}
-                handleListItemSubmit={this.handleListItemSubmit}
-                id={routerProps.location.pathname}
-              />
-            )}
-          />
+            {/* Route to create a new item and add it to a list (from ListDetails component) */}
+            <Route
+              path="/new-listitem/:id"
+              render={(routerProps) => (
+                <CreateListItem
+                  {...routerProps}
+                  users={this.state.users}
+                  handleChange={this.handleChange}
+                  handleListItemSubmit={this.handleListItemSubmit}
+                  id={routerProps.location.pathname}
+                />
+              )}
+            />
 
-          {/* Route to view items component */}
-          <Route
-            exact
-            path="/items"
-            render={(routerProps) => (
-              <Items
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                handleChange={this.handleChange}
-                handleItemDelete={this.deleteAxiosItem}
-              />
-            )}
-          />
+            {/* Route to view items component */}
+            <Route
+              exact
+              path="/items"
+              render={(routerProps) => (
+                <Items
+                  {...routerProps}
+                  users={this.state.users}
+                  userId={this.state.userId}
+                  handleChange={this.handleChange}
+                  handleItemDelete={this.deleteAxiosItem}
+                />
+              )}
+            />
 
-          {/* Route to view ListDetails component */}
-          <Route
-            path="/items/:id"
-            render={(routerProps) => (
-              <ItemDetails
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                updatedItemName={this.state.updatedItemName}
-                updatedItemDescription={this.state.updatedItemDescription}
-                updatedItemImageUrl={this.state.updatedItemImageUrl}
-                handleChange={this.handleChange}
-                handleItemDelete={this.deleteAxiosItem}
-                handleUpdateItem={this.handleUpdateItem}
-              />
-            )}
-          />
+            {/* Route to view ListDetails component */}
+            <Route
+              path="/items/:id"
+              render={(routerProps) => (
+                <ItemDetails
+                  {...routerProps}
+                  users={this.state.users}
+                  userId={this.state.userId}
+                  updatedItemName={this.state.updatedItemName}
+                  updatedItemDescription={this.state.updatedItemDescription}
+                  updatedItemImageUrl={this.state.updatedItemImageUrl}
+                  handleChange={this.handleChange}
+                  handleItemDelete={this.deleteAxiosItem}
+                  handleUpdateItem={this.handleUpdateItem}
+                />
+              )}
+            />
 
-          {/* Route to create a new item*/}
-          <Route
-            path="/new-item"
-            render={(routerProps) => (
-              <CreateItem
-                {...routerProps}
-                users={this.state.users}
-                handleChange={this.handleChange}
-                handleItemSubmit={this.handleItemSubmit}
-                id={routerProps.location.pathname}
-              />
-            )}
-          />
+            {/* Route to create a new item*/}
+            <Route
+              path="/new-item"
+              render={(routerProps) => (
+                <CreateItem
+                  {...routerProps}
+                  users={this.state.users}
+                  handleChange={this.handleChange}
+                  handleItemSubmit={this.handleItemSubmit}
+                  id={routerProps.location.pathname}
+                />
+              )}
+            />
 
-          {/* Route to view the Task/Todo components */}
-          <Route
-            exact
-            path="/tasks"
-            render={(routerProps) => (
-              <TaskListContext>
-                <div>
-                  <TodoForm />
-                  <TodoList />
-                </div>
-              </TaskListContext>
-            )}
-          />
+            {/* Route to view the Task/Todo components */}
+            <Route
+              exact
+              path="/tasks"
+              render={(routerProps) => (
+                <TaskListContext>
+                  <div className='div-task-main'>
+                    <TodoForm />
+                    <TodoList />
+                  </div>
+                </TaskListContext>
+              )}
+            />
 
-          <Route path="/*" render={() => <Redirect to="/" />} />
-        </Switch>
+            <Route path="/*" render={() => <Redirect to="/" />} />
+          </Switch>
+        </div>
       </div>
     );
   }

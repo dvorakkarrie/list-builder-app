@@ -11,7 +11,7 @@ const List = props => {
                     <li>
                         {props.list.title}
                         <button 
-                            className='delete-button'
+                            className='btn-delete'
                             id={props.list._id}
                             onClick={props.handleListDelete}> - </button>
                     </li>
