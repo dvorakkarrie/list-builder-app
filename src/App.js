@@ -174,15 +174,15 @@ class App extends Component {
 
   deleteAxiosListItem = (event) => {
     console.log(
-      `${backendUrl}delete-list-item/${this.state.userId}/${event.target.id}`
+      `${backendUrl}remove-list-item/${this.state.listId}/${event.target.id}`
     );
     event.preventDefault();
     axios({
-      method: "DELETE",
-      url: `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`,
-    }).then((deletedUser) => {
+      method: "PUT",
+      url: `${backendUrl}remove-list-item/${this.state.listId}/${event.target.id}`,
+    }).then((removedItem) => {
       this.getUserAxiosById();
-      this.props.history.push("/items");
+      this.props.history.push(`/lists/${this.state.listId}`);
     });
   };
 
@@ -305,22 +305,38 @@ class App extends Component {
               )}
             />
 
-            {/* Route to view ListDetails component */}
-            <Route
-              path="/lists/:id"
-              render={(routerProps) => (
-                <ListDetails
-                  {...routerProps}
-                  users={this.state.users}
-                  userId={this.state.userId}
-                  updatedListTitle={this.state.updatedListTitle}
-                  updatedListImageUrl={this.state.updatedListImageUrl}
-                  handleChange={this.handleChange}
-                  handleListDelete={this.deleteAxiosList}
-                  handleUpdateList={this.handleUpdateList}
-                />
-              )}
-            />
+          {/* Route to view Lists component */}
+          <Route
+            exact
+            path="/lists"
+            render={(routerProps) => (
+              <Lists
+                {...routerProps}
+                users={this.state.users}
+                userId={this.state.userId}
+                handleChange={this.handleChange}
+                handleListDelete={this.deleteAxiosList}
+              />
+            )}
+          />
+
+          {/* Route to view ListDetails component */}
+          <Route
+            path="/lists/:id"
+            render={(routerProps) => (
+              <ListDetails
+                {...routerProps}
+                users={this.state.users}
+                userId={this.state.userId}
+                updatedListTitle={this.state.updatedListTitle}
+                updatedListImageUrl={this.state.updatedListImageUrl}
+                handleChange={this.handleChange}
+                handleListDelete={this.deleteAxiosList}
+                handleUpdateList={this.handleUpdateList}
+                handleListItemDelete={this.deleteAxiosListItem}
+              />
+            )}
+          />
 
             {/* Route to create a new list (from navigation & UserDetails component)*/}
             <Route
@@ -403,7 +419,7 @@ class App extends Component {
               path="/tasks"
               render={(routerProps) => (
                 <TaskListContext>
-                  <div className='div-task-main'>
+                  <div className='div-list-main'>
                     <TodoForm />
                     <TodoList />
                   </div>
@@ -413,7 +429,8 @@ class App extends Component {
 
             <Route path="/*" render={() => <Redirect to="/" />} />
           </Switch>
-        </div>
+        
+      </div>
       </div>
     );
   }

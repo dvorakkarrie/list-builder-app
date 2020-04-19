@@ -1,6 +1,14 @@
-# List Builder Frontend
+# List Builder App
 
-## Overview:
+### Source Repository Links:
+* [Frontend Repository](https://github.com/dvorakkarrie/list-builder-app)
+* [Backend Repository](https://github.com/myraileen/listbuilder_backend)
+
+### Deployment Links
+* [React Frontend Application Deployment](https://listbuilderapp.herokuapp.com/)
+* [Node, Express, Mongo Backend RESTful API Deployment](https://listbuilder-backend.herokuapp.com/)
+---
+## Functional Overview:
 The app allows users to create, maintain, and share lists.
 
 ## Technical Goals/Requirements:
