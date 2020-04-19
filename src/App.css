@@ -252,7 +252,10 @@ label {
   margin: 2em;
   padding: 2em;
 }
-
+ 
+.status-false {
+  color: red;
+}
 
 .task-title {
   width: 100%;

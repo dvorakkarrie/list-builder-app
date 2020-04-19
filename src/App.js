@@ -37,9 +37,9 @@ class App extends Component {
       updatedListImageUrl: "",
       itemName: "",
       itemDescription: "",
+      itemStatus: true,
       itemImageUrl: "",
       isAuthenticated: false,
-      isComplete: "",
     };
   }
 
@@ -90,7 +90,7 @@ class App extends Component {
         list: {
           title: this.state.listTitle,
           list_type: "A",
-          status: "Active",
+          status: "A",
           image_url: this.state.listImageUrl,
         },
       },
@@ -158,7 +158,7 @@ class App extends Component {
           item: this.state.itemName,
           item_desc: this.state.itemDescription,
           item_type: "A",
-          status: "Active",
+          status: true,
           image_url: this.state.itemImageUrl,
         },
       },
@@ -201,7 +201,7 @@ class App extends Component {
           item: this.state.itemName,
           item_desc: this.state.itemDescription,
           item_type: "A",
-          status: "Active",
+          status: true,
           image_url: this.state.itemImageUrl,
         },
       },
@@ -225,7 +225,7 @@ class App extends Component {
         item: this.state.updatedItemName,
         item_desc: this.state.updatedItemDescription,
         item_type: "1",
-        status: "A",
+        status: this.state.itemStatus,
         image_url: this.state.updatedItemImageUrl,
       },
     }).then((user) => {
@@ -240,6 +240,27 @@ class App extends Component {
     this.putItemAxios(event);
   };
 
+  putItemStatusAxios = (event) => {
+    let updatedItemStatus = event.target.getAttribute('itemStatus')
+    console.log(updatedItemStatus)
+    let listId = this.props.location.pathname.slice(7);
+    event.preventDefault();
+    axios({
+      method: "PUT",
+      url: `${backendUrl}items/${event.target.id}`,
+      data: {
+        status: updatedItemStatus,
+      },
+    }).then((user) => {
+      this.props.history.push(`/lists/${listId}`);
+      this.getUserAxiosById();
+    });
+  };
+
+  handleUpdateItemStatus = (event) => {
+    event.preventDefault();
+    this.putItemStatusAxios(event);
+  };
   deleteAxiosItem = (event) => {
     console.log(
       `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`
@@ -333,11 +354,13 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 userId={this.state.userId}
+                // itemStatus={this.state.itemStatus}
                 updatedListTitle={this.state.updatedListTitle}
                 updatedListImageUrl={this.state.updatedListImageUrl}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
                 handleUpdateList={this.handleUpdateList}
+                handleUpdateItemStatus={this.handleUpdateItemStatus}
                 handleListItemDelete={this.deleteAxiosListItem}
                 isAuthenticated={this.state.isAuthenticated}
               />
