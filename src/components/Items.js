@@ -22,14 +22,12 @@ export default props => {
     )
         
     return allItems ? (
-        <>
-            <h3>Items
-                <Link to='/new-item'> (+) </Link>
-            </h3>
-            <div className='items-container'>
+        <div className='div-list-main'>
+            <Link to='/new-item'><h4>Create New Item (+)</h4></Link>
+            <div className='lists-container'>
                 {allItems}
             </div>
-        </>
+        </div>
     ) : (
         <div>...loading...</div>
     )

@@ -24,14 +24,12 @@ const Lists = props => {
     console.log(allLists)
     
     return allLists ? (
-        <>
-            <h3>Lists
-                <Link to='/new-list'> (+) </Link>
-            </h3>
+        <div className='div-list-main'>
+            <Link to='/new-list'><h4>Create New List (+)</h4></Link>
             <div className='lists-container'>
                 {allLists}
             </div>
-        </>
+        </div>
 
     ) : (
         <div>...loading...</div>
