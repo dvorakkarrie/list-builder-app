@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const TaskListContext = createContext();
 
-const TaskListContextProvider = (props) => {
+const TaskListContextProvider = props => {
   const initialState = JSON.parse(localStorage.getItem('tasks')) || []
 
   const [tasks, setTasks] = useState(initialState);
@@ -39,7 +39,7 @@ const TaskListContextProvider = (props) => {
   };
 
   return (
-    <div>
+    <div className='div-list-main'>
       <TaskListContext.Provider
         value={{
           tasks,

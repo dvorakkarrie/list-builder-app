@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { TaskListContext } from "./TaskListContext";
 import Todo from "./Todo";
 
-const TodoList = () => {
+const TaskList = () => {
   const { tasks } = useContext(TaskListContext);
 
   return (
@@ -19,4 +19,4 @@ const TodoList = () => {
     </div>
   );
 };
-export default TodoList;
+export default TaskList;

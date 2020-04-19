@@ -156,6 +156,10 @@ button:hover {
   margin: 2em;
 }
 
+.div-not-signed-in {
+  margin: auto;
+}
+
 /* This formats the new Author and Recipe pages and found in the NewAuthor and NewRecipe components. */
 .div-signin {
   border-radius: 2px;
@@ -171,9 +175,7 @@ button:hover {
   background-color: rgb(250, 250, 250);
   align-items: center;
   height: 800px;
-  margin: 10% 20%;
-  padding: 10% 20%;
-  width: 100%; 
+  margin: 3% auto;
 }
 
 h1 {
@@ -224,6 +226,8 @@ label {
 }
 
 .list-task {
+  display: flex;
+  flex-direction: row;
   text-align: left;
 }
 
@@ -243,6 +247,10 @@ label {
   background-color: rgb(240, 237, 212);
   margin: 5% 25% 25%;
   padding: 1% 0;
+}
+
+.task-title {
+  width: 100%;
 }
 
 .todo-list {

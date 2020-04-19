@@ -17,7 +17,7 @@ import Signin from "./components/Signin";
 import SideNav from "./components/SideNav";
 import TaskListContext from "./components/TaskListContext";
 import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import TaskList from "./components/TaskList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
 // let backendUrl = "http://127.0.0.1:8080/";
@@ -301,6 +301,7 @@ class App extends Component {
                   userId={this.state.userId}
                   handleChange={this.handleChange}
                   handleListDelete={this.deleteAxiosList}
+                  isAuthenticated={this.state.isAuthenticated}
                 />
               )}
             />
@@ -316,6 +317,7 @@ class App extends Component {
                 userId={this.state.userId}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
+                isAuthenticated={this.state.isAuthenticated}
               />
             )}
           />
@@ -334,6 +336,7 @@ class App extends Component {
                 handleListDelete={this.deleteAxiosList}
                 handleUpdateList={this.handleUpdateList}
                 handleListItemDelete={this.deleteAxiosListItem}
+                isAuthenticated={this.state.isAuthenticated}
               />
             )}
           />
@@ -348,6 +351,7 @@ class App extends Component {
                   handleChange={this.handleChange}
                   handleListSubmit={this.handleListSubmit}
                   id={routerProps.location.pathname}
+                  isAuthenticated={this.state.isAuthenticated}
                 />
               )}
             />
@@ -362,6 +366,7 @@ class App extends Component {
                   handleChange={this.handleChange}
                   handleListItemSubmit={this.handleListItemSubmit}
                   id={routerProps.location.pathname}
+                  isAuthenticated={this.state.isAuthenticated}
                 />
               )}
             />
@@ -377,6 +382,7 @@ class App extends Component {
                   userId={this.state.userId}
                   handleChange={this.handleChange}
                   handleItemDelete={this.deleteAxiosItem}
+                  isAuthenticated={this.state.isAuthenticated}
                 />
               )}
             />
@@ -395,6 +401,7 @@ class App extends Component {
                   handleChange={this.handleChange}
                   handleItemDelete={this.deleteAxiosItem}
                   handleUpdateItem={this.handleUpdateItem}
+                  isAuthenticated={this.state.isAuthenticated}
                 />
               )}
             />
@@ -409,6 +416,7 @@ class App extends Component {
                   handleChange={this.handleChange}
                   handleItemSubmit={this.handleItemSubmit}
                   id={routerProps.location.pathname}
+                  isAuthenticated={this.state.isAuthenticated}
                 />
               )}
             />
@@ -419,9 +427,9 @@ class App extends Component {
               path="/tasks"
               render={(routerProps) => (
                 <TaskListContext>
-                  <div className='div-list-main'>
+                  <div>
                     <TodoForm />
-                    <TodoList />
+                    <TaskList />
                   </div>
                 </TaskListContext>
               )}

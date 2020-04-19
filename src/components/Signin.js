@@ -13,7 +13,8 @@ const Signin = (props) => {
             className="input-box"
             type="text"
             name="userEmailAddress"
-            placeholder="Enter your email address"
+            placeholder="Enter your email address" 
+            required
           />
         </div>
         <input 

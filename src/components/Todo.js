@@ -6,7 +6,7 @@ const Todo = (props) => {
 
   return (
     <li className="list-task">
-      <span>{props.task.title}</span>
+      <p className='task-title'>{props.task.title}</p>
       <button className="btn-task-list" onClick={() => findItem(props.task.id)}>
         <i className="fas fa-pen"></i>
       </button>
