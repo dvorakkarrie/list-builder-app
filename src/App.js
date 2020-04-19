@@ -174,15 +174,15 @@ class App extends Component {
 
   deleteAxiosListItem = (event) => {
     console.log(
-      `${backendUrl}delete-list-item/${this.state.userId}/${event.target.id}`
+      `${backendUrl}remove-list-item/${this.state.listId}/${event.target.id}`
     );
     event.preventDefault();
     axios({
-      method: "DELETE",
-      url: `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`,
-    }).then((deletedUser) => {
+      method: "PUT",
+      url: `${backendUrl}remove-list-item/${this.state.listId}/${event.target.id}`,
+    }).then((removedItem) => {
       this.getUserAxiosById();
-      this.props.history.push("/items");
+      this.props.history.push(`/lists/${this.state.listId}`);
     });
   };
 
@@ -317,6 +317,7 @@ class App extends Component {
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
                 handleUpdateList={this.handleUpdateList}
+                handleListItemDelete={this.deleteAxiosListItem}
               />
             )}
           />
