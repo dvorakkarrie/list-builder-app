@@ -10,14 +10,11 @@ const List = (props) => {
         key={props.list._id && <p>props.list._id</p>}
       >
         <ul>
-          <li className="list-task">
+          <li className="li-area">
             <p className="list-title">{props.list.title}</p>
 
-            <button
-              className="btn-task-list"
-              id={props.list._id}
-              onClick={props.handleListDelete}
-            >
+            <button id={props.list._id} onClick={props.handleListDelete}>
+              {" "}
               <i className="fas fa-trash"></i>{" "}
             </button>
           </li>

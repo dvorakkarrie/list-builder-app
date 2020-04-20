@@ -1,37 +1,18 @@
-.App {
+div.App {
   background-color: rgb(229, 241, 247);
+  font-family: Arial, Helvetica, sans-serif;
   height: 1000px;
   text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.btn-task-list {
-  margin: .25em;
-  padding: 1em;
-}
-
-.btn-logout {
+button.btn-logout {
   height: 75%;
   font-size: 12px;
   margin: 1.5em;
   width: 10%;
 }
 
-.button {
+button.button {
   background-color: rgb(24, 10, 87);
   color: white;
   border-radius: 5px;
@@ -42,7 +23,7 @@
   opacity: 0.75;
 }
 
-.button:hover {
+button.button:hover {
   opacity: 1;
 }
 
@@ -63,6 +44,10 @@ button:hover {
 
 .detail-div {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
+  width: 100%;
 }
 
 .detail-edit-section {
@@ -72,7 +57,7 @@ button:hover {
   font-size: 16px;
   margin: 5%;
   text-align: left;
-  width: 48%;
+  width: 100%;
 }
 
 .detail-field {
@@ -81,7 +66,8 @@ button:hover {
   font-size: 16px;
   font-weight: 400;
   height: 20px;
-  padding: 15px;
+  padding: 7% 0 0 25%;
+  width: 80%
 }
 
 .detail-header {
@@ -93,31 +79,36 @@ button:hover {
 
 .detail-label {
   border-radius: 2px;
+  float: left;
   font-size: 16px;
   font-weight: 600;
   padding: 15px;
-  width: 60px;
+  width: 20%;
 }
 
-.div-list-main {
+/* Format the area to list items from the Items, ListItems, Lists and TaskListContext components */
+div.div-list-main {
   background-color: rgb(250, 250, 250);
   align-items: center;
-  margin: 2em;
-  padding: 2em;
+  margin: 3%;
+  width: 50%;
 }
 
-/* This formats the Author and Recipe detail pages and found in the AuthorDetails and RecipeDetails components. */
-.detail-main-div {
+/* This formats the Item and List detail pages from ItemDetails and ListDetails components */
+div.detail-main-div {
   align-items: auto;
+  background-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: row;
   font-size: 16px;
   font-weight: 600;
   justify-content: space-evenly;
+  margin: 3%;
+  width: 65%;
 }
 
-/* This formats the Author and Recipe detail pages and found in the AuthorDetails and RecipeDetails components. */
-.detail-display-section {
+/* This formats the Item and List detail pages from ItemDetails and ListDetails components */
+div.detail-display-section {
   color: rgb(1, 58, 1);
   display: flex;
   flex-direction: column;
@@ -127,16 +118,20 @@ button:hover {
   width: 48%;
 }
 
-.div-main {
+/* Formats the main area below the header on the App component */
+div.div-main {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-.div-nav-link {
+/* Formats the navigation links on the SideNav component */
+div.div-link {
  padding: .5em;
 }
-.div-navigation {
+
+/* Formats the side navigation area on SideNav component */
+div.div-nav-title {
   border-right: 2px rgba(21, 21, 21, 0.5) solid;
   height: 800px;
   margin: 0 .5em;
@@ -144,16 +139,45 @@ button:hover {
   text-align: left;
 }
 
-.div-no-tasks {
-  margin: 2em;
+/* This is used to apply a background image to the header section and used in the Header component. */
+div.header {
+  border-bottom: 2px rgba(21, 21, 21, 0.5) solid;
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  justify-content: space-around;
 }
 
-.div-not-signed-in {
+/* This formats the new pages from the CreateItem, CreateList & CreateListItem components */
+div.new-div {
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  padding: 2% 0;
+  width: 60%;
+}
+
+/* This formats the new pages from CreateItem, CreateList & CreateListItem components. */
+div.new-page {
+  background-color: rgb(250, 250, 250);
+  margin: 3%;
+  width: 50%;
+}
+
+/* Formats the statement when there are no tasks on the MyTasks lists */
+div.div-no-tasks {
+  margin: 2%;
+}
+
+/* Formats the not signed in statement */
+div.div-not-signed-in {
   margin: auto;
 }
 
-/* This formats the new Author and Recipe pages and found in the NewAuthor and NewRecipe components. */
-.div-signin {
+/* This formats the signin area on the home page from the Signin component */
+div.div-signin {
   border-radius: 2px;
   display: flex;
   flex-direction: column;
@@ -163,22 +187,24 @@ button:hover {
   width: 50%;
 }
 
-h1 {
-  margin: 0;
-  padding: 2%;
+/* Formats the item on the list and will strikethrough when complete from ListItem component */
+div.status-false {
+  text-decoration: line-through;
 }
 
-/* This is used to apply a background image to the header section and used in the Header component. */
-.header {
-  border-bottom: 2px rgba(21, 21, 21, 0.5) solid;
-  display: flex;
-  height: 30%;
-  justify-content: space-around;
-  font-family: Arial, Helvetica, sans-serif;
+/* This format the header of all pages and found in the App component */
+h1.header-title {
+  margin: 0 auto;
+  padding: 5%;
+  width: 50%;
+}
+
+h2 {
+  margin: 0 5%;
 }
 
 img {
-  margin: auto;
+  margin: 0 auto;
   padding: 0px;
 }
 
@@ -191,7 +217,20 @@ input {
   padding: 0.5em;
 }
 
-.input-box {
+/* Formats the button located on the CreateItem, CreateList & CreateListItem components */
+input.button {
+  background-color: rgb(24, 10, 87);
+  color: white;
+  font: bold;
+  opacity: 0.75;
+  width: 30%;
+}
+
+input.button:hover {
+  opacity: 1;
+}
+
+input.input-box {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   float: left;
@@ -200,8 +239,8 @@ input {
   width: 85%;
 }
 
-/* This formats the search text box when hovered and found in the Home component. */
-.input-box:hover {
+/* This formats the search text box when hovered and found in component. */
+input.input-box:hover {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
 }
@@ -210,72 +249,108 @@ label {
   text-align: left;
 }
 
-.list-container {
+/* Formats the list of tasks on My Tasks screen and Tasks related components */
+li.li-area {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  float: left;
-  margin: .25em;
+  margin: 1% 0;
   text-align: left;
+  width: 95%;
 }
 
-.list-task {
-  display: flex;
-  flex-direction: row;
-  margin: .25em;
-  text-align: left;
-  width: 100%;
+/* Formats the list of items on the MyItems page */
+p.item-name {
+  padding: 0 1%;
+  width: 75%;
 }
 
-.list-title {
-  padding: 0 .15em;
-  width: 100%;
+/* Formats the list of titles on the MyList page */
+p.list-title {
+  padding: 0 1%;
+  width: 75%;
 }
 
-/* This formats the new Author and Recipe pages and found in the NewAuthor and NewRecipe components. */
-.new-div {
-  border-radius: 2px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-  padding: 2% 0;
-  width: 60%;
-}
-
-/* This formats the new Author and Recipe pages and found in the NewAuthor and NewRecipe components. */
-.new-page {
-  background-color: rgb(250, 250, 250);
-  margin: 5% 25% 25%;
-  padding: 1% 0;
-  align-items: center;
-  margin: 2em;
-  padding: 2em;
-}
- 
-.status-false {
-  color: red;
-}
-
-.task-title {
-  width: 100%;
-}
-
-.todo-list {
-  list-style-type: none;
-  padding: 1em;
-}
-
-.todo {
-  background: rgba(255, 255, 255, 0.4);
-  display: flex;
-  line-height: 1;
-  margin-bottom: 1rem;
-  padding: 0.5em;
-  text-align: left;
-  border-radius: 3px;
+/* Formats the tasks on the MyTasks page */
+p.task-title {
+  padding: 0 1%;
+  width: 75%;
 }
 
 ul {
   list-style-type: none;
+}
+
+/* This formats all the pages to be compatible with a mobile device */
+@media screen and (max-width: 600px) {
+  div.App {
+    height: 850px;
+    font-size: 12px;
+  }
+  button.btn-logout {
+    height: 75%;
+    font-size: 12px;
+    margin: auto;
+    float: center;
+    width: 20%;
+  }
+  div.header {
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  div.div-link {
+    padding: .35em;
+   }
+  div.div-list-main {
+    background-color: rgb(250, 250, 250);
+    align-items: center;
+    margin: 5%;
+    padding: 1%;
+    width: 90%;
+  }
+  div.div-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  div.div-nav-title {
+    border-right: none;
+    border-bottom: 2px rgba(21, 21, 21, 0.5) solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin: 0;
+    padding: 1em 0;
+    text-align: center;
+    width: 100%;
+  }
+  div.div-nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  div.new-page {
+    background-color: rgb(250, 250, 250);
+    margin: 5%;
+    width: 90%;
+  }
+  div.detail-main-div {
+    align-items: auto;
+    background-color: rgb(250, 250, 250);
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: space-evenly;
+    margin: 3%;
+    width: 95%;
+  }
+  h1.header-title {
+    margin: 0 auto;
+    padding: 2%;
+    text-align: center;
+  }
 }

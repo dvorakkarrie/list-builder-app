@@ -17,7 +17,7 @@ import ListDetails from "./components/ListDetails";
 import Signin from "./components/Signin";
 import SideNav from "./components/SideNav";
 import TaskListContext from "./components/TaskListContext";
-import TodoForm from "./components/TodoForm";
+import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
 // let backendUrl = process.env.REACT_APP_BACKEND_APP_URL || "http://127.0.0.1:8080/";
@@ -81,6 +81,7 @@ class App extends Component {
   };
 
   createListAxios() {
+    console.log("creating list")
     axios({
       method: "PUT",
       url: `${backendUrl}new-list`,
@@ -97,7 +98,7 @@ class App extends Component {
       },
     }).then((newList) => {
       this.getUserAxiosById();
-      this.props.history.push(`/lists/${newList.data._id}`);
+      this.props.history.push(`/lists`);
     });
   }
 
@@ -107,8 +108,13 @@ class App extends Component {
   };
 
   putListAxios = (event) => {
+<<<<<<< HEAD
     event.preventDefault();
     let listId = event.target.id
+=======
+    console.log(event.target.id)
+    // event.preventDefault();
+>>>>>>> b5762acb5ce5c758da878a4b9add608d273d3f73
     axios({
       method: "PUT",
       url: `${backendUrl}lists/${event.target.id}`,
@@ -209,7 +215,7 @@ class App extends Component {
       },
     }).then((newItem) => {
       this.getUserAxiosById();
-      this.props.history.push(`/items/${newItem.data._id}`);
+      this.props.history.push(`/items`);
     });
   }
 
@@ -262,6 +268,15 @@ class App extends Component {
     });
   };
 
+<<<<<<< HEAD
+=======
+  handleUpdateItemStatus = (event) => {
+    console.log(event.target.id)
+    event.preventDefault();
+    this.putItemStatusAxios(event);
+  };
+  
+>>>>>>> b5762acb5ce5c758da878a4b9add608d273d3f73
   deleteAxiosItem = (event) => {
     console.log(
       `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`
@@ -277,7 +292,6 @@ class App extends Component {
   };
 
   handleChange = (event) => {
-    // console.log(event)
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -448,14 +462,14 @@ class App extends Component {
               )}
             />
 
-            {/* Route to view the Task/Todo components */}
+            {/* Route to view the Task components */}
             <Route
               exact
               path="/tasks"
               render={(routerProps) => (
                 <TaskListContext>
                   <div>
-                    <TodoForm />
+                    <TaskForm />
                     <TaskList />
                   </div>
                 </TaskListContext>

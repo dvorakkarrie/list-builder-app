@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TaskListContext } from "./TaskListContext";
-import Todo from "./Todo";
+import Task from "./Task";
 
 const TaskList = () => {
   const { tasks } = useContext(TaskListContext);
@@ -10,7 +10,7 @@ const TaskList = () => {
       {tasks.length ? (
         <ul>
           {tasks.map((task) => {
-            return <Todo task={task} key={task.id} />;
+            return <Task task={task} key={task.id} />;
           })}
         </ul>
       ) : (

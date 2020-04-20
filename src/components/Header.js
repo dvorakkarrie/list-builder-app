@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = (props) => {
   return props.isAuthenticated ? (
     <div className="header">
-      <h1>
+      <h1 className='header-title'>
         <Link to="/">List Builder</Link>
       </h1>
       <p className="welcome">Welcome {props.userEmailAddress}</p>
@@ -13,8 +13,8 @@ const Header = (props) => {
       </button>
     </div>
   ) : (
-    <div>
-      <h1>
+    <div className="header">
+      <h1 className="header-title">
         <Link to="/">List Builder</Link>
       </h1>
     </div>
