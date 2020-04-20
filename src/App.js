@@ -108,7 +108,7 @@ class App extends Component {
   };
 
   putListAxios = (event) => {
-    const listId = (event.target.id)
+    let listId = (event.target.id)
     // event.preventDefault();
     axios({
       method: "PUT",

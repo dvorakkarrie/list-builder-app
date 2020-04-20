@@ -5,7 +5,7 @@ const Item = (props) => {
 //   console.log(props.item);
 
   let currentitemstatus = !props.item.status ? "true" : "false";
-  console.log(props.item.status)
+//   console.log(props.item.status)
   console.log(currentitemstatus)
 
   return currentitemstatus && (
