@@ -7,7 +7,7 @@ const ListItems = (props) => {
   let itemStatus = !props.item.status ? "true" : "false";
 
   // console.log(itemStatus);
-  return (
+  return itemStatus ? (
     <div className={`status-${props.item.status}`}>
       <ul>
         <li className="li-area">
@@ -27,7 +27,9 @@ const ListItems = (props) => {
         </li>
       </ul>
     </div>
-  );
+  )
+  :
+  <p>loading...</p>
 };
 
 export default ListItems;
