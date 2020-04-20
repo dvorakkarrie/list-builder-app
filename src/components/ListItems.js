@@ -5,6 +5,7 @@ const ListItems = (props) => {
   console.log(props);
 
   let itemStatus = !props.item.status ? "true" : "false";
+  itemStatus = true
 
   // console.log(itemStatus);
   return itemStatus ? (
@@ -14,13 +15,13 @@ const ListItems = (props) => {
           <Link to={`/items/${props.item._id}`} key={props.item_id}>
             <p className="list-title">{props.item.item}</p>
           </Link>
-          <button
+          {/* <button
             id={`${props.item._id}`}
             status={itemStatus}
             onClick={props.handleUpdateItemStatus}
           >
             <i className="fas fa-check-circle"></i>{" "}
-          </button>
+          </button> */}
           <button id={props.item._id} onClick={props.handleListItemDelete}>
             <i className="fas fa-trash"></i>{" "}
           </button>

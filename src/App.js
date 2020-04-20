@@ -39,7 +39,7 @@ class App extends Component {
       itemId: "",
       itemName: "",
       itemDescription: "",
-      itemstatus: "",
+      // itemstatus: "",
       itemImageUrl: "",
       isAuthenticated: false,
     };
@@ -264,25 +264,25 @@ class App extends Component {
     });
   };
 
-  handleUpdateItemStatus = (event) => {
-    let updatedItemStatus = event.target.getAttribute('status')
-    console.log(event.target.attributes.getNamedItem('status'))
-    console.log(updatedItemStatus)
-    console.log(event.target.id)
-    let listId = this.props.location.pathname.slice(7);
-    console.log(`${backendUrl}items/${event.target.id}`)
-    event.preventDefault();
-    axios({
-      method: "PUT",
-      url: `${backendUrl}items/${event.target.id}`,
-      data: {
-        status: updatedItemStatus,
-      },
-    }).then((user) => {
-      this.props.history.push(`/lists/${listId}`);
-      this.getUserAxiosById();
-    });
-  };
+  // handleUpdateItemStatus = (event) => {
+  //   let updatedItemStatus = event.target.getAttribute('status')
+  //   console.log(event.target.attributes.getNamedItem('status'))
+  //   console.log(updatedItemStatus)
+  //   console.log(event.target.id)
+  //   let listId = this.props.location.pathname.slice(7);
+  //   console.log(`${backendUrl}items/${event.target.id}`)
+  //   event.preventDefault();
+  //   axios({
+  //     method: "PUT",
+  //     url: `${backendUrl}items/${event.target.id}`,
+  //     data: {
+  //       status: updatedItemStatus,
+  //     },
+  //   }).then((user) => {
+  //     this.props.history.push(`/lists/${listId}`);
+  //     this.getUserAxiosById();
+  //   });
+  // };
 
   deleteAxiosItem = (event) => {
     console.log(
