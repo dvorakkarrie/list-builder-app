@@ -108,13 +108,8 @@ class App extends Component {
   };
 
   putListAxios = (event) => {
-<<<<<<< HEAD
-    event.preventDefault();
-    let listId = event.target.id
-=======
-    console.log(event.target.id)
+    const listId = (event.target.id)
     // event.preventDefault();
->>>>>>> b5762acb5ce5c758da878a4b9add608d273d3f73
     axios({
       method: "PUT",
       url: `${backendUrl}lists/${event.target.id}`,
@@ -268,15 +263,12 @@ class App extends Component {
     });
   };
 
-<<<<<<< HEAD
-=======
   handleUpdateItemStatus = (event) => {
     console.log(event.target.id)
     event.preventDefault();
     this.putItemStatusAxios(event);
   };
   
->>>>>>> b5762acb5ce5c758da878a4b9add608d273d3f73
   deleteAxiosItem = (event) => {
     console.log(
       `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`
