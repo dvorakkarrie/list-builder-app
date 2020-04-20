@@ -5,7 +5,7 @@ const Item = (props) => {
   console.log(props);
 
   return (
-    <div>
+    <>
       <Link to={`/items/${props.item._id}`} key={props.item_id}>
         <ul>
           <li className="li-area">
@@ -20,7 +20,7 @@ const Item = (props) => {
           </li>
         </ul>
       </Link>
-    </div>
+    </>
   );
 };
 

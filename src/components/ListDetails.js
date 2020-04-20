@@ -8,6 +8,14 @@ const ListDetails = (props) => {
 
   let aUser = props.users.find((user) => user._id === props.userId);
 
+  let allUserItems = aUser.items.map((item) => {
+    return (
+      <option key={item._id} value={item._id}>
+        {item.item}
+      </option>
+    );
+  });
+  console.log(allUserItems);
   let listsDetail = aUser.lists.find(
     (list) => list._id === props.match.params.id
   );
@@ -64,6 +72,19 @@ const ListDetails = (props) => {
         <ul>
           <li>
             <Link to={`/new-listitem/${listsDetail._id}`}>Add item (+)</Link>
+          </li>
+          <li>
+            <label>Choose an item (if available):</label>
+            <select
+              className="drop-down-list"
+              id="selectItem"
+              name="itemId"
+              onChange={props.handleChange}
+              // onClick={allUserItems}
+              value={allUserItems}
+            >
+              {allUserItems}
+            </select>
           </li>
         </ul>
         <div className="item-name">{allItems}</div>
