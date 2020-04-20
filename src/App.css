@@ -145,6 +145,10 @@ div.header {
   height: 30%;
   justify-content: space-around;
 }
+div.header > h1 > a {
+  text-decoration: none;
+  text-shadow:1px 1px 2px darkslateblue;
+}
 
 /* This formats the new pages from the CreateItem, CreateList & CreateListItem components */
 div.new-div {
@@ -195,6 +199,7 @@ h1.header-title {
   margin: 0 auto;
   padding: 5%;
   width: 50%;
+  text-decoration-line: none;
 }
 
 h2 {
@@ -283,7 +288,7 @@ ul > li:nth-of-type(odd) {
   background-color: rgba(229, 241, 247);
 
 }ul > li:nth-of-type(even) {
-  background-color: white;
+  background-color: rgb(171, 219, 244);
 }
 /* This formats all the pages to be compatible with a mobile device */
 @media screen and (max-width: 600px) {

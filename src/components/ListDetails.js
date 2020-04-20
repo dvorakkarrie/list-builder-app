@@ -74,14 +74,13 @@ const ListDetails = (props) => {
             <Link to={`/new-listitem/${listsDetail._id}`}>Add item (+)</Link>
           </li>
           <li>
-            <label>Choose an item (if available):</label>
+            <label>Choose an item to add (+)</label>
             <select
               className="drop-down-list"
               id="selectItem"
               name="itemId"
               onChange={props.handleChange}
-              // onClick={allUserItems}
-              value={allUserItems}
+              onClick={props.handleAddListItemSubmit}
             >
               {allUserItems}
             </select>

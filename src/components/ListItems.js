@@ -6,7 +6,7 @@ const ListItems = (props) => {
 
   let itemStatus = !props.item.status ? "true" : "false";
 
-  console.log(itemStatus);
+  // console.log(itemStatus);
   return (
     <div className={`status-${props.item.status}`}>
       <ul>
