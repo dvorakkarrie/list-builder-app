@@ -55,8 +55,8 @@ const ListDetail = (props) => {
                         item={item}
                         name='listitems'
                         userId={props.userId}
-                        itemstatus={props.itemstatus}
-                        handleUpdateItemStatus={props.handleUpdateItemStatus}
+                        itemStatus={props.itemStatus}
+                        // handleUpdateItemStatus={props.handleUpdateItemStatus}
                         handleListItemDelete={props.handleListItemDelete}
                       />
                     );

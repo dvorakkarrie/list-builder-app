@@ -38,7 +38,7 @@ class App extends Component {
       updatedListImageUrl: "",
       itemName: "",
       itemDescription: "",
-      itemStatus: true,
+      itemstatus: "",
       itemImageUrl: "",
       isAuthenticated: false,
     };
@@ -108,6 +108,7 @@ class App extends Component {
 
   putListAxios = (event) => {
     event.preventDefault();
+    let listId = event.target.id
     axios({
       method: "PUT",
       url: `${backendUrl}lists/${event.target.id}`,
@@ -118,7 +119,7 @@ class App extends Component {
         image_url: this.state.updatedListImageUrl,
       },
     }).then((user) => {
-      this.props.history.push("/lists");
+      this.props.history.push(`/lists/${listId}`);
       this.getUserAxiosById();
     });
   };
@@ -241,11 +242,13 @@ class App extends Component {
     this.putItemAxios(event);
   };
 
-  putItemStatusAxios = (event) => {
-    let updatedItemStatus = event.target.getAttribute('itemstatus')
+  itemstatus = (event) => {
+    let updatedItemStatus = event.target.getAttribute('status')
+    console.log(event.target.attributes.getNamedItem('status'))
     console.log(updatedItemStatus)
     console.log(event.target.id)
     let listId = this.props.location.pathname.slice(7);
+    console.log(`${backendUrl}items/${event.target.id}`)
     event.preventDefault();
     axios({
       method: "PUT",
@@ -259,10 +262,6 @@ class App extends Component {
     });
   };
 
-  handleUpdateItemStatus = (event) => {
-    event.preventDefault();
-    this.putItemStatusAxios(event);
-  };
   deleteAxiosItem = (event) => {
     console.log(
       `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`
@@ -356,13 +355,13 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 userId={this.state.userId}
-                itemstatus={this.state.itemstatus}
+                itemStatus={this.itemstatus}
                 updatedListTitle={this.state.updatedListTitle}
                 updatedListImageUrl={this.state.updatedListImageUrl}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
                 handleUpdateList={this.handleUpdateList}
-                handleUpdateItemStatus={this.handleUpdateItemStatus}
+                // handleUpdateItemStatus={this.handleUpdateItemStatus}
                 handleListItemDelete={this.deleteAxiosListItem}
                 isAuthenticated={this.state.isAuthenticated}
               />

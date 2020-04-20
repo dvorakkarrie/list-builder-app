@@ -2,19 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Item = (props) => {
-//   console.log(props);
+//   console.log(props.item);
 
-  let currentitemstatus = !props.item.itemStatus ? "true" : "false";
-  let updateItem = props.item;
-//   console.log(updateItem);
+  let currentitemstatus = !props.item.status ? "true" : "false";
+  console.log(props.item.status)
+  console.log(currentitemstatus)
 
-  return (
-    <div className={`item-${props.item.itemStatus}`}>
+  return currentitemstatus && (
+    <div className={`item-${currentitemstatus}`}>
       {/* refactor from a link to a button so object can be passed to the UpdateItem component... or loop through the state events and find item id that we want */}
       <Link
         to={`/items/${props.item._id}/${props.item._id}`}
         key={props.item._id}
-        updateItem={props.updateItem}
         className='item-name'
         item={props}
       >
@@ -27,8 +26,8 @@ const Item = (props) => {
         <button
           className={`btn-task-list`}
           id={`${props.item._id}`}
-          itemstatus={currentitemstatus}
-          onClick={props.handleUpdateItemStatus}
+          status={currentitemstatus}
+          onClick={props.itemStatus}
         >
           {" "}
           <i className='fas fa-check-circle'></i>{" "}
