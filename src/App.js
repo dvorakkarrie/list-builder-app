@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Items from "./components/Items";
 import ItemDetails from "./components/ItemDetails";
 import Lists from "./components/Lists";
+// import ListDetail from "./components/ListDetail";
 import ListDetails from "./components/ListDetails";
 import Signin from "./components/Signin";
 import SideNav from "./components/SideNav";
@@ -243,8 +244,13 @@ class App extends Component {
   };
 
   putItemStatusAxios = (event) => {
+<<<<<<< HEAD
     let updatedItemStatus = event.target.getAttribute('status')
+=======
+    let updatedItemStatus = event.target.getAttribute('itemstatus')
+>>>>>>> d98dfb8bd658fcf100e5bc5db2ad2ba797a47b5b
     console.log(updatedItemStatus)
+    console.log(event.target.id)
     let listId = this.props.location.pathname.slice(7);
     event.preventDefault();
     axios({
@@ -357,7 +363,7 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 userId={this.state.userId}
-                // itemStatus={this.state.itemStatus}
+                itemstatus={this.state.itemstatus}
                 updatedListTitle={this.state.updatedListTitle}
                 updatedListImageUrl={this.state.updatedListImageUrl}
                 handleChange={this.handleChange}
