@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const List = (props) => {
   console.log(props);
   return (
-    <div>
+    <>
       <Link
         to={`/lists/${props.list._id}`}
         key={props.list._id && <p>props.list._id</p>}
@@ -20,7 +20,7 @@ const List = (props) => {
           </li>
         </ul>
       </Link>
-    </div>
+    </>
   );
 };
 

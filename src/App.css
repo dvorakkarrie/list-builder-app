@@ -51,7 +51,6 @@ button:hover {
 }
 
 .detail-edit-section {
-  color: rgb(1, 58, 1);
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -109,7 +108,6 @@ div.detail-main-div {
 
 /* This formats the Item and List detail pages from ItemDetails and ListDetails components */
 div.detail-display-section {
-  color: rgb(1, 58, 1);
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -281,6 +279,12 @@ ul {
   list-style-type: none;
 }
 
+ul > li:nth-of-type(odd) {
+  background-color: rgba(229, 241, 247);
+
+}ul > li:nth-of-type(even) {
+  background-color: white;
+}
 /* This formats all the pages to be compatible with a mobile device */
 @media screen and (max-width: 600px) {
   div.App {

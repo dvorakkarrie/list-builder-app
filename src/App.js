@@ -237,12 +237,6 @@ class App extends Component {
     });
   };
 
-  handleUpdateItem = (event) => {
-    console.log(event.target.id);
-    event.preventDefault();
-    this.putItemAxios(event);
-  };
-
   itemstatus = (event) => {
     let updatedItemStatus = event.target.getAttribute('status')
     console.log(event.target.attributes.getNamedItem('status'))
@@ -263,12 +257,6 @@ class App extends Component {
     });
   };
 
-  handleUpdateItemStatus = (event) => {
-    console.log(event.target.id)
-    event.preventDefault();
-    this.putItemStatusAxios(event);
-  };
-  
   deleteAxiosItem = (event) => {
     console.log(
       `${backendUrl}delete-item/${this.state.userId}/${event.target.id}`
@@ -336,22 +324,6 @@ class App extends Component {
                 />
               )}
             />
-
-          {/* Route to view Lists component */}
-          <Route
-            exact
-            path="/lists"
-            render={(routerProps) => (
-              <Lists
-                {...routerProps}
-                users={this.state.users}
-                userId={this.state.userId}
-                handleChange={this.handleChange}
-                handleListDelete={this.deleteAxiosList}
-                isAuthenticated={this.state.isAuthenticated}
-              />
-            )}
-          />
 
           {/* Route to view ListDetails component */}
           <Route
@@ -433,7 +405,7 @@ class App extends Component {
                   updatedItemImageUrl={this.state.updatedItemImageUrl}
                   handleChange={this.handleChange}
                   handleItemDelete={this.deleteAxiosItem}
-                  handleUpdateItem={this.handleUpdateItem}
+                  handleUpdateItem={this.putItemAxios}
                   isAuthenticated={this.state.isAuthenticated}
                 />
               )}
