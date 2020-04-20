@@ -36,6 +36,7 @@ class App extends Component {
       listImageUrl: "",
       updatedListTitle: "",
       updatedListImageUrl: "",
+      itemId: "",
       itemName: "",
       itemDescription: "",
       itemstatus: "",
@@ -176,6 +177,32 @@ class App extends Component {
     this.createListItemAxios();
   };
 
+  addListItemAxios = (event) => {
+    console.log(this.state.itemId)
+    console.log(this.props.location.pathname)
+    let listId = this.props.location.pathname.slice(7);
+    console.log(listId)
+    axios({
+      method: "PUT",
+      url: `${backendUrl}add-list-item`,
+      data: {
+        list: {
+          _id: listId,
+        },
+        item: {
+          _id: this.state.itemId,
+        },
+      },
+    }).then((newItem) => {
+      this.getUserAxiosById();
+      this.props.history.push(`/lists/${listId}`);
+    });
+  };
+
+  handleAddListItemSubmit = (event) => {
+    event.preventDefault();
+    this.addListItemAxios();
+  }
   deleteAxiosListItem = (event) => {
     console.log(this.props.location.pathname)
     let listId = this.props.location.pathname.slice(7);
@@ -333,12 +360,14 @@ class App extends Component {
                 {...routerProps}
                 users={this.state.users}
                 userId={this.state.userId}
+                itemId={this.state.itemId}
                 itemStatus={this.itemstatus}
                 updatedListTitle={this.state.updatedListTitle}
                 updatedListImageUrl={this.state.updatedListImageUrl}
                 handleChange={this.handleChange}
                 handleListDelete={this.deleteAxiosList}
                 handleUpdateList={this.handleUpdateList}
+                handleAddListItemSubmit={this.handleAddListItemSubmit}
                 // handleUpdateItemStatus={this.handleUpdateItemStatus}
                 handleListItemDelete={this.deleteAxiosListItem}
                 isAuthenticated={this.state.isAuthenticated}
