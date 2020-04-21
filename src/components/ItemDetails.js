@@ -41,7 +41,7 @@ const ItemDetails = (props) => {
               placeholder="Description"
             />
           </div>
-          <div className="detail-field">{itemsDetail.image_url}</div>
+
           <div className="detail-div">
             <label className="detail-label">Image Url:</label>
             <input
@@ -52,6 +52,8 @@ const ItemDetails = (props) => {
             />
           </div>
         </form>
+            <img src={itemsDetail.image_url} alt="item" height="15%" width="15%">
+            </img>
       </section>
     </div>
   ) : (

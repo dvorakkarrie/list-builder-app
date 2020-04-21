@@ -6,7 +6,7 @@ const ListItems = (props) => {
 
   let itemStatus = !props.item.status ? "true" : "false";
 
-  // console.log(itemStatus);
+  console.log(itemStatus);
   return (
     <div className={`status-${props.item.status}`}>
       <ul>
@@ -19,9 +19,11 @@ const ListItems = (props) => {
             status={itemStatus}
             onClick={props.handleUpdateItemStatus}
           >
+            {" "}
             <i className="fas fa-check-circle"></i>{" "}
           </button>
           <button id={props.item._id} onClick={props.handleListItemDelete}>
+            {" "}
             <i className="fas fa-trash"></i>{" "}
           </button>
         </li>

@@ -287,9 +287,12 @@ ul {
 ul > li:nth-of-type(odd) {
   background-color: rgba(229, 241, 247);
 
-}ul > li:nth-of-type(even) {
-  background-color: rgb(171, 219, 244);
 }
+
+ul > li:nth-of-type(even) {
+  background-color: rgba(176, 178, 181, 0.5);
+}
+
 /* This formats all the pages to be compatible with a mobile device */
 @media screen and (max-width: 600px) {
   div.App {
