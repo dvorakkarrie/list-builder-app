@@ -98,6 +98,10 @@ Based on the initial logic defined in the previous sections try and breakdown th
 | **Items.js** | This component recieves an array of items assigned to the user and maps each one to the assigned Item component. |
 | **Item.js** | This component creates an item from its parent Items component. A DELETE call can be fired from this component to remove an item from the backend api. |
 | **ItemDetails.js** | This component displays a single item. There are inputs on this page to update (PUT) items. |
+| **Task.js** | This component displays a single task. |
+| **TaskForm.js** | This component displays the form that will display the form to add and edit tasks. |
+| **TaskList.js** | This component displays the tasks from the task component. |
+| **TaskListContext.js** | This component displays the task form and task list components. |
 | **CreateList.js** | This will post a new list to the parent user with the following data: list title and image_url. |
 | **CreateItem.js** | This will post a new item to the parent user with the following data: item name, description and image_url. |
 | **CreateListItem.js** | This will post a new item to the parent list with the following data: item name, description and image_url. |
