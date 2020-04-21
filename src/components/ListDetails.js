@@ -27,42 +27,51 @@ const ListDetails = (props) => {
       <ListItems
         key={item._id}
         item={item}
-        name="listitems"
+        name='listitems'
         userId={props.userId}
         itemStatus={props.itemStatus}
-        handleUpdateItemStatus={props.handleUpdateItemStatus}
+        // handleUpdateItemStatus={props.handleUpdateItemStatus}
         handleListItemDelete={props.handleListItemDelete}
       />
     );
   });
 
-  return listsDetail ? (
-    <div className="detail-main-div">
-      <section className="detail-edit-section">
+  let c = listsDetail && allUserItems 
+  console.log(c)
+
+  return listsDetail && allUserItems ? (
+    <div className='detail-main-div'>
+      <section className='detail-edit-section'>
         <h2>List Details</h2>
         <form
           id={listsDetail._id}
           onChange={props.handleChange}
           onSubmit={props.handleUpdateList}
         >
-          <input className="button" type="submit" value="Update List" />
-          <div className="detail-field">{listsDetail.title}</div>
-          <div className="detail-div">
-            <label className="detail-label">Title:</label>
+          <input className='button' type='submit' value='Update List' />
+          <div className='detail-field'>{listsDetail.title}</div>
+          <div className='detail-div'>
+            <label className='detail-label'>Title:</label>
             <input
-              type="text"
-              className="input-box"
-              name="updatedListTitle"
-              placeholder="Title"
+              type='text'
+              className='input-box'
+              name='updatedListTitle'
+              placeholder='Title'
             />
           </div>
+<<<<<<< HEAD
           <div className="detail-div">
             <label className="detail-label">Image Url:</label>
+=======
+          <div className='detail-field'>{listsDetail.image_url}</div>
+          <div className='detail-div'>
+            <label className='detail-label'>Image Url:</label>
+>>>>>>> c691a9beb743582a261d06c1e44c784af6e720c2
             <input
-              type="text"
-              className="input-box"
-              name="updatedListImageUrl"
-              placeholder="Image Url"
+              type='text'
+              className='input-box'
+              name='updatedListImageUrl'
+              placeholder='Image Url'
             />
           </div>
         </form>
@@ -77,9 +86,9 @@ const ListDetails = (props) => {
           <li>
             <label>Choose an item to add (+)</label>
             <select
-              className="drop-down-list"
-              id="selectItem"
-              name="itemId"
+              className='drop-down-list'
+              id='selectItem'
+              name='itemId'
               onChange={props.handleChange}
               onClick={props.handleAddListItemSubmit}
             >
@@ -87,7 +96,7 @@ const ListDetails = (props) => {
             </select>
           </li>
         </ul>
-        <div className="item-name">{allItems}</div>
+        <div className='item-name'>{allItems}</div>
       </section>
     </div>
   ) : (
