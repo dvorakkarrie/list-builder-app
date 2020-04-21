@@ -43,7 +43,7 @@ The app allows users to create, maintain, and share lists.
  * Three nested, relational data models
     - users => lists & items
     - lists => items
- * Prior to implementing the node/express/mongo backend, we considered implementing a django/postgres backend and one was built but not fully flushed out and used as there was concern for cors/communicating with the frontend. JWT token implementation was researched but did not have time to implement in either. Linked here is the django/postgres backend repo: __**[django/mongodb backend](https://github.com/myraileen/List_Builder_Backend)**__
+ * Prior to implementing the node/express/mongo backend, we considered implementing a django/postgres backend and one was built but not fully flushed out and used as there was concern for cors/communicating with the frontend. JWT token implementation was researched but did not have time to implement in either. Linked here is the django/postgres backend repo: __**[django/mongodb backend repository](https://github.com/myraileen/List_Builder_Backend)**__
 #### User login
  * User role-based security (did not learn in class) - as defined in user stories
  * Security authorization
