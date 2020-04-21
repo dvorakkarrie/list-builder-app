@@ -70,7 +70,7 @@ const ListDetails = (props) => {
             />
           </div>
         </form>
-        <img src={listsDetail.image_url} alt="list" height="15%" width="15%">
+        <img src={listsDetail.image_url} alt="list" height="30%" width="30%">
             </img>
         <div></div>
         <h3>Item Details:</h3>

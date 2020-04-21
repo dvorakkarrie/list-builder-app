@@ -52,7 +52,7 @@ const ItemDetails = (props) => {
             />
           </div>
         </form>
-            <img src={itemsDetail.image_url} alt="item" height="15%" width="15%">
+            <img src={itemsDetail.image_url} alt="item" height="30%" width="30%">
             </img>
       </section>
     </div>
