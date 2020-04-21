@@ -11,48 +11,6 @@
 ## Functional Overview:
 The app allows users to create, maintain, and share lists.
 
-## Technical Achievements:
-### Frontend
- * REACT
- * Hooks (useContext, useEffect, useState)
- * Responsive design for mobile and large screen devices
-#### Backend
- * Consume an API
- * CRUD against Django/Mongoose rest api for user data
- * Three nested data models
-    - users => lists & items
-    - lists => items
-#### User login
- * User role-based security (did not learn in class) - as defined in user stories
- * Security authorization
-
----
-## Components
-### Screen Mock
-[Login/SignUp View](https://wireframe.cc/UUdu4W)
-[Login View](https://wireframe.cc/KvXkK2)
-[Item View](https://wireframe.cc/8DJyT8)
-[List View](https://wireframe.cc/NanzQ3)
-[Manage List](https://wireframe.cc/2sCU9g)
-[User Profile View]()  
-
-* MVP
-  * HomePage
-  * User
-  * CreateItem
-  * CreateList
-  * BuildList
-  * LoginSignupLogout
-* Silver
-  * FindRecipe
-  * Recipe
-  * Ingredients
-* Gold
-  * Share (from List)
----
-## Data Models
-[ERDs](https://dbdiagram.io/d/5e924af039d18f5553fd74eb)
-
 ---
 ## User Stories
 * MVP 
@@ -74,20 +32,68 @@ The app allows users to create, maintain, and share lists.
 * Gold
   * As a user, I can share my list with another user.
   * As a user, I can see only view or edit lists shared with me.
+--- 
+## Technical Achievements:
+### Frontend
+ * Single page React app using React Router
+ * React Hooks (useContext, useEffect, useState) implemented with the "Tasks" components
+ * Responsive design for mobile and large screen devices
+#### Backend
+ * RESTful API built using Djange that demonstrates full CRUD against MongoDb noSQL database
+ * Three nested, relational data models
+    - users => lists & items
+    - lists => items
+ * Prior to implementing the node/express/mongo backend, we considered implementing a django/postgres backend and one was built but not fully flushed out and used as there was concern for cors/communicating with the frontend. JWT token implementation was researched but did not have time to implement in either. Linked here is the django/postgres backend repo: __**[django/mongodb backend](https://github.com/myraileen/List_Builder_Backend)**__
+#### User login
+ * User role-based security (did not learn in class) - as defined in user stories
+ * Security authorization
+
+---
+## Components
+### Screen Mock-ups
+* [Login/SignUp View](https://wireframe.cc/UUdu4W)  
+* [Login View](https://wireframe.cc/KvXkK2)  
+* [Item View](https://wireframe.cc/8DJyT8)  
+* [List View](https://wireframe.cc/NanzQ3)  
+
+* [Manage List](https://wireframe.cc/2sCU9g)  
+* [User Profile View]()  
+
+* MVP
+  * HomePage
+  * User
+  * CreateItem
+  * CreateList
+  * BuildList
+  * LoginSignupLogout
+* Silver
+  * FindRecipe
+  * Recipe
+  * Ingredients
+* Gold
+  * Share (from List)
+
+---
 
 ## Backend API routes
-| Path | Transaction |
-| --- | :---:|
-| /users | GET, POST |
-| /users/`<id>` | GET, PUT, UPDATE, DELETE |
-| /new-list/ | PUT (with userID, adds list doc, updates user list array) |
-| /delete-list/`<userId>`/`<listId>` | DELETE |
-| /new-item/ | PUT (with userID, adds item doc, updates user item array) |
-| /delete-item/`<userId>`/`<listId>` | DELETE |
-| /new-list-item/ | PUT (adds new item doc, updates user and list item arrays) |
-| /add-list-item/ | PUT (updates user and list with existing item) |
+## Data Models
+![ERD](https://res.cloudinary.com/myraileen/image/upload/v1587427814/ERD_tjioas.jpg)
 
-## Components
+## Backend API routes
+| Path | Transaction | Description |
+| --- | :---:| :---: |
+| / | GET, POST | Called by React frontend to get Users data model that is 'populated' with the users Items and Lists |
+| /users/`<id>` | GET, PUT, UPDATE, DELETE | CRUD for an individual User instance |
+| /new-list/ | PUT  | called by React frontend passing a userId and ListId to create a list and push it into User's List array |
+| /delete-list/`<userId>`/`<listId>` | DELETE | called by React frontend to delete a list and remove it from the User's List array |
+| /new-item/ | PUT | called by React frontend passing a userId and ItemId to add an Item to the User's Item array. 
+| /delete-item/`<userId>`/`<listId>` | DELETE | called by React frontend passing the userId and listId to delete an Item from a User's List
+| /new-list-item/ | PUT | adds NEW Item instance and updates the user and list item arrays) 
+| /add-list-item/ | PUT | called by React frontend passing a listId and itemId to push an existing Item instance into a User's List 
+
+---
+
+## Frontend Components
 Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components.
 
 | Component | Description |
@@ -117,4 +123,4 @@ Based on the initial logic defined in the previous sections try and breakdown th
 * react-dom
 
 ## Credits/References
-* [Auth0 Tutorial](https://manage.auth0.com/dashboard/us/dev-9zf3-xc1/applications/gAanIirzJ76DQa5mSkSlp1lGyn8UkdGs/quickstart)
+* [Auth0 Tutorial](https://manage.auth0.com/dashboard/us/dev-9zf3-xc1/applications/gAanIirzJ76DQa5mSkSlp1lGyn8UkdGs/quickstart): there are commits in our project where we had Auth0 applied to the frontend. There was a lot of learning to apply it, but in the end we removed it for technical difficulties we did not resolve by the project deadline.
