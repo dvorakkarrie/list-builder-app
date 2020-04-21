@@ -8,9 +8,13 @@
 * [React Frontend Application Deployment](https://listbuilderapp.herokuapp.com/)
 * [Node, Express, Mongo Backend RESTful API Deployment](https://listbuilder-backend.herokuapp.com/)
 ---
-## Functional Overview:
+## Functional Concept Overview:
 The app allows users to create, maintain, and share lists.
 
+---
+## Implementation/delivery execution
+  * Git workflow  used to manage source code.
+  * Daily planning, prioritization and code-pairing
 ---
 ## User Stories
 * MVP 
@@ -49,8 +53,7 @@ The app allows users to create, maintain, and share lists.
  * Security authorization
 
 ---
-## Components
-### Screen Mock-ups
+## Screen Mock-ups
 * [Login/SignUp View](https://wireframe.cc/UUdu4W)  
 * [Login View](https://wireframe.cc/KvXkK2)  
 * [Item View](https://wireframe.cc/8DJyT8)  
@@ -59,27 +62,13 @@ The app allows users to create, maintain, and share lists.
 * [Manage List](https://wireframe.cc/2sCU9g)  
 * [User Profile View]()  
 
-* MVP
-  * HomePage
-  * User
-  * CreateItem
-  * CreateList
-  * BuildList
-  * LoginSignupLogout
-* Silver
-  * FindRecipe
-  * Recipe
-  * Ingredients
-* Gold
-  * Share (from List)
-
 ---
 
-## Backend API routes
-## Data Models
+## Backend API
+### Data Models
 ![ERD](https://res.cloudinary.com/myraileen/image/upload/v1587427814/ERD_tjioas.jpg)
 
-## Backend API routes
+### Backend API routes
 | Path | Transaction | Description |
 | --- | :---:| :---: |
 | / | GET, POST | Called by React frontend to get Users data model that is 'populated' with the users Items and Lists |

@@ -3,17 +3,20 @@
 ## Overview:
 The app allows users to create, maintain, and share lists.
 
-## Technical Goals/Requirements:
-### Frontend
- * REACT
-### Backend
- * Consume an API
- * CRUD against Django/Mongoose rest api for user data
-### User login
- * role-based security (did not learn in class) - as defined in user stories
- * social-authenticate
+## Project Goals & Requirements:
+  ### Delivery execution
+  * Git workflow  used to manage source code.
+  * Daily planning, prioritization and code-pairing
+  ### Frontend
+  * REACT
+  ### Backend
+  * Consume an API
+  * CRUD against Django/Mongoose rest api for user data
+  ### User login
+  * role-based security (did not learn in class) - as defined in user stories
+  * social-authenticate
 
-# Components
+## Components
 [Screen mock](https://wireframe.cc/8DJyT8)
 * HomePage
 * LoginSignupLogout
