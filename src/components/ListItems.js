@@ -7,13 +7,8 @@ const ListItems = (props) => {
   let itemStatus = !props.item.status ? "true" : "false";
   itemStatus = true
 
-<<<<<<< HEAD
-  console.log(itemStatus);
-  return (
-=======
   // console.log(itemStatus);
   return itemStatus ? (
->>>>>>> c691a9beb743582a261d06c1e44c784af6e720c2
     <div className={`status-${props.item.status}`}>
       <ul>
         <li className="li-area">

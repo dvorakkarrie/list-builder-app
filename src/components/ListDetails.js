@@ -59,14 +59,9 @@ const ListDetails = (props) => {
               placeholder='Title'
             />
           </div>
-<<<<<<< HEAD
-          <div className="detail-div">
-            <label className="detail-label">Image Url:</label>
-=======
           <div className='detail-field'>{listsDetail.image_url}</div>
           <div className='detail-div'>
             <label className='detail-label'>Image Url:</label>
->>>>>>> c691a9beb743582a261d06c1e44c784af6e720c2
             <input
               type='text'
               className='input-box'
